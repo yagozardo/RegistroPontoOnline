@@ -1,12 +1,12 @@
-package com.br.pontu.entity;
+package com.br.pontu.enums;
 
 public enum EstadoCivil {
 	
-	SOLTEIRO("Solteiro(a)"),
-	CASADO("Casado(a)"),
-	VIUVO("Viúvo(a)"),
-	DIVORCIADO("Divorciado(a)"),
-	SEPARADO("Separado(a)");
+	SOLTEIRO,
+	CASADO,
+	VIUVO,
+	DIVORCIADO,
+	SEPARADO;
 
 	// private String descrição;
 
