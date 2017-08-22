@@ -8,14 +8,15 @@ public enum EstadoCivil {
 	DIVORCIADO("Divorciado(a)"),
 	SEPARADO("Separado(a)");
 
-	private String descrição;
+	// private String descrição;
 
-	private EstadoCivil(String descricao) {
+	// private EstadoCivil(String descricao) {
 		
-		this.descrição = descricao;
-	}
+	// 	this.descrição = descricao;
+	// }
 	
-	public String getDescrição() {
-		return descrição;
-	}
+	// public String getDescrição() {
+	// 	return descrição;
+	// }
+	
 }
