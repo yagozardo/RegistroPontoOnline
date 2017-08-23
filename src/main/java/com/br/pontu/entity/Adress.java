@@ -79,7 +79,7 @@ public class Adress implements Serializable {
     
     @NotNull
     @NotEmpty
-    @Column(nullable = false, length = 2)
+    @Column(nullable = false, length = 5)
     public String getUf() {
         return uf;
     }

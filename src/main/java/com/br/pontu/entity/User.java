@@ -35,6 +35,8 @@ public class User implements Serializable {
 
     public User() {
         
+        
+        
     }
         
         
@@ -47,19 +49,18 @@ public class User implements Serializable {
 	private Long id;
 	private String nome;
 	private String sobrenome;
-	private Date dataNascimento;
+	private String dataNascimento;
 	private String cpf;
 	private String carteiraDeTrabalho;
 	private String rg;
 	private String celular;
 	private String fixo;
 	private EstadoCivil estadoCivil;
+        private String matricula;
 	private role acesso;
 	private Adress endereco;
-	 
-	//Atributos usados para login
-	// private String matricula;
-	// private String senha;
+        private String senha;
+
 	
 	// FIM ========================================================================================
 	
@@ -100,12 +101,11 @@ public class User implements Serializable {
 	}
 
 	@NotNull
-	@Temporal(TemporalType.DATE)
 	@Column(name = "data_nascimento", nullable = false)
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -186,23 +186,25 @@ public class User implements Serializable {
 		this.acesso = acesso;
 	}
 
+         @NotNull
+	 @NotEmpty
+	 @Column(nullable = false, length = 20)
+    	 public String getMatricula() {
+	 return matricula;
+	 }
+	 public void setMatricula(String matricula) {
+	 this.matricula = matricula;
+	 }
 	
-	// public String getMatricula() {
-	// return matricula;
-	// }
-	// public void setMatricula(String matricula) {
-	// this.matricula = matricula;
-	// }
-	
-	// @NotNull
-	// @NotEmpty
-	// @Column(nullable = false, length = 20)
-	// public String getSenha() {
-	// return senha;
-	// }
-	// public void setSenha(String senha) {
-	// this.senha = senha;
-	// }
+	 @NotNull
+	 @NotEmpty
+	 @Column(nullable = false, length = 20)
+	 public String getSenha() {
+	 return senha;
+	 }
+	 public void setSenha(String senha) {
+	 this.senha = senha;
+	 }
 	
 	
 	/**

@@ -10,5 +10,5 @@ package com.br.pontu.enums;
  * @author sltnote-6354
  */
 public enum role {
-    Admin,user;
+    Admin,User;
 }
