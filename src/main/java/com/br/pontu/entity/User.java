@@ -33,6 +33,11 @@ import com.br.pontu.enums.role;
 @Table(name = "usuario")
 public class User implements Serializable {
 
+    public User() {
+        
+    }
+        
+        
 	private static final long serialVersionUID = 1L;
 
 	
@@ -51,7 +56,7 @@ public class User implements Serializable {
 	private EstadoCivil estadoCivil;
 	private role acesso;
 	private Adress endereco;
-	
+	 
 	//Atributos usados para login
 	// private String matricula;
 	// private String senha;
