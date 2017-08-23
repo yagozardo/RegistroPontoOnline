@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>LISTA DE USUARIOS</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th >Nome</th>
+                        <th >Sobrenome</th>
+                        <th >Data de Nascimento</th>
+                        <th >CPF</th>
+                        <th >Carteira de Trabalho</th>
+                        <th >RG</th>
+                        <th >Celular</th>
+                        <th >Fixo</th>
+                        <th >Estado Civil</th>
+                        <th >Matricula</th>
+                        <th >Acesso</th>
+                        <th >Endereço - Numero</th>
+                        <th >Logradouro</th>
+                        <th >Complemento</th>
+                        <th >UF</th>
+                        <th >Cidade</th>
+                        <th >CEP</th>
+                    </tr>
+                </thead> 
+                <tbody>
+                    <tr th:each="lista : ${list}">
+                        <td   th:text="${lista.nome}"></td>
+                        <td   th:text="${lista.sobrenome}"></td>
+                        <td   th:text="${lista.dataNascimento}"></td>
+                        <td   th:text="${lista.cpf}"></td>
+                        <td   th:text="${lista.carteiraDeTrabalho}"></td>
+                        <td   th:text="${lista.rg}"></td>
+                        <td   th:text="${lista.celular}"></td>
+                        <td   th:text="${lista.fixo}"></td>
+                        <td   th:text="${lista.estadoCivil}"></td>
+                        <td   th:text="${lista.matricula}"></td>
+                        <td   th:text="${lista.acesso}"></td>
+                        <td   th:text="${lista.endereco.numero}"></td>
+                        <td   th:text="${lista.endereco.logradouro}"></td>
+                        <td   th:text="${lista.endereco.complemento}"></td>
+                        <td   th:text="${lista.endereco.uf}"></td>
+                        <td   th:text="${lista.endereco.cidade}"></td>
+                        <td   th:text="${lista.endereco.cep}"></td>
+                        
+                       
+                       
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </body>
+</html>

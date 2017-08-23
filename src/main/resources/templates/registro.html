@@ -204,19 +204,19 @@ and open the template in the editor.
                                                     <label for="input_matricula">Matrícula*</label>
                                                     <input type="text" class="form-control" id="input_matricula" placeholder="Mín. 6 caracteres" th:field="*{matricula}">
                                                 </div>
-                                                
+
 
                                                 <div class="form-group">
                                                     <label for="input_senha">Senha*</label>
                                                     <input type="password" class="form-control" id="senha" placeholder="********" th:field="*{senha}">
                                                 </div>
-                                                 Senha 
+                                                Senha 
 
-<!--                                                <div class="form-group">
-                                                    <label for="input_confirmarSenha">Confirmar Senha*</label>
-                                                    <input type="pass" class="form-control" id="confirmarSenha" placeholder="********">
-                                                </div>
-                                                 Senha -->
+                                                <!--                                                <div class="form-group">
+                                                                                                    <label for="input_confirmarSenha">Confirmar Senha*</label>
+                                                                                                    <input type="pass" class="form-control" id="confirmarSenha" placeholder="********">
+                                                                                                </div>
+                                                                                                 Senha -->
 
                                             </fieldset>
                                             <!-- Login -->
@@ -224,6 +224,12 @@ and open the template in the editor.
                                             <div class="form-group">
                                                 <button id="btn_enviar" type="submit" class="col-lg-4 col-lg-offset-8 btn btn-primary">Enviar</button>
                                             </div>
+                                            </form>
+                                            <br/>
+                                            <form th:action="@{/admin/lista/}" method="get">
+                                                <div class="form-group">
+                                                    <button id="btn_enviar" type="submit" class="col-lg-4 col-lg-offset-8 btn btn-primary">Lista de Usuarios</button>
+                                                </div>
                                             </form>
                                             </div>
                                             </div>
