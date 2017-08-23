@@ -1,5 +1,9 @@
 /* CSS Document */
 
+.logo_pequena{
+    margin-top: -12px;
+}
+
 .texto-centro{
     text-align: center;
 }
