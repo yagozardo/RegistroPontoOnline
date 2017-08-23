@@ -1,26 +1,25 @@
 package com.br.pontu.entity;
 
-import com.br.pontu.enums.EstadoCivil;
-import com.br.pontu.enums.role;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.br.pontu.enums.EstadoCivil;
+import com.br.pontu.enums.role;
 
 /**
  * Entidade que é responsável pelo dados dos usuários Sendo eles de carater
@@ -29,176 +28,213 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author Alves
  */
+
 @Entity
 @Table(name = "usuario")
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /*
-	 * Atributos
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	
+	
+	//  Atributos Inicio   =========================================================================
+	 
+	private Long id;
+	private String nome;
+	private String sobrenome;
+	private Date dataNascimento;
+	private String cpf;
+	private String carteiraDeTrabalho;
+	private String rg;
+	private String celular;
+	private String fixo;
+	private EstadoCivil estadoCivil;
+	private role acesso;
+	private Adress endereco;
+	
+	//Atributos usados para login
+	// private String matricula;
+	// private String senha;
+	
+	// FIM ========================================================================================
+	
+	
+	
+	/**
+	 * Getters And Setters
+	 * Contendo as anotações de verificação =======================================================
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
 
-    @NotNull
-    @NotEmpty
-    @Column(nullable = false, length = 15)
-    private String nome;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    @NotNull
-    @NotEmpty
-    @Column(nullable = false, length = 60)
-    private String sobrenome;
+	@NotNull
+	@NotEmpty
+	@Column(nullable = false, length = 15)
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    @NotNull
-    @Temporal(TemporalType.DATE)
-    @Column(name = "data_nascimento", nullable = false)
-    private Date dataNascimento;
+	@NotNull
+	@NotEmpty
+	@Column(nullable = false, length = 60)
+	public String getSobrenome() {
+		return sobrenome;
+	}
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
 
-    @NotNull
-    @NotEmpty
-    @Column(nullable = false, length = 13)
-    private String cpf;
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_nascimento", nullable = false)
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
 
-    @NotNull
-    @NotEmpty
-    @Column(nullable = false, length = 20)
-    private String carteiraDeTrabalho;
+	@NotNull
+	@NotEmpty
+	@Column(nullable = false, length = 13)
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    @NotNull
-    @NotEmpty
-    @Column(nullable = false, length = 20)
-    private String rg;
+	@NotNull
+	@NotEmpty
+	@Column(nullable = false, length = 20)
+	public String getCarteiraDeTrabalho() {
+		return carteiraDeTrabalho;
+	}
+	public void setCarteiraDeTrabalho(String carteiraDeTrabalho) {
+		this.carteiraDeTrabalho = carteiraDeTrabalho;
+	}
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    private String celular;
+	@NotNull
+	@NotEmpty
+	@Column(nullable = false, length = 20)
+	public String getRg() {
+		return rg;
+	}
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
 
-    @Column(length = 20)
-    private String fixo;
+	@NotNull
+	@NotEmpty
+	@Column(nullable = false, length = 14)
+	public String getCelular() {
+		return celular;
+	}
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 60)
-    private EstadoCivil estadoCivil;
-    
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private role acesso;
+	// Este Atributo pode ser opcional, sendo não é necessário
+	// Validação
+	@Column(length = 14)
+	public String getFixo() {
+		return fixo;
+	}
+	public void setFixo(String fixo) {
+		this.fixo = fixo;
+	}
 
-    public role getAcesso() {
-        return acesso;
-    }
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 60)
+	public EstadoCivil getEstadoCivil() {
+		return estadoCivil;
+	}
+	public void setEstadoCivil(EstadoCivil estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
 
-    public void setAcesso(role acesso) {
-        this.acesso = acesso;
-    }
+	@Embedded
+	public Adress getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Adress endereco) {
+		this.endereco = endereco;
+	}
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private Adress endereco;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	public role getAcesso() {
+		return acesso;
+	}
+	public void setAcesso(role acesso) {
+		this.acesso = acesso;
+	}
 
-//    @NotNull
-//    @NotEmpty
-//    @Column(nullable = false, length = 20)
-//    private String senha;
+	
+	// public String getMatricula() {
+	// return matricula;
+	// }
+	// public void setMatricula(String matricula) {
+	// this.matricula = matricula;
+	// }
+	
+	// @NotNull
+	// @NotEmpty
+	// @Column(nullable = false, length = 20)
+	// public String getSenha() {
+	// return senha;
+	// }
+	// public void setSenha(String senha) {
+	// this.senha = senha;
+	// }
+	
+	
+	/**
+	 * FIM ====================================================================================
+	 */
+	
+	// Equals and Hash Code -------------------------------------------------------------------
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public Date getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getCarteiraDeTrabalho() {
-        return carteiraDeTrabalho;
-    }
-
-    public void setCarteiraDeTrabalho(String carteiraDeTrabalho) {
-        this.carteiraDeTrabalho = carteiraDeTrabalho;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    //Este Atributo pode ser opcional, sendo não é necessário 
-    //Validação
-    public String getFixo() {
-        return fixo;
-    }
-
-    public void setFixo(String fixo) {
-        this.fixo = fixo;
-    }
-
-    public EstadoCivil getEstadoCivil() {
-        return estadoCivil;
-    }
-
-    public void setEstadoCivil(EstadoCivil estadoCivil) {
-        this.estadoCivil = estadoCivil;
-    }
-
-
-    public Adress getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Adress endereco) {
-        this.endereco = endereco;
-    }
-
-//    public String getSenha() {
-//        return senha;
-//    }
-//
-//    public void setSenha(String senha) {
-//        this.senha = senha;
-//    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	//------------------------------------------------------------------------------------------
+	
+	
+	/**
+	 * Métodos Auxiliares ---------------------------------------------------------------------
+	 */
+	
+	
 }
