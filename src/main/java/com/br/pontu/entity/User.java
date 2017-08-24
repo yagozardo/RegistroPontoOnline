@@ -62,7 +62,7 @@ public class User implements Serializable {
 	
 	private role acesso;
 	private Adress endereco;
-    private List<Times> ponto;
+//    private List<Times> ponto;
 
 	
 	// FIM ========================================================================================
@@ -195,14 +195,14 @@ public class User implements Serializable {
 	 }
 	 
 	 
-	 @NotNull
-	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	 public List<Times> getPonto() {
-			return ponto;
-	}
-	public void setPonto(List<Times> ponto) {
-			this.ponto = ponto;
-	}
+//	 @NotNull
+//	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//	 public List<Times> getPonto() {
+//			return ponto;
+//	}
+//	public void setPonto(List<Times> ponto) {
+//			this.ponto = ponto;
+//	}
 	 
 	
 	@Embedded

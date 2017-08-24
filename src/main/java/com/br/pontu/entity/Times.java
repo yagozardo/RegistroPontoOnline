@@ -1,3 +1,4 @@
+
 package com.br.pontu.entity;
 
 import java.io.Serializable;
@@ -6,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -32,6 +34,7 @@ public class Times implements Serializable{
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
+        @Id
 	public String getDia() {
 		return dia;
 	}
@@ -59,3 +62,4 @@ public class Times implements Serializable{
 	
 
 }
+
