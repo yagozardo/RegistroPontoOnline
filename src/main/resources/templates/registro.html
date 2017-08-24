@@ -50,7 +50,8 @@ and open the template in the editor.
             <![endif]-->
 
 </head>
-<body>
+<body onload="ano()"> <!-- ano() função que obtem o ano e seta ele no rodapé -->
+
 <div class="container-fluid"> 
   
   <!-- MENU -->
@@ -317,13 +318,15 @@ and open the template in the editor.
   
 </div>
 <!-- Container -->
-
 <footer>
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 texto-centro">
         <h3 class="footer-title">Pontu</h3>
-        <p>Sistema de Registro de Ponto eletrônico &copy; - 2017</p>
+        <!-- Script para setar o ano do rodapé --> 
+        <script src="../static/dist/js/obeterAno.js"></script>
+        <p>Sistema de Registro de Ponto eletrônico &copy; - <span id="ano">ano</span> </p>
+        
       </div>
     </div>
   </div>
