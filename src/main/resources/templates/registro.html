@@ -17,21 +17,31 @@ and open the template in the editor.
         <!-- Favicon -->
         <link rel="shortcut icon" href="../static/img/favicon.ico"/>
 
-        <!-- Loading Bootstrap -->
-        <link th:href="@{/dist/css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+<!-- Loading Bootstrap -->
+<!-- <link th:href="@{/dist/css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/> -->
+<link href="../static/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
-        <!-- Loading Flat UI -->
-        <link th:href="@{/dist/css/flat-ui.css}" rel="stylesheet"/>
-        <link th:href="@{/docs/assets/css/demo.css}" rel="stylesheet"/>
+<!-- Loading Flat UI -->
+<!-- <link th:href="@{/dist/css/flat-ui.css}" rel="stylesheet"/> -->
+<link href="../static/dist/css/flat-ui.css" rel="stylesheet"/>
+<!-- <link th:href="@{/docs/assets/css/demo.css}" rel="stylesheet"/> -->
+<link href="../static/docs/assets/css/demo.css" rel="stylesheet"/>
 
-        <!-- Estilo próprio -->
-        <link th:href="@{/estilo/estilo.css}" rel="stylesheet"/>
+<!-- Estilo próprio -->
+<!-- <link th:href="@{/estilo/estilo.css}" rel="stylesheet"/> -->
+<link href="../static/estilo/estilo.css" rel="stylesheet"/>
 
-        <!-- Scripts Flat UI -->
-        <script src="dist/js/vendor/jquery.min.js"></script>
-        <script src="dist/js/vendor/video.js"></script>
-        <script src="dist/js/flat-ui.min.js"></script>
-        <script src="docs/assets/js/application.js"></script>
+<!-- Scripts Flat UI -->
+<!--
+<script src="dist/js/vendor/jquery.min.js"></script>
+<script src="dist/js/vendor/video.js"></script>
+<script src="dist/js/flat-ui.min.js"></script>
+<script src="docs/assets/js/application.js"></script> 
+-->
+<script src="../static/dist/js/vendor/jquery.min.js"></script>
+<script src="../static/dist/js/vendor/video.js"></script>
+<script src="../static/dist/js/flat-ui.min.js"></script>
+<script src="../static/docs/assets/js/application.js"></script>
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
         <!--[if lt IE 9]>
@@ -39,34 +49,274 @@ and open the template in the editor.
               <script src="dist/js/vendor/respond.min.js"></script>
             <![endif]-->
 
-    </head>
-    <body>
-        <div class="container-fluid"> 
-
-            <!-- MENU -->
-            <div class="row menu">
-                <nav class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01"> <span class="sr-only">Toggle navigation</span> </button>
-                        <a class="navbar-brand" href="#"><img class="logo_pequena" th:src="@{/img/logo/logo_pontu_145x48.png}"></a> </div>
-                    <div class="collapse navbar-collapse" id="navbar-collapse-01">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="#fakelink">ESPELHO</a></li>
-                        </ul>
-                        <form class="navbar-form navbar-right" action="#" role="search">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input class="form-control" id="navbarInput-01" type="search" placeholder="Procurar"/>
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn"><span class="fui-search"></span></button>
-                                    </span> </div>
-                            </div>
-                        </form>
+</head>
+<body>
+<div class="container-fluid"> 
+  
+  <!-- MENU -->
+  <div class="row menu">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01"> <span class="sr-only">Toggle navigation</span> </button>
+        <a class="navbar-brand" href="#"><!-- <img class="logo_pequena" th:src="@{/img/logo/logo_pontu_145x48.png}"> --><img class="logo_pequena" src="../static/img/logo/logo_pontu_145x48.png"> </a> </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse-01">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#fakelink">ESPELHO</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" action="#" role="search">
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control" id="navbarInput-01" type="search" placeholder="Procurar"/>
+              <span class="input-group-btn">
+              <button type="submit" class="btn"><span class="fui-search"></span></button>
+              </span> </div>
+          </div>
+        </form>
+      </div>
+      <!-- /.navbar-collapse --> 
+    </nav>
+    <!-- /navbar --> 
+  </div>
+  
+  <!-- Conteúdo -->
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h6>Registro</h6>
+          </div>
+          <div class="panel-options"> <a class="bg" data-target="#sample-modal-dialog-1" data-toggle="modal" href="#sample-modal"><i class="entypo-cog"></i></a> <a data-rel="collapse" href="#"><i class="entypo-down-open"></i></a> <a data-rel="close" href="#!/tasks" ui-sref="Tasks"><i class="entypo-cancel"></i></a> </div>
+        </div>
+        <div class="panel-body">
+          <form role="form" th:action="@{/admin/registro}" method="post" th:object="${user}">
+            <fieldset>
+              <legend>Dados Pessoais</legend>
+              <div class="row">
+                <div class="col-lg-5 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_nome">Nome*</label>
+                    <input type="text" class="form-control" id="input_ID" placeholder="Nome" th:field="*{nome}">
+                  </div>
+                </div>
+                <!-- Nome -->
+                
+                <div class="col-lg-5 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_sobrenome">Sobrenome*</label>
+                    <input type="text" class="form-control" id="input_sobrenome" placeholder="Sobrenome" th:field="*{sobrenome}">
+                  </div>
+                </div>
+                <!-- Sobrenome --> 
+              </div>
+              <!-- .row-->
+              
+              <div class="row">
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_dataNascimento">Data Nascimento*</label>
+                    <input type="date" class="form-control" id="input_dataNascimento" placeholder="dd/mm/aaaa" th:field="*{dataNascimento}">
+                  </div>
+                </div>
+                <!-- Data Nascimento -->
+                
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_rg">RG*</label>
+                    <input type="text" class="form-control" id="input_rg" placeholder="RG" th:field="*{rg}">
+                  </div>
+                </div>
+                <!-- RG -->
+                
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_cpf">CPF*</label>
+                    <input type="text" class="form-control" id="input_cpf" placeholder="000.000.000-00" th:field="*{cpf}">
+                  </div>
+                </div>
+                <!-- CPF -->
+                
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_carteiraDeTrabalho">Carteira de Trabalho*</label>
+                    <input type="text" class="form-control" id="input_carteiraDeTrabalho" placeholder=""  th:field="*{carteiraDeTrabalho}">
+                  </div>
+                </div>
+                <!-- CPF -->
+                
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_cpf">Estado Civil*</label>
+                    <div class="selecter closed" tabindex="0">
+                      <select name="col-lg-12 selecter_basic" class="selecter_1 selecter-element" tabindex="-1" th:field="*{estadoCivil}">
+                        <option  th:each="estadoCivil : ${T(com.br.pontu.enums.EstadoCivil).values()}" th:value="${estadoCivil}" th:text="${estadoCivil}"></option>
+                      </select>
                     </div>
-                    <!-- /.navbar-collapse --> 
-                </nav>
-                <!-- /navbar --> 
+                  </div>
+                </div>
+                <!-- Estado Civil --> 
+              </div>
+              <!-- .row-->
+              
+            </fieldset>
+            <hr>
+            <fieldset>
+              <legend>Telefones</legend>
+              <div class="row">
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_celular">Celular*</label>
+                    <input type="text" class="form-control" id="input_celular" placeholder="(DD) 00000-0000">
+                  </div>
+                </div>
+                <!-- Celular -->
+                
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_fixo">Fixo</label>
+                    <input type="text" class="form-control" id="input_fixo" placeholder="(DD) 0000-0000">
+                  </div>
+                </div>
+                <!-- Fixo --> 
+              </div>
+              <!-- .row-->
+            </fieldset>
+            <!-- Telefones -->
+            <hr>
+            <fieldset>
+              <legend>Endereço</legend>
+              <div class="row">
+                <div class="col-lg-5 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_logradouro">Logradouro*</label>
+                    <input type="text" class="form-control" id="input_logradouro" placeholder="Rua A">
+                  </div>
+                </div>
+                <!-- Logradouro -->
+                
+                <div class="col-lg-4 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_complemeno">Complemento*</label>
+                    <input type="text" class="form-control" id="input_complemeno" placeholder="Apartamento Nº100">
+                  </div>
+                </div>
+                <!-- Complemeno -->
+                
+                <div class="col-lg-1 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_numero">Número*</label>
+                    <input type="number" class="form-control" id="input_numero" placeholder="Nº">
+                  </div>
+                </div>
+                <!-- Número --> 
+                
+              </div>
+              <!-- .row-->
+              
+              <div class="row">
+                <div class="col-lg-3 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_cidade">Cidade*</label>
+                    <input type="text" class="form-control" id="input_cidade" placeholder="">
+                  </div>
+                </div>
+                <!-- Cidade -->
+                
+                <div class="col-lg-1 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_uf">UF*</label>
+                    <div class="selecter closed" tabindex="0">
+                      <select name="selecter_basic" class="selecter_1 selecter-element" tabindex="-1" th:field="*{estadoCivil}">
+                        <option  th:each="estadoCivil : ${T(com.br.pontu.enums.EstadoCivil).values()}" th:value="${estadoCivil}" th:text="${estadoCivil}"></option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- Estado -->
+                
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_cep">CEP*</label>
+                    <input type="number" class="form-control" id="input_cep" placeholder="00000-000">
+                  </div>
+                </div>
+                <!-- CEP --> 
+              </div>
+              <!-- .row-->
+              
+            </fieldset>
+            <!-- Endereço -->
+            <hr>
+            <fieldset>
+              <legend>Login</legend>
+              <div class="row">
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_matricula">Matrícula*</label>
+                    <input type="text" class="form-control" id="input_matricula" placeholder="Mín. 6 caracteres">
+                  </div>
+                </div>
+                <!-- matricula --> 
+              </div>
+              <!-- .row -->
+              
+              <div class="row">
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_senha">Senha*</label>
+                    <input type="pass" class="form-control" id="senha" placeholder="********">
+                  </div>
+                </div>
+                <!-- Senha --> 
+              </div>
+              <!-- .row -->
+              
+              <div class="row">
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_confirmarSenha">Confirmar Senha*</label>
+                    <input type="pass" class="form-control" id="confirmarSenha" placeholder="********">
+                  </div>
+                </div>
+                <!-- Senha --> 
+              </div>
+              <!-- .row -->
+              
+            </fieldset>
+            <!-- Login -->
+            <hr>
+            <div class="row">
+              <div class="col-lg-4 col-lg-offset-4  col-xs-12">
+                <div class="form-group">
+                  <button id="btn_enviar" type="submit" class="col-lg-12 btn btn-primary">Enviar</button>
+                </div>
+              </div>
             </div>
+            <!-- .row -->
+            
+          </form>
+          <br/>
+          <div class="row">
+          <div class="col-lg-4 col-lg-offset-4 col-xs-12">
+          <form th:action="@{/admin/lista/}" method="get">
+            <div class="form-group">
+              <button id="btn_enviar" type="submit" class="col-lg-12 btn btn-primary">Lista de Usuarios</button>
+            </div>
+            </div>
+            </div>
+            <!-- .row -->
+          </form>
+        </div>
+      </div>
+      <!-- .panel panel-default --> 
+      
+    </div>
+    <!-- Coluna do formulário --> 
+  </div>
+  <!-- DIV Registro .row--> 
+  
+</div>
+<!-- Container -->
 
             <!-- Conteúdo -->
             <div class="row">
