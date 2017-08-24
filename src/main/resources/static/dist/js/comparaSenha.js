@@ -12,7 +12,7 @@ function comparaSenha() {
             document.getElementById("senhaIncorreta").innerHTML = ""; // Reset do label
             document.getElementById("senhaIncorreta").style.color = "#34495E"; //reset cor do campo 
             document.getElementById('senha').className = 'form-group has-success'; // muda o estilo do formulário
-            document.getElementById('confirmaSenha').className = 'form-group has-feedback has-success'; // muda o estilo do formulário
+            document.getElementById('confirmaSenha').className = 'form-group has-success'; // muda o estilo do formulário
             document.getElementById('iconConfirmaSenha').className = 'form-control-feedback fui-check'; // muda o simbolo de cross "X" para check "v"
 
         } else {

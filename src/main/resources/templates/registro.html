@@ -104,7 +104,7 @@ and open the template in the editor.
                 <div class="col-lg-5 col-xs-12">
                   <div class="form-group">
                     <label for="input_nome">Nome*</label>
-                    <input type="text" class="form-control" id="input_ID" placeholder="Nome" th:field="*{nome}">
+                    <input type="text" name="fnome" class="form-control" id="input_ID" placeholder="Nome" th:field="*{nome}">
                   </div>
                 </div>
                 <!-- Nome -->
@@ -112,7 +112,7 @@ and open the template in the editor.
                 <div class="col-lg-5 col-xs-12">
                   <div class="form-group">
                     <label for="input_sobrenome">Sobrenome*</label>
-                    <input type="text" class="form-control" id="input_sobrenome" placeholder="Sobrenome" th:field="*{sobrenome}">
+                    <input type="text" name="fsobreNome" class="form-control" id="input_sobrenome" placeholder="Sobrenome" th:field="*{sobrenome}">
                   </div>
                 </div>
                 <!-- Sobrenome --> 
@@ -123,7 +123,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_dataNascimento">Data Nascimento*</label>
-                    <input type="date" class="form-control" id="input_dataNascimento" placeholder="dd/mm/aaaa" th:field="*{dataNascimento}">
+                    <input type="date" name="fdataNasc" class="form-control" id="input_dataNascimento" placeholder="dd/mm/aaaa" th:field="*{dataNascimento}">
                   </div>
                 </div>
                 <!-- Data Nascimento -->
@@ -131,7 +131,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_rg">RG*</label>
-                    <input type="text" class="form-control" id="input_rg" placeholder="RG" th:field="*{rg}">
+                    <input type="text" name="frg" class="form-control" id="input_rg" placeholder="RG" th:field="*{rg}">
                   </div>
                 </div>
                 <!-- RG -->
@@ -139,7 +139,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_cpf">CPF*</label>
-                    <input type="text" class="form-control" id="input_cpf" placeholder="000.000.000-00" th:field="*{cpf}">
+                    <input type="text" name="fcpf" class="form-control" id="input_cpf" placeholder="000.000.000-00" th:field="*{cpf}">
                   </div>
                 </div>
                 <!-- CPF -->
@@ -147,7 +147,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_carteiraDeTrabalho">Carteira de Trabalho*</label>
-                    <input type="text" class="form-control" id="input_carteiraDeTrabalho" placeholder=""  th:field="*{carteiraDeTrabalho}">
+                    <input type="text" name="fct" class="form-control" id="input_carteiraDeTrabalho" placeholder=""  th:field="*{carteiraDeTrabalho}">
                   </div>
                 </div>
                 <!-- CPF -->
@@ -156,8 +156,8 @@ and open the template in the editor.
                   <div class="form-group">
                     <label for="input_cpf">Estado Civil*</label>
                     <div class="selecter closed" tabindex="0">
-                      <select name="col-lg-12 selecter_basic" class="selecter_1 selecter-element" tabindex="-1" th:field="*{estadoCivil}">
-                        <option  th:each="estadoCivil : ${T(com.br.pontu.enums.EstadoCivil).values()}" th:value="${estadoCivil}" th:text="${estadoCivil}"></option>
+                      <select name="" class="selecter_1 selecter-element" tabindex="-1" th:field="*{estadoCivil}">
+                        <option  name="festadoCivil" th:each="estadoCivil : ${T(com.br.pontu.enums.EstadoCivil).values()}" th:value="${estadoCivil}" th:text="${estadoCivil}"></option>
                       </select>
                     </div>
                   </div>
@@ -166,8 +166,8 @@ and open the template in the editor.
                   <div class="form-group">
                     <label for="input_cpf">Tipo de Acesso</label>
                     <div class="selecter closed" tabindex="0">
-                      <select name="col-lg-12 selecter_basic" class="selecter_1 selecter-element" tabindex="-1" th:field="*{acesso}">
-                        <option  th:each="acesso : ${T(com.br.pontu.enums.role).values()}" th:value="${acesso}" th:text="${acesso}"></option>
+                      <select name="" class="selecter_1 selecter-element" tabindex="-1" th:field="*{acesso}">
+                        <option name="ftipoAcesso" th:each="acesso : ${T(com.br.pontu.enums.role).values()}" th:value="${acesso}" th:text="${acesso}"></option>
                       </select>
                     </div>
                   </div>
@@ -184,7 +184,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_celular">Celular*</label>
-                    <input type="text" class="form-control" id="input_celular" placeholder="(DD) 00000-0000">
+                    <input type="text" name="fcelular" class="form-control" id="input_celular" placeholder="(DD) 00000-0000">
                   </div>
                 </div>
                 <!-- Celular -->
@@ -192,7 +192,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_fixo">Fixo</label>
-                    <input type="text" class="form-control" id="input_fixo" placeholder="(DD) 0000-0000">
+                    <input type="text" name="ffixo" class="form-control" id="input_fixo" placeholder="(DD) 0000-0000">
                   </div>
                 </div>
                 <!-- Fixo --> 
@@ -207,7 +207,7 @@ and open the template in the editor.
                 <div class="col-lg-5 col-xs-12">
                   <div class="form-group">
                     <label for="input_logradouro">Logradouro*</label>
-                    <input type="text" class="form-control" id="input_logradouro" placeholder="Rua A" >
+                    <input type="text" name="flogradouro" class="form-control" id="input_logradouro" placeholder="Rua A" >
                   </div>
                 </div>
                 <!-- Logradouro -->
@@ -215,7 +215,7 @@ and open the template in the editor.
                 <div class="col-lg-4 col-xs-12">
                   <div class="form-group">
                     <label for="input_complemeno">Complemento*</label>
-                    <input type="text" class="form-control" id="input_complemeno" placeholder="Apartamento Nº100">
+                    <input type="text" name="fcomplemento" class="form-control" id="input_complemeno" placeholder="Apartamento Nº100">
                   </div>
                 </div>
                 <!-- Complemeno -->
@@ -223,7 +223,7 @@ and open the template in the editor.
                 <div class="col-lg-1 col-xs-12">
                   <div class="form-group">
                     <label for="input_numero">Número*</label>
-                    <input type="number" class="form-control" id="input_numero" placeholder="Nº">
+                    <input type="number" name="fnumero" class="form-control" id="input_numero" placeholder="Nº">
                   </div>
                 </div>
                 <!-- Número --> 
@@ -235,7 +235,7 @@ and open the template in the editor.
                 <div class="col-lg-3 col-xs-12">
                   <div class="form-group">
                     <label for="input_cidade">Cidade*</label>
-                    <input type="text" class="form-control" id="input_cidade" placeholder="">
+                    <input type="text" name="fcidade" class="form-control" id="input_cidade" placeholder="">
                   </div>
                 </div>
                 <!-- Cidade -->
@@ -245,7 +245,7 @@ and open the template in the editor.
                     <label for="input_uf">UF*</label>
                     <div class="selecter closed" tabindex="0">
                       <select name="selecter_basic" class="selecter_1 selecter-element" tabindex="-1" th:field="*{endereco.uf}">
-                        <option  th:each="uf : ${T(com.br.pontu.enums.SiglaEstados).values()}" th:value="${uf}" th:text="${uf}"></option>
+                        <option  name="fuf" th:each="uf : ${T(com.br.pontu.enums.SiglaEstados).values()}" th:value="${uf}" th:text="${uf}"></option>
                         <!--<option  th:each="acesso : ${T(com.br.pontu.enums.role).values()}" th:value="${acesso}" th:text="${acesso}"></option>-->
                       </select>
                     </div>
@@ -256,7 +256,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_cep">CEP*</label>
-                    <input type="number" class="form-control" id="input_cep" placeholder="00000-000">
+                    <input type="number" name="fcep" class="form-control" id="input_cep" placeholder="00000-000">
                   </div>
                 </div>
                 <!-- CEP --> 
@@ -272,7 +272,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_matricula">Matrícula*</label>
-                    <input type="text" class="form-control" id="input_matricula" placeholder="Mín. 6 caracteres">
+                    <input type="text" name="fmatricula" class="form-control" id="input_matricula" placeholder="Mín. 6 caracteres">
                   </div>
                 </div>
                 <!-- matricula --> 
@@ -283,7 +283,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div id="senha" class="form-group">
                     <label for="input_senha">Senha*</label>
-                    <input type="password" id="isenha" name="fsenha" class="form-control"  placeholder="********">
+                    <input type="password" name="fsenha" id="isenha" class="form-control"  placeholder="********">
                   </div>
                 </div>
                 <!-- Senha --> 
@@ -294,21 +294,21 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <label for="input_confirmarSenha">Confirmar Senha*</label>
                   <div id="confirmaSenha" class="form-group has-feedback">
-                    <input type="password" id="iconfirmarSenha" name="fconfirmaSenha" class="form-control" onBlur="comparaSenha()" placeholder="********">
-                    <span id="iconConfirmaSenha" class="form-control-feedback"></span> <span id="senhaIncorreta"></span><!-- mesagem caso a senha esteja errada --> 
+                    <input type="password" name="fconfirmaSenha" id="iconfirmarSenha" class="form-control" onBlur="comparaSenha()" placeholder="********"/>
+                    <span id="iconConfirmaSenha" class="form-control-feedback fui-check"></span><span id="senhaIncorreta"></span><!-- mesagem caso a senha esteja errada --> 
                   </div>
                 </div>
                 <!-- Senha --> 
               </div>
               <!-- .row -->
-              
             </fieldset>
+            
             <!-- Login -->
             <hr>
             <div class="row">
               <div class="col-lg-4 col-lg-offset-4  col-xs-12">
                 <div class="form-group">
-                  <button id="btn_enviar" type="submit" class="col-lg-12 col-xs-12 btn btn-primary">Enviar</button>
+                  <button id="btn_enviar" type="submit" class="col-lg-12 col-xs-12 btn btn-primary" onClick="checaCampos()">Enviar</button>
                 </div>
               </div>
             </div>
