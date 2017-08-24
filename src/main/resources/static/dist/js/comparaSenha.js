@@ -1,14 +1,14 @@
 // JavaScript Document
 function comparaSenha() {
-    var senha = document.forms["cadastro"]["fsenha"].value; // captura o valor do campo de senha
-    var confirmaSenha = document.forms["cadastro"]["fconfirmaSenha"].value; // captura o valor do campo de confirmar a senha
+    var senha = document.forms.cadastro.fsenha.value; // captura o valor do campo de senha
+    var confirmaSenha = document.forms.cadastro.fconfirmaSenha.value; // captura o valor do campo de confirmar a senha
 
     // testa para ver se os valores de senha e confirmação da senha se estão em branco
-    if (senha == "" || confirmaSenha == "") {
+    if (senha === "" || confirmaSenha === "") {
         alert("Por favor preencha os campos de Senha!"); // alerta de campos vazios    
     } else {
         var resultado = senha.localeCompare(confirmaSenha); // compara as senha e retorna -1 ou 1 se forem diferentes e 0 se forem iguais
-        if (resultado == 0) {
+        if (resultado === 0) {
             document.getElementById("senhaIncorreta").innerHTML = ""; // Reset do label
             document.getElementById("senhaIncorreta").style.color = "#34495E"; //reset cor do campo 
             document.getElementById('senha').className = 'form-group has-success'; // muda o estilo do formulário
