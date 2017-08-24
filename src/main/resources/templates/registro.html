@@ -266,7 +266,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div id="senha" class="form-group">
                     <label for="input_senha">Senha*</label>
-                    <input type="pass" name="fsenha" class="form-control"  placeholder="********">
+                    <input type="password" id="isenha" name="fsenha" class="form-control"  placeholder="********">
                   </div>
                 </div>
                 <!-- Senha --> 
@@ -277,8 +277,8 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <label for="input_confirmarSenha">Confirmar Senha*</label>
                   <div id="confirmaSenha" class="form-group has-feedback">
-                    <input type="pass" id="iconfirmarSenha" name="fconfirmaSenha" class="form-control" onBlur="comparaSenha()" placeholder="********"/>
-                    <span id="iconConfirmaSenha"class="form-control-feedback"></span> <span id="senhaIncorreta"></span><!-- mesagem caso a senha esteja errada --> 
+                    <input type="password" id="iconfirmarSenha" name="fconfirmaSenha" class="form-control" onBlur="comparaSenha()" placeholder="********">
+                    <span id="iconConfirmaSenha" class="form-control-feedback"></span> <span id="senhaIncorreta"></span><!-- mesagem caso a senha esteja errada --> 
                   </div>
                 </div>
                 <!-- Senha --> 
@@ -303,7 +303,7 @@ and open the template in the editor.
             <div class="row">
               <div class="col-lg-4 col-lg-offset-4 col-xs-12">
                 <div class="form-group">
-                  <button id="btn_enviar" type="submit" class="col-lg-12 col-xs-12 btn btn-primary">Lista de Usuários</button>
+                  <button id="btn_listaUsuarios" type="submit" class="col-lg-12 col-xs-12 btn btn-primary">Lista de Usuários</button>
                 </div>
               </div>
             </div>
