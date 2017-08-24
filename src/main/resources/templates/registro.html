@@ -264,9 +264,9 @@ and open the template in the editor.
               
               <div class="row">
                 <div class="col-lg-2 col-xs-12">
-                  <div class="form-group">
+                  <div id="senha" class="form-group">
                     <label for="input_senha">Senha*</label>
-                    <input type="pass" name="fsenha" class="form-control" id="senha" placeholder="********">
+                    <input type="pass" name="fsenha" class="form-control"  placeholder="********">
                   </div>
                 </div>
                 <!-- Senha --> 
@@ -275,9 +275,10 @@ and open the template in the editor.
               
               <div class="row">
                 <div class="col-lg-2 col-xs-12">
-                  <div class="form-group">
-                    <label for="input_confirmarSenha">Confirmar Senha*</label>
-                    <input type="pass" name="fconfirmaSenha" class="form-control" id="confirmarSenha"  onBlur="comparaSenha()" placeholder="********">
+                  <label for="input_confirmarSenha">Confirmar Senha*</label>
+                  <div id="confirmaSenha" class="form-group has-feedback">
+                    <input type="pass" id="iconfirmarSenha" name="fconfirmaSenha" class="form-control" onBlur="comparaSenha()" placeholder="********"/>
+                    <span id="iconConfirmaSenha"class="form-control-feedback"></span> <span id="senhaIncorreta"></span><!-- mesagem caso a senha esteja errada --> 
                   </div>
                 </div>
                 <!-- Senha --> 
