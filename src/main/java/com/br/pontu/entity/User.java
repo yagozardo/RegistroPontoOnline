@@ -1,8 +1,9 @@
 package com.br.pontu.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -11,9 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -56,10 +56,13 @@ public class User implements Serializable {
 	private String celular;
 	private String fixo;
 	private EstadoCivil estadoCivil;
-        private String matricula;
+    
+	private String matricula;
+	private String senha;
+	
 	private role acesso;
 	private Adress endereco;
-        private String senha;
+    private List<Times> ponto;
 
 	
 	// FIM ========================================================================================
@@ -169,6 +172,39 @@ public class User implements Serializable {
 		this.estadoCivil = estadoCivil;
 	}
 
+	
+	
+	 @NotNull
+	 @NotEmpty
+	 @Column(nullable = false, length = 20)
+   	 public String getMatricula() {
+	 return matricula;
+	 }
+	 public void setMatricula(String matricula) {
+	 this.matricula = matricula;
+	 }
+	
+	 @NotNull
+	 @NotEmpty
+	 @Column(nullable = false, length = 20)
+	 public String getSenha() {
+	 return senha;
+	 }
+	 public void setSenha(String senha) {
+	 this.senha = senha;
+	 }
+	 
+	 
+	 @NotNull
+	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	 public List<Times> getPonto() {
+			return ponto;
+	}
+	public void setPonto(List<Times> ponto) {
+			this.ponto = ponto;
+	}
+	 
+	
 	@Embedded
 	public Adress getEndereco() {
 		return endereco;
@@ -186,25 +222,7 @@ public class User implements Serializable {
 		this.acesso = acesso;
 	}
 
-         @NotNull
-	 @NotEmpty
-	 @Column(nullable = false, length = 20)
-    	 public String getMatricula() {
-	 return matricula;
-	 }
-	 public void setMatricula(String matricula) {
-	 this.matricula = matricula;
-	 }
-	
-	 @NotNull
-	 @NotEmpty
-	 @Column(nullable = false, length = 20)
-	 public String getSenha() {
-	 return senha;
-	 }
-	 public void setSenha(String senha) {
-	 this.senha = senha;
-	 }
+     
 	
 	
 	/**
