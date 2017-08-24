@@ -28,7 +28,7 @@ public class AdminController {
     UserServiceImpl userService;
     
     @GetMapping("/registro")
-    public ModelAndView paginaCadastro(User user, Adress adress){
+    public ModelAndView paginaCadastro(User user){
         ModelAndView model = new ModelAndView("/registro");
         model.addObject("user",user);
         

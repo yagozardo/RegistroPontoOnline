@@ -1,9 +1,12 @@
 package com.br.pontu.entity;
 
+import com.br.pontu.enums.SiglaEstados;
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -28,7 +31,7 @@ public class Adress implements Serializable {
     private String logradouro;  
     private String complemento;
     private String cidade; 
-    private String uf;
+    private SiglaEstados uf;
     private String cep;
 
     
@@ -78,12 +81,12 @@ public class Adress implements Serializable {
     
     
     @NotNull
-    @NotEmpty
-    @Column(nullable = false, length = 5)
-    public String getUf() {
+    @Enumerated(EnumType.STRING)
+    @Column(name="uf")
+    public SiglaEstados getUf() {
         return uf;
     }
-    public void setUf(String uf) {
+    public void setUf(SiglaEstados uf) {
         this.uf = uf;
     }
 
