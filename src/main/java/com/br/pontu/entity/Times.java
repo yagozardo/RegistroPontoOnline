@@ -23,8 +23,8 @@ public class Times implements Serializable{
 	/**
 	 * Atributos =======================================================================
 	 */
-	private Date dia;
-	private List<Date> horarios;
+	private String dia;
+	private List<String> horarios;
 	private User users;
 	
 	
@@ -32,19 +32,19 @@ public class Times implements Serializable{
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
-	public Date getDia() {
+	public String getDia() {
 		return dia;
 	}
-	public void setDia(Date dia) {
+	public void setDia(String dia) {
 		this.dia = dia;
 	}
 	
 	@NotNull
 	@Temporal(TemporalType.TIME)
-	public List<Date> getHorarios() {
+	public List<String> getHorarios() {
 		return horarios;
 	}
-	public void setHorarios(List<Date> horarios) {
+	public void setHorarios(List<String> horarios) {
 		this.horarios = horarios;
 	}
 	

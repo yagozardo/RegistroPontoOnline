@@ -57,7 +57,7 @@ public class User implements Serializable {
 	private String fixo;
 	private EstadoCivil estadoCivil;
     
-	private String matricula;
+	private Long matricula;
 	private String senha;
 	
 	private role acesso;
@@ -176,11 +176,11 @@ public class User implements Serializable {
 	
 	 @NotNull
 	 @NotEmpty
-	 @Column(nullable = false, length = 20)
-   	 public String getMatricula() {
+	 @Column(nullable = false)
+   	 public Long getMatricula() {
 	 return matricula;
 	 }
-	 public void setMatricula(String matricula) {
+	 public void setMatricula(Long matricula) {
 	 this.matricula = matricula;
 	 }
 	
