@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.br.pontu.enums.EstadoCivil;
@@ -56,13 +57,14 @@ public class User implements Serializable {
 	private String celular;
 	private String fixo;
 	private EstadoCivil estadoCivil;
+	private String email;
     
 	private Long matricula;
 	private String senha;
 	
 	private role acesso;
 	private Adress endereco;
-//    private List<Times> ponto;
+    private List<PontoDataHora> ponto;
 
 	
 	// FIM ========================================================================================
@@ -173,8 +175,18 @@ public class User implements Serializable {
 	}
 
 	
-	
-	 @NotNull
+	@NotNull
+	@NotEmpty
+	@Email
+	@Column(nullable = false, length = 30)
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@NotNull
 	 @NotEmpty
 	 @Column(nullable = false)
    	 public Long getMatricula() {
@@ -195,14 +207,14 @@ public class User implements Serializable {
 	 }
 	 
 	 
-//	 @NotNull
-//	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//	 public List<Times> getPonto() {
-//			return ponto;
-//	}
-//	public void setPonto(List<Times> ponto) {
-//			this.ponto = ponto;
-//	}
+	 @NotNull
+	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	 public List<PontoDataHora> getPonto() {
+			return ponto;
+	}
+	public void setPonto(List<PontoDataHora> ponto) {
+			this.ponto = ponto;
+	}
 	 
 	
 	@Embedded
