@@ -103,7 +103,7 @@ and open the template in the editor.
                 <div class="col-lg-5 col-xs-12">
                   <div class="form-group">
                     <label for="input_nome">Nome*</label>
-                    <input type="text" id="input_nome" name="fnome" class="form-control" placeholder="Nome" th:field="*{nome}">
+                    <input type="text" id="input_nome" name="fnome" class="form-control" placeholder="Nome" th:field="*{nome}" maxlength="20">
                   </div>
                 </div>
                 <!-- Nome -->
@@ -111,7 +111,7 @@ and open the template in the editor.
                 <div class="col-lg-5 col-xs-12">
                   <div class="form-group">
                     <label for="input_sobrenome">Sobrenome*</label>
-                    <input type="text" id="input_sobreNome" name="fsobreNome" class="form-control" placeholder="Sobrenome" th:field="*{sobrenome}"/>
+                    <input type="text" id="input_sobreNome" name="fsobreNome" class="form-control" placeholder="Sobrenome" th:field="*{sobrenome}" maxlength="50"/>
                   </div>
                 </div>
                 <!-- Sobrenome --> 
@@ -122,7 +122,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_dataNascimento">Data Nascimento*</label>
-                    <input type="date" id="input_dataNascimento" name="fdataNasc" class="form-control" onBlur="checaData()" placeholder="dd/mm/aaaa" th:field="*{dataNascimento}">
+                    <input type="date" id="input_dataNascimento" name="fdataNasc" class="form-control" onBlur="teste()" placeholder="dd/mm/aaaa" th:field="*{dataNascimento}">
                   </div>
                 </div>
                 <!-- Data Nascimento -->
@@ -130,7 +130,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_rg">RG*</label>
-                    <input type="text" id="input_rg"  name="frg" class="form-control" placeholder="RG" th:field="*{rg}">
+                    <input type="text" id="input_rg"  name="frg" class="form-control" placeholder="RG" th:field="*{rg}" maxlength="13">
                   </div>
                 </div>
                 <!-- RG -->
@@ -138,7 +138,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_cpf">CPF*</label>
-                    <input type="text" id="input_cpf" name="fcpf" class="form-control" onFocus="validaCPF()"  placeholder="000.000.000-00" th:field="*{cpf}">
+                    <input type="text" id="input_cpf" name="fcpf" class="form-control" onFocus="validaCPF()"  placeholder="000.000.000-00" th:field="*{cpf}"  maxlength="14">
                   </div>
                 </div>
                 <!-- CPF -->
@@ -146,7 +146,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_carteiraDeTrabalho">Carteira de Trabalho*</label>
-                    <input type="text" name="fct" class="form-control" id="input_carteiraDeTrabalho" placeholder=""  th:field="*{carteiraDeTrabalho}">
+                    <input type="text" name="fct" class="form-control" id="input_carteiraDeTrabalho" placeholder=""  th:field="*{carteiraDeTrabalho}"  maxlength="10">
                   </div>
                 </div>
                 <!-- CPF -->
@@ -183,7 +183,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_celular">Celular*</label>
-                    <input type="text" name="fcelular" class="form-control" id="input_celular" placeholder="(DD) 00000-0000">
+                    <input type="text" name="fcelular" class="form-control" id="input_celular" placeholder="(DD) 00000-0000"  maxlength="12">
                   </div>
                 </div>
                 <!-- Celular -->
@@ -191,7 +191,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_fixo">Fixo</label>
-                    <input type="text" name="ffixo" class="form-control" id="input_fixo" placeholder="(DD) 0000-0000">
+                    <input type="text" name="ffixo" class="form-control" id="input_fixo" placeholder="(DD) 0000-0000"  maxlength="12">
                   </div>
                 </div>
                 <!-- Fixo --> 
@@ -206,7 +206,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_cep">CEP*</label>
-                    <input type="text" name="fcep" class="form-control" id="input_cep" placeholder="00000-000">
+                    <input type="text" name="fcep" class="form-control" id="input_cep" placeholder="00000-000"  maxlength="10">
                   </div>
                 </div>
                 <!-- CEP -->
@@ -214,7 +214,7 @@ and open the template in the editor.
                 <div class="col-lg-4 col-xs-12">
                   <div class="form-group">
                     <label for="input_logradouro">Logradouro*</label>
-                    <input type="text" name="flogradouro" class="form-control" id="input_logradouro" placeholder="Rua A" >
+                    <input type="text" name="flogradouro" class="form-control" id="input_logradouro" placeholder="Rua A"  maxlength="50">
                   </div>
                 </div>
                 <!-- Logradouro -->
@@ -222,7 +222,7 @@ and open the template in the editor.
                 <div class="col-lg-4 col-xs-12">
                   <div class="form-group">
                     <label for="input_complemeno">Complemento*</label>
-                    <input type="text" name="fcomplemento" class="form-control" id="input_complemeno" placeholder="Apartamento Nº100">
+                    <input type="text" name="fcomplemento" class="form-control" id="input_complemeno" placeholder="Apartamento Nº100"  maxlength="50">
                   </div>
                 </div>
                 <!-- Complemeno -->
@@ -238,7 +238,7 @@ and open the template in the editor.
                 <div class="col-lg-3 col-xs-12">
                   <div class="form-group">
                     <label for="input_cidade">Cidade*</label>
-                    <input type="text" name="fcidade" class="form-control" id="input_cidade" placeholder="">
+                    <input type="text" name="fcidade" class="form-control" id="input_cidade" placeholder=""  maxlength="10">
                   </div>
                 </div>
                 <!-- Cidade -->
@@ -268,7 +268,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group">
                     <label for="input_matricula">Matrícula*</label>
-                    <input type="text" name="fmatricula" class="form-control" id="input_matricula" placeholder="Mín. 6 caracteres">
+                    <input type="text" name="fmatricula" class="form-control" id="input_matricula" placeholder="Mín. 6 caracteres"  maxlength="50">
                   </div>
                 </div>
                 <!-- matricula --> 
@@ -279,7 +279,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <div id="senha" class="form-group">
                     <label for="input_senha">Senha*</label>
-                    <input type="password" name="fsenha" id="input_senha" class="form-control"  placeholder="********">
+                    <input type="password" name="fsenha" id="input_senha" class="form-control"  placeholder="********"  maxlength="30">
                   </div>
                 </div>
                 <!-- Senha --> 
@@ -290,7 +290,7 @@ and open the template in the editor.
                 <div class="col-lg-2 col-xs-12">
                   <label for="input_confirmarSenha">Confirmar Senha*</label>
                   <div id="confirmaSenha" class="form-group has-feedback">
-                    <input type="password" name="fconfirmaSenha" id="input_confirmarSenha" class="form-control" onBlur="comparaSenha()" placeholder="********"/>
+                    <input type="password" name="fconfirmaSenha" id="input_confirmarSenha" class="form-control" onBlur="comparaSenha()" placeholder="********"  maxlength="30"/>
                     <span id="iconConfirmaSenha" class="form-control-feedback fui-check"></span><span id="senhaIncorreta"></span><!-- mesagem caso a senha esteja errada --> 
                   </div>
                 </div>
@@ -358,7 +358,7 @@ and open the template in the editor.
 <!-- Script para aparecer o modal --> 
 <script src="../static/dist/js/dialogobox.js"></script> 
 <!-- Script para comparar se as senhas são iguais --> 
-<!-- <script src="../static/dist/js/comparaSenha.js"></script> -->
+<!-- <script src="../static/dist/js/comparaSenha.js"></script> --> 
 <!-- Script para verificar se campos obrigatórios foram preenchidos --> 
 <script src="../static/dist/js/checaCampos.js"></script> 
 <!-- Script para verificar a validade do CPF --> 
@@ -367,7 +367,6 @@ and open the template in the editor.
 <script src="../static/dist/js/checaData.js"></script> 
 <!-- Script para setar o ano do rodapé --> 
 <script src="../static/dist/js/obeterAno.js"></script> 
-
 <script src="../static/dist/js/vendor/jquery.min.js"></script> 
 <script src="../static/dist/js/vendor/video.js"></script> 
 <script src="../static/dist/js/flat-ui.min.js"></script> 

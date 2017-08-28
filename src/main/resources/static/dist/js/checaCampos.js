@@ -19,7 +19,15 @@ function valida_form() {
     }
 
     var dataNascimento = document.forms.cadastro.fdataNasc.value; // captura o valor do campo de data
-    if (dataNascimento == "") {
+    if(dataNascimento != ""){ // virefica se a data nascimento tem menos de 10 anos ou mais de 100
+        var data = new Date();
+        var anoAtual = parseInt(data.getFullYear()); 
+        var dataNascimento = parseInt(dataNascimento.slice(0, 4));
+        var diferenca = anoAtual - dataNascimento;
+        if(diferenca >= 100 || diferenca <= 10){
+            Alert.render('<h6><b>Data de Nascimento inválida!</b></h6>');
+        }
+    } else if(dataNascimento == "") {
         Alert.render('<h6><b>Preencha o campo com sua Data Nascimento!</b></h6>');
         cadastro.fdataNasc.focus();
         document.getElementById('input_dataNascimento').className = 'form-group form-control'; // muda o estilo do formulário
@@ -131,16 +139,16 @@ function valida_form() {
         document.getElementById('input_matricula').className = 'form-group form-control'; // muda o estilo do formulário
         return false;
     }
-    
-   var senha = document.forms.cadastro.fsenha.value; // captura o valor do campo de senha
+
+    var senha = document.forms.cadastro.fsenha.value; // captura o valor do campo de senha
     if (senha == "") {
         Alert.render('<h6><b>Preencha o campo com sua Senha!</b></h6>');
         cadastro.fsenha.focus();
         document.getElementById('input_senha').className = 'form-group form-control'; // muda o estilo do formulário
         return false;
     }
-    
-      var confirmaSenha = document.forms.cadastro.fconfirmaSenha.value; // captura o valor do campo de confirmar a senha
+
+    var confirmaSenha = document.forms.cadastro.fconfirmaSenha.value; // captura o valor do campo de confirmar a senha
     if (confirmaSenha == "") {
         Alert.render('<h6><b>Preencha o campo com sua Confirmação da Senha!</b></h6>');
         cadastro.fsenha.focus();
@@ -150,8 +158,8 @@ function valida_form() {
 
 }
 
-function comparaSenha(){
-    
+function comparaSenha() {
+
     var senha = document.forms.cadastro.fsenha.value; // captura o valor do campo de senha
     var confirmaSenha = document.forms.cadastro.fconfirmaSenha.value; // captura o valor do campo de confirmar a senha
 
@@ -199,3 +207,7 @@ function CustomAlert() {
     }
 }
 var Alert = new CustomAlert();
+
+function teste() {
+    
+}
