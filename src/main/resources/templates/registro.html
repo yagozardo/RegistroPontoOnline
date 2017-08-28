@@ -49,7 +49,6 @@ and open the template in the editor.
                       <script src="dist/js/vendor/html5shiv.js"></script>
                       <script src="dist/js/vendor/respond.min.js"></script>
                     <![endif]-->
-
 </head>
 <body onload="ano()">
 <!-- ano() função que obtem o ano e seta ele no rodapé --> 
@@ -66,7 +65,7 @@ and open the template in the editor.
         <a class="navbar-brand" href="#"><!--<img class="logo_pequena" th:src="@{/img/logo/logo_pontu_145x48.png}">--><img class="logo_pequena" src="../static/img/logo/logo_pontu_145x48.png"></a> </div>
       <div class="collapse navbar-collapse" id="navbar-collapse-01">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#fakelink">ESPELHO</a></li>
+          <li class="active"><a href="#">ESPELHO</a></li>
         </ul>
         <form class="navbar-form navbar-right" action="#" role="search">
           <div class="form-group">
@@ -97,241 +96,241 @@ and open the template in the editor.
           <div class="panel-options"> <a class="bg" data-target="#sample-modal-dialog-1" data-toggle="modal" href="#sample-modal"><i class="entypo-cog"></i></a> <a data-rel="collapse" href="#"><i class="entypo-down-open"></i></a> <a data-rel="close" href="#!/tasks" ui-sref="Tasks"><i class="entypo-cancel"></i></a> </div>
         </div>
         <div class="panel-body">
-        <form name="cadastro" role="form" th:action="@{/admin/registro}" method="post" th:object="${user}">
-          <fieldset>
-            <legend>Dados Pessoais</legend>
-            <div class="row">
-              <div class="col-lg-5 col-xs-12">
-                <div class="form-group">
-                  <label for="input_nome">Nome*</label>
-                  <input type="text" name="fnome" class="form-control" id="input_ID" placeholder="Nome" th:field="*{nome}">
-                </div>
-              </div>
-              <!-- Nome -->
-              
-              <div class="col-lg-5 col-xs-12">
-                <div class="form-group">
-                  <label for="input_sobrenome">Sobrenome*</label>
-                  <input type="text" name="fsobreNome" class="form-control" id="input_sobrenome" placeholder="Sobrenome" th:field="*{sobrenome}">
-                </div>
-              </div>
-              <!-- Sobrenome --> 
-            </div>
-            <!-- .row-->
-            
-            <div class="row">
-              <div class="col-lg-2 col-xs-12">
-                <div class="form-group">
-                  <label for="input_dataNascimento">Data Nascimento*</label>
-                  <input type="date" name="fdataNasc" class="form-control" onBlur="checaData()" id="input_dataNascimento" placeholder="dd/mm/aaaa" th:field="*{dataNascimento}">
-                </div>
-              </div>
-              <!-- Data Nascimento -->
-              
-              <div class="col-lg-2 col-xs-12">
-                <div class="form-group">
-                  <label for="input_rg">RG*</label>
-                  <input type="text" name="frg" class="form-control" id="input_rg" placeholder="RG" th:field="*{rg}">
-                </div>
-              </div>
-              <!-- RG -->
-              
-              <div class="col-lg-2 col-xs-12">
-                <div class="form-group">
-                  <label for="input_cpf">CPF*</label>
-                  <input type="text" name="fcpf" class="form-control" onFocus="validaCPF()" id="input_cpf" placeholder="000.000.000-00" th:field="*{cpf}">
-                </div>
-              </div>
-              <!-- CPF -->
-              
-              <div class="col-lg-2 col-xs-12">
-                <div class="form-group">
-                  <label for="input_carteiraDeTrabalho">Carteira de Trabalho*</label>
-                  <input type="text" name="fct" class="form-control" id="input_carteiraDeTrabalho" placeholder=""  th:field="*{carteiraDeTrabalho}">
-                </div>
-              </div>
-              <!-- CPF -->
-              
-              <div class="col-lg-2 col-xs-12">
-                <div class="form-group">
-                  <label for="input_cpf">Estado Civil*</label>
-                  <div class="selecter closed" tabindex="0">
-                    <select name="" class="selecter_1 selecter-element" tabindex="-1" th:field="*{estadoCivil}">
-                      <option  name="festadoCivil" th:each="estadoCivil : ${T(com.br.pontu.enums.EstadoCivil).values()}" th:value="${estadoCivil}" th:text="${estadoCivil}"></option>
-                    </select>
+          <form name="cadastro" role="form" th:action="@{/admin/registro}" method="post" th:object="${user}">
+            <fieldset>
+              <legend>Dados Pessoais</legend>
+              <div class="row">
+                <div class="col-lg-5 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_nome">Nome*</label>
+                    <input type="text" id="input_nome" name="fnome" class="form-control" placeholder="Nome" th:field="*{nome}">
                   </div>
                 </div>
-              </div>
-              <div class="col-lg-2 col-xs-12">
-                <div class="form-group">
-                  <label for="input_cpf">Tipo de Acesso</label>
-                  <div class="selecter closed" tabindex="0">
-                    <select name="" class="selecter_1 selecter-element" tabindex="-1" th:field="*{acesso}">
-                      <option name="ftipoAcesso" th:each="acesso : ${T(com.br.pontu.enums.role).values()}" th:value="${acesso}" th:text="${acesso}"></option>
-                    </select>
+                <!-- Nome -->
+                
+                <div class="col-lg-5 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_sobrenome">Sobrenome*</label>
+                    <input type="text" id="input_sobreNome" name="fsobreNome" class="form-control" placeholder="Sobrenome" th:field="*{sobrenome}"/>
                   </div>
                 </div>
+                <!-- Sobrenome --> 
               </div>
-              <!-- Estado Civil --> 
-            </div>
-            <!-- .row-->
-            
-          </fieldset>
-          <hr>
-          <fieldset>
-            <legend>Telefones</legend>
-            <div class="row">
-              <div class="col-lg-2 col-xs-12">
-                <div class="form-group">
-                  <label for="input_celular">Celular*</label>
-                  <input type="text" name="fcelular" class="form-control" id="input_celular" placeholder="(DD) 00000-0000">
-                </div>
-              </div>
-              <!-- Celular -->
+              <!-- .row-->
               
-              <div class="col-lg-2 col-xs-12">
-                <div class="form-group">
-                  <label for="input_fixo">Fixo</label>
-                  <input type="text" name="ffixo" class="form-control" id="input_fixo" placeholder="(DD) 0000-0000">
+              <div class="row">
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_dataNascimento">Data Nascimento*</label>
+                    <input type="date" id="input_dataNascimento" name="fdataNasc" class="form-control" onBlur="checaData()" placeholder="dd/mm/aaaa" th:field="*{dataNascimento}">
+                  </div>
                 </div>
+                <!-- Data Nascimento -->
+                
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_rg">RG*</label>
+                    <input type="text" id="input_rg"  name="frg" class="form-control" placeholder="RG" th:field="*{rg}">
+                  </div>
+                </div>
+                <!-- RG -->
+                
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_cpf">CPF*</label>
+                    <input type="text" id="input_cpf" name="fcpf" class="form-control" onFocus="validaCPF()"  placeholder="000.000.000-00" th:field="*{cpf}">
+                  </div>
+                </div>
+                <!-- CPF -->
+                
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_carteiraDeTrabalho">Carteira de Trabalho*</label>
+                    <input type="text" name="fct" class="form-control" id="input_carteiraDeTrabalho" placeholder=""  th:field="*{carteiraDeTrabalho}">
+                  </div>
+                </div>
+                <!-- CPF -->
+                
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_estadoCivil">Estado Civil*</label>
+                    <div class="selecter closed" tabindex="0">
+                      <select name="festadoCivil" id="input_estadoCivil" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{estadoCivil}">
+                        <option  name="" th:each="estadoCivil : ${T(com.br.pontu.enums.EstadoCivil).values()}" th:value="${estadoCivil}" th:text="${estadoCivil}"></option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="">Tipo de Acesso</label>
+                    <div class="selecter closed" tabindex="0">
+                      <select name="ftipoAcesso" id="input_tipoAcesso" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{acesso}">
+                        <option name="ftipoAcesso" th:each="acesso : ${T(com.br.pontu.enums.role).values()}" th:value="${acesso}" th:text="${acesso}"></option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- Estado Civil --> 
               </div>
-              <!-- Fixo --> 
-            </div>
-            <!-- .row-->
-          </fieldset>
-          <!-- Telefones -->
-          <hr>
-          <fieldset>
-            <legend>Endereço</legend>
+              <!-- .row-->
+              
+            </fieldset>
+            <hr>
+            <fieldset>
+              <legend>Telefones</legend>
+              <div class="row">
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_celular">Celular*</label>
+                    <input type="text" name="fcelular" class="form-control" id="input_celular" placeholder="(DD) 00000-0000">
+                  </div>
+                </div>
+                <!-- Celular -->
+                
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_fixo">Fixo</label>
+                    <input type="text" name="ffixo" class="form-control" id="input_fixo" placeholder="(DD) 0000-0000">
+                  </div>
+                </div>
+                <!-- Fixo --> 
+              </div>
+              <!-- .row-->
+            </fieldset>
+            <!-- Telefones -->
+            <hr>
+            <fieldset>
+              <legend>Endereço</legend>
+              <div class="row">
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_cep">CEP*</label>
+                    <input type="text" name="fcep" class="form-control" id="input_cep" placeholder="00000-000">
+                  </div>
+                </div>
+                <!-- CEP -->
+                
+                <div class="col-lg-4 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_logradouro">Logradouro*</label>
+                    <input type="text" name="flogradouro" class="form-control" id="input_logradouro" placeholder="Rua A" >
+                  </div>
+                </div>
+                <!-- Logradouro -->
+                
+                <div class="col-lg-4 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_complemeno">Complemento*</label>
+                    <input type="text" name="fcomplemento" class="form-control" id="input_complemeno" placeholder="Apartamento Nº100">
+                  </div>
+                </div>
+                <!-- Complemeno -->
+                
+                <div class="col-lg-1 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_numero">Número*</label>
+                    <input type="number" name="fnumero" class="form-control" id="input_numero" placeholder="Nº">
+                  </div>
+                </div>
+                <!-- Número -->
+                
+                <div class="col-lg-3 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_cidade">Cidade*</label>
+                    <input type="text" name="fcidade" class="form-control" id="input_cidade" placeholder="">
+                  </div>
+                </div>
+                <!-- Cidade -->
+                
+                <div class="col-lg-1 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_uf">UF*</label>
+                    <div class="selecter closed" tabindex="0">
+                      <select name="selecter_basic" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{endereco.uf}">
+                        <option  name="fuf" th:each="uf : ${T(com.br.pontu.enums.SiglaEstados).values()}" th:value="${uf}" th:text="${uf}"></option>
+                        <!--<option  th:each="acesso : ${T(com.br.pontu.enums.role).values()}" th:value="${acesso}" th:text="${acesso}"></option>-->
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- Estado --> 
+                
+              </div>
+              <!-- .row-->
+              
+            </fieldset>
+            <!-- Endereço -->
+            <hr>
+            <fieldset>
+              <legend>Login</legend>
+              <div class="row">
+                <div class="col-lg-2 col-xs-12">
+                  <div class="form-group">
+                    <label for="input_matricula">Matrícula*</label>
+                    <input type="text" name="fmatricula" class="form-control" id="input_matricula" placeholder="Mín. 6 caracteres">
+                  </div>
+                </div>
+                <!-- matricula --> 
+              </div>
+              <!-- .row -->
+              
+              <div class="row">
+                <div class="col-lg-2 col-xs-12">
+                  <div id="senha" class="form-group">
+                    <label for="input_senha">Senha*</label>
+                    <input type="password" name="fsenha" id="input_senha" class="form-control"  placeholder="********">
+                  </div>
+                </div>
+                <!-- Senha --> 
+              </div>
+              <!-- .row -->
+              
+              <div class="row">
+                <div class="col-lg-2 col-xs-12">
+                  <label for="input_confirmarSenha">Confirmar Senha*</label>
+                  <div id="confirmaSenha" class="form-group has-feedback">
+                    <input type="password" name="fconfirmaSenha" id="input_confirmarSenha" class="form-control" onBlur="comparaSenha()" placeholder="********"/>
+                    <span id="iconConfirmaSenha" class="form-control-feedback fui-check"></span><span id="senhaIncorreta"></span><!-- mesagem caso a senha esteja errada --> 
+                  </div>
+                </div>
+                <!-- Senha --> 
+              </div>
+              <!-- .row -->
+            </fieldset>
+            
+            <!-- Login -->
+            <hr>
             <div class="row">
-              <div class="col-lg-2 col-xs-12">
+              <div class="col-lg-4 col-lg-offset-4  col-xs-12">
                 <div class="form-group">
-                  <label for="input_cep">CEP*</label>
-                  <input type="text" name="fcep" class="form-control" id="input_cep" placeholder="00000-000">
+                  <button id="btn_enviar" onClick="return valida_form()" type="submit" class="col-lg-12 col-xs-12 btn btn-primary">Enviar</button>
                 </div>
               </div>
-              <!-- CEP --> 
-            
-            <div class="col-lg-4 col-xs-12">
-              <div class="form-group">
-                <label for="input_logradouro">Logradouro*</label>
-                <input type="text" name="flogradouro" class="form-control" id="input_logradouro" placeholder="Rua A" >
-              </div>
-            </div>
-            <!-- Logradouro -->
-            
-            <div class="col-lg-4 col-xs-12">
-              <div class="form-group">
-                <label for="input_complemeno">Complemento*</label>
-                <input type="text" name="fcomplemento" class="form-control" id="input_complemeno" placeholder="Apartamento Nº100">
-              </div>
-            </div>
-            <!-- Complemeno -->
-            
-            <div class="col-lg-1 col-xs-12">
-              <div class="form-group">
-                <label for="input_numero">Número*</label>
-                <input type="number" name="fnumero" class="form-control" id="input_numero" placeholder="Nº">
-              </div>
-            </div>
-            <!-- Número -->
-            
-            <div class="col-lg-3 col-xs-12">
-              <div class="form-group">
-                <label for="input_cidade">Cidade*</label>
-                <input type="text" name="fcidade" class="form-control" id="input_cidade" placeholder="">
-              </div>
-            </div>
-            <!-- Cidade -->
-            
-            <div class="col-lg-1 col-xs-12">
-              <div class="form-group">
-                <label for="input_uf">UF*</label>
-                <div class="selecter closed" tabindex="0">
-                  <select name="selecter_basic" class="selecter_1 selecter-element" tabindex="-1" th:field="*{endereco.uf}">
-                    <option  name="fuf" th:each="uf : ${T(com.br.pontu.enums.SiglaEstados).values()}" th:value="${uf}" th:text="${uf}"></option>
-                    <!--<option  th:each="acesso : ${T(com.br.pontu.enums.role).values()}" th:value="${acesso}" th:text="${acesso}"></option>-->
-                  </select>
-                </div>
-              </div>
-            </div>
-            <!-- Estado -->
-                 
-            </div>
-            <!-- .row-->
-            
-          </fieldset>
-          <!-- Endereço -->
-          <hr>
-          <fieldset>
-            <legend>Login</legend>
-            <div class="row">
-              <div class="col-lg-2 col-xs-12">
-                <div class="form-group">
-                  <label for="input_matricula">Matrícula*</label>
-                  <input type="text" name="fmatricula" class="form-control" id="input_matricula" placeholder="Mín. 6 caracteres">
-                </div>
-              </div>
-              <!-- matricula --> 
             </div>
             <!-- .row -->
             
+          </form>
+          <br/>
+          <form th:action="@{/admin/lista/}" method="get">
             <div class="row">
-              <div class="col-lg-2 col-xs-12">
-                <div id="senha" class="form-group">
-                  <label for="input_senha">Senha*</label>
-                  <input type="password" name="fsenha" id="isenha" class="form-control"  placeholder="********">
+              <div class="col-lg-4 col-lg-offset-4 col-xs-12">
+                <div class="form-group">
+                  <button id="btn_listaUsuarios" type="submit" class="col-lg-12 col-xs-12 btn btn-info">Lista de Usuários</button>
                 </div>
               </div>
-              <!-- Senha --> 
             </div>
             <!-- .row -->
-            
-            <div class="row">
-              <div class="col-lg-2 col-xs-12">
-                <label for="input_confirmarSenha">Confirmar Senha*</label>
-                <div id="confirmaSenha" class="form-group has-feedback">
-                  <input type="password" name="fconfirmaSenha" id="iconfirmarSenha" class="form-control" onBlur="comparaSenha()" placeholder="********"/>
-                  <span id="iconConfirmaSenha" class="form-control-feedback fui-check"></span><span id="senhaIncorreta"></span><!-- mesagem caso a senha esteja errada --> 
-                </div>
-              </div>
-              <!-- Senha --> 
-            </div>
-            <!-- .row -->
-          </fieldset>
-          
-          <!-- Login -->
-          <hr>
-          <div class="row">
-            <div class="col-lg-4 col-lg-offset-4  col-xs-12">
-              <div class="form-group">
-                <button id="btn_enviar" onClick="checaCampos()" type="submit" class="col-lg-12 col-xs-12 btn btn-primary">Enviar</button>
-              </div>
-            </div>
-          </div>
-          <!-- .row -->
-          
-        </form>
-        <br/>
-        <form th:action="@{/admin/lista/}" method="get">
-          <div class="row">
-            <div class="col-lg-4 col-lg-offset-4 col-xs-12">
-              <div class="form-group">
-                <button id="btn_listaUsuarios" type="submit" class="col-lg-12 col-xs-12 btn btn-info">Lista de Usuários</button>
-              </div>
-            </div>
-          </div>
-          <!-- .row -->
-        </form>
+          </form>
+        </div>
       </div>
+      <!-- .panel panel-default --> 
+      
     </div>
-    <!-- .panel panel-default --> 
-    
+    <!-- Coluna do formulário --> 
   </div>
-  <!-- Coluna do formulário --> 
-</div>
-<!-- DIV Registro .row-->
-
+  <!-- DIV Registro .row--> 
+  
 </div>
 <!-- Container -->
 
@@ -345,17 +344,30 @@ and open the template in the editor.
     </div>
   </div>
 </footer>
+
+<!-- Dialogo Box -->
+<div id="dialogoverlay"></div>
+<div id="dialogbox">
+  <div>
+    <div id="dialogboxhead"></div>
+    <div id="dialogboxbody"></div>
+    <div id="dialogboxfoot"></div>
+  </div>
+</div>
+
+<!-- Script para aparecer o modal --> 
+<script src="../static/dist/js/dialogobox.js"></script> 
 <!-- Script para comparar se as senhas são iguais --> 
-<script src="../static/dist/js/comparaSenha.js"></script> 
+<!-- <script src="../static/dist/js/comparaSenha.js"></script> -->
 <!-- Script para verificar se campos obrigatórios foram preenchidos --> 
 <script src="../static/dist/js/checaCampos.js"></script> 
 <!-- Script para verificar a validade do CPF --> 
-<script src="../static/dist/js/checaCPF.js"></script>
-<!-- Script para verificar a validade da Data -->  
+<script src="../static/dist/js/checaCPF.js"></script> 
+<!-- Script para verificar a validade da Data --> 
 <script src="../static/dist/js/checaData.js"></script> 
-
 <!-- Script para setar o ano do rodapé --> 
 <script src="../static/dist/js/obeterAno.js"></script> 
+
 <script src="../static/dist/js/vendor/jquery.min.js"></script> 
 <script src="../static/dist/js/vendor/video.js"></script> 
 <script src="../static/dist/js/flat-ui.min.js"></script> 
