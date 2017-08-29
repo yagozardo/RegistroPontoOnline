@@ -6,389 +6,413 @@ and open the template in the editor.
 -->
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Pontu - Registro</title>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="keywords" content="ponto, ponto eletronico, registro de ponto"/>
-<meta name="description" content="Sistema de registro de ponto eletronico para vc poder "/>
-<meta name="author" content="Autor"/>
-<meta name="robots" content="index,follow"/>
-<!-- Favicon -->
-<!--<link rel="shortcut icon" href="../static/img/favicon.ico"/>-->
-<link rel="shortcut icon" th:href="@{/img/favicon.ico}"/>
+    <head>
+    <title>Pontu - Registro</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="keywords" content="ponto, ponto eletronico, registro de ponto"/>
+    <meta name="description" content="Sistema de registro de ponto eletronico para vc poder "/>
+    <meta name="author" content="Autor"/>
+    <meta name="robots" content="index,follow"/>
+    <!-- Favicon -->
+    <!--<link rel="shortcut icon" href="../static/img/favicon.ico"/>-->
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}"/>
 
-<!-- Loading Bootstrap -->
-<!--<link th:href="@{/dist/css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>-->
-<link href="../static/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Loading Bootstrap -->
+    <!--<link th:href="@{/dist/css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>-->
+    <link href="../static/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
-<!-- Loading Flat UI -->
-<!--<link th:href="@{/dist/css/flat-ui.css}" rel="stylesheet"/>-->
-<link href="../static/dist/css/flat-ui.css" rel="stylesheet"/>
-<!--<link th:href="@{/docs/assets/css/demo.css}" rel="stylesheet"/>-->
-<link href="../static/docs/assets/css/demo.css" rel="stylesheet"/>
+    <!-- Loading Flat UI -->
+    <!--<link th:href="@{/dist/css/flat-ui.css}" rel="stylesheet"/>-->
+    <link href="../static/dist/css/flat-ui.css" rel="stylesheet"/>
+    <!--<link th:href="@{/docs/assets/css/demo.css}" rel="stylesheet"/>-->
+    <link href="../static/docs/assets/css/demo.css" rel="stylesheet"/>
 
-<!-- Estilo próprio -->
-<!--<link th:href="@{/estilo/estilo.css}" rel="stylesheet"/>-->
-<link href="../static/estilo/estilo.css" rel="stylesheet"/>
+    <!-- Estilo próprio -->
+    <!--<link th:href="@{/estilo/estilo.css}" rel="stylesheet"/>-->
+    <link href="../static/estilo/estilo.css" rel="stylesheet"/>
 
-<!-- Scripts Flat UI -->
-<!--
+    <!-- Scripts Flat UI -->
+    <!--
         <script src="dist/js/vendor/jquery.min.js"></script>
         <script src="dist/js/vendor/video.js"></script>
         <script src="dist/js/flat-ui.min.js"></script>
         <script src="docs/assets/js/application.js"></script> 
         -->
-<script src="../static/dist/js/vendor/jquery.min.js"></script>
-<script src="../static/dist/js/vendor/video.js"></script>
-<script src="../static/dist/js/flat-ui.min.js"></script>
-<script src="../static/docs/assets/js/application.js"></script>
+    <script src="../static/dist/js/vendor/jquery.min.js"></script>
+    <script src="../static/dist/js/vendor/video.js"></script>
+    <script src="../static/dist/js/flat-ui.min.js"></script>
+    <script src="../static/docs/assets/js/application.js"></script>
 
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-<!--[if lt IE 9]>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
                       <script src="dist/js/vendor/html5shiv.js"></script>
                       <script src="dist/js/vendor/respond.min.js"></script>
                     <![endif]-->
-</head>
-<body onload="ano()">
+
+    <!-- Adicionando Javascript -->
+    <script type="text/javascript" >
+
+        $(document).ready(function () {
+
+    function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $("#flogradouro").val("");
+        $("#fcidade").val("");
+        $("#fuf").val("");
+    }
+
+    //Quando o campo cep perde o foco.
+    $("#fcep").blur(function () {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = $(this).val().replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if (validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#flogradouro").val("...");
+                $("#fcidade").val("...");
+                $("#fuf").val("...");
+
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#flogradouro").val(dados.logradouro);
+                        $("#bairro").val(dados.bairro);
+                        $("#fcidade").val(dados.localidade);
+                        $("#fuf").val(dados.uf);
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        limpa_formulário_cep();
+                        alert("CEP não encontrado.");
+                    }
+                });
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    });
+});
+
+    </script>
+    </head>
+    <body onload="ano()">
 <!-- ano() função que obtem o ano e seta ele no rodapé --> 
 <!--
 <<<<<<< Updated upstream
        -->
 <div class="container-fluid"> 
-  
-  <!-- MENU -->
-  <div class="row menu">
+      
+      <!-- MENU -->
+      <div class="row menu">
     <nav class="navbar navbar-default" role="navigation">
-      <div class="navbar-header">
+          <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01"> <span class="sr-only">Toggle navigation</span> </button>
         <a class="navbar-brand" href="#"><!--<img class="logo_pequena" th:src="@{/img/logo/logo_pontu_145x48.png}">--><img class="logo_pequena" src="../static/img/logo/logo_pontu_145x48.png"></a> </div>
-      <div class="collapse navbar-collapse" id="navbar-collapse-01">
+          <div class="collapse navbar-collapse" id="navbar-collapse-01">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Menu</a></li>
-        </ul>
+              <li class="active"><a href="#">Menu</a></li>
+            </ul>
         <form class="navbar-form navbar-right" action="#" role="search">
-          <div class="form-group">
+              <div class="form-group">
             <div class="input-group">
-              <input class="form-control" id="navbarInput-01" type="search" placeholder="Procurar"/>
-              <span class="input-group-btn">
+                  <input class="form-control" id="navbarInput-01" type="search" placeholder="Procurar"/>
+                  <span class="input-group-btn">
               <button type="submit" class="btn"><span class="fui-search"></span></button>
               </span> </div>
           </div>
-        </form>
+            </form>
       </div>
-      <!-- /.navbar-collapse --> 
-    </nav>
+          <!-- /.navbar-collapse --> 
+        </nav>
     <!-- /navbar --> 
   </div>
-  <!-- .row menu --> 
-  <!-- ======= -->
-  
-  <div class="row"> 
+      <!-- .row menu --> 
+      <!-- ======= -->
+      
+      <div class="row"> 
     <!--
 <<<<<<< Updated upstream -->
     <div class="col-lg-10 col-lg-offset-1 col-xs-12">
-      <div class="panel panel-default">
+          <div class="panel panel-default">
         <div class="panel-heading">
-          <div class="panel-title">
+              <div class="panel-title">
             <h4>
-              <center>
+                  <center>
                 Registro
               </center>
-            </h4>
+                </h4>
           </div>
-          <div class="panel-options"> <a class="bg" data-target="#sample-modal-dialog-1" data-toggle="modal" href="#sample-modal"><i class="entypo-cog"></i></a> <a data-rel="collapse" href="#"><i class="entypo-down-open"></i></a> <a data-rel="close" href="#!/tasks" ui-sref="Tasks"><i class="entypo-cancel"></i></a> </div>
-        </div>
+              <div class="panel-options"> <a class="bg" data-target="#sample-modal-dialog-1" data-toggle="modal" href="#sample-modal"><i class="entypo-cog"></i></a> <a data-rel="collapse" href="#"><i class="entypo-down-open"></i></a> <a data-rel="close" href="#!/tasks" ui-sref="Tasks"><i class="entypo-cancel"></i></a> </div>
+            </div>
         <div class="panel-body">
-          <form name="cadastro" role="form" th:action="@{/admin/registro}" method="post" th:object="${user}">
+              <form name="cadastro" role="form" th:action="@{/admin/registro}" method="post" th:object="${user}">
             <fieldset>
-              <legend>
-              <h5>Dados Pessoais</h5>
-              </legend>
-              <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                  <div class="form-group" id="input_nome">
+                  <legend>
+                  <h5>Dados Pessoais</h5>
+                  </legend>
+                  <div class="row">
+                <div class="col-lg-3 col-xs-12">
+                      <div class="form-group" id="input_nome">
                     <label for="input_nome">Nome*</label>
                     <input type="text" id="fnome" name="fnome" class="form-control" onBlur="val_nome()" placeholder="Nome" th:field="*{nome}" maxlength="20">
                   </div>
-                </div>
+                    </div>
                 <!-- Nome -->
                 
-                <div class="col-lg-4 col-xs-12">
-                  <div class="form-group" id="input_sobreNome">
+                <div class="col-lg-3 col-xs-12">
+                      <div class="form-group" id="input_sobreNome">
                     <label for="input_sobrenome">Sobrenome*</label>
                     <input type="text" id="fsobreNome" name="fsobreNome" class="form-control" onBlur="val_sobrenome()" placeholder="Sobrenome" th:field="*{sobrenome}" maxlength="50"/>
                   </div>
-                </div>
+                    </div>
                 <!-- Sobrenome -->
                 
                 <div class="col-lg-3 col-xs-12">
-                  <div class="form-group" id="input_dataNascimento">
+                      <div class="form-group" id="input_dataNascimento">
                     <label for="input_dataNascimento">Data Nascimento*</label>
                     <input type="date" id="fdataNasc" name="fdataNasc" class="form-control" onBlur="val_data()" placeholder="dd/mm/aaaa" th:field="*{dataNascimento}">
                   </div>
-                </div>
+                    </div>
                 <!-- Data Nascimento -->
                 
                 <div class="col-lg-3 col-xs-12">
-                  <div class="form-group" id="input_rg">
+                      <div class="form-group" id="input_rg">
                     <label for="input_rg">RG*</label>
                     <input type="text" id="frg" name="frg" class="form-control" onBlur="val_rg()" placeholder="RG" th:field="*{rg}" maxlength="13">
                   </div>
-                </div>
+                    </div>
                 <!-- RG -->
                 
                 <div class="col-lg-3 col-xs-12">
-                  <div class="form-group" id="input_cpf">
+                      <div class="form-group" id="input_cpf">
                     <label for="input_cpf">CPF*</label>
                     <input type="text" id="fcpf" name="fcpf" class="form-control" placeholder="000.000.000-00" th:field="*{cpf}"  maxlength="14">
                   </div>
-                </div>
+                    </div>
                 <!-- CPF -->
                 
                 <div class="col-lg-3 col-xs-12">
-                  <div class="form-group">
+                      <div class="form-group">
                     <label for="input_estadoCivil">Estado Civil*</label>
                     <div class="selecter closed" tabindex="0">
-                      <select name="festadoCivil" id="input_estadoCivil" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{estadoCivil}">
+                          <select name="festadoCivil" id="input_estadoCivil" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{estadoCivil}">
                         <option  name="" th:each="estadoCivil : ${T(com.br.pontu.enums.EstadoCivil).values()}" th:value="${estadoCivil}" th:text="${estadoCivil}"></option>
                       </select>
-                    </div>
+                        </div>
                   </div>
-                </div>
+                    </div>
                 <!-- Estado Civil -->
                 
                 <div class="col-lg-3 col-xs-12">
-                  <div class="form-group" id="input_carteiraDeTrabalho">
+                      <div class="form-group" id="input_carteiraDeTrabalho">
                     <label for="input_carteiraDeTrabalho">Carteira de Trabalho*</label>
                     <input type="text" id="fct"  name="fct" class="form-control" placeholder=""  th:field="*{carteiraDeTrabalho}"  maxlength="10">
                   </div>
-                </div>
+                    </div>
                 <!-- Carteira de Trabalho -->
                 
                 <div class="col-lg-3 col-xs-12">
-                  <div class="form-group" id="input_cargo">
+                      <div class="form-group" id="input_cargo">
                     <label for="input_cargo">Cargo*</label>
                     <input type="text" id="fcargo"  name="fcargo" class="form-control" placeholder=""  th:field="*{carteiraDeTrabalho}"  maxlength="10">
                   </div>
-                </div>
+                    </div>
                 <!-- Cargo -->
                 
                 <div class="col-lg-3 col-xs-12">
-                  <div class="form-group">
+                      <div class="form-group">
                     <label for="input_departamento">Departamento*</label>
                     <div class="selecter closed" tabindex="0">
-                      <select name="fdepartamento" id="input_departamento" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{estadoCivil}">
+                          <select name="fdepartamento" id="input_departamento" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{estadoCivil}">
                         <option  name="" th:each="estadoCivil : ${T(com.br.pontu.enums.EstadoCivil).values()}" th:value="${estadoCivil}" th:text="${estadoCivil}"></option>
                       </select>
-                    </div>
+                        </div>
                   </div>
-                </div>
+                    </div>
                 <!-- Departamento -->
                 
                 <div class="col-lg-3 col-xs-12">
-                  <div class="form-group">
+                      <div class="form-group">
                     <label for="">Tipo de Acesso*</label>
                     <div class="selecter closed" tabindex="0">
-                      <select name="ftipoAcesso" id="input_tipoAcesso" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{acesso}">
+                          <select name="ftipoAcesso" id="input_tipoAcesso" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{acesso}">
                         <option name="ftipoAcesso" th:each="acesso : ${T(com.br.pontu.enums.role).values()}" th:value="${acesso}" th:text="${acesso}"></option>
                       </select>
-                    </div>
+                        </div>
                   </div>
-                </div>
+                    </div>
                 <!-- Estado Civil --> 
               </div>
-              <!-- .row-->
-              
-            </fieldset>
+                  <!-- .row-->
+                  
+                </fieldset>
             <hr>
             <fieldset>
-              <legend>
-              <h5>Contatos</h5>
-              </legend>
-              <div class="row">
+                  <legend>
+                  <h5>Contatos</h5>
+                  </legend>
+                  <div class="row">
                 <div class="col-lg-4 col-xs-12">
-                  <div class="form-group"  id="input_email" >
+                      <div class="form-group"  id="input_email" >
                     <label for="input_email">Email*</label>
                     <input type="text"  id="femail"  name="femail" class="form-control" placeholder="email@email.com"  maxlength="50"/>
                   </div>
-                </div>
+                    </div>
                 <!-- E-mail -->
                 
                 <div class="col-lg-4 col-xs-12">
-                  <div class="form-group"  id="input_celular" >
+                      <div class="form-group"  id="input_celular" >
                     <label for="input_celular">Celular*</label>
                     <input type="text"  id="fcelular"  name="fcelular" class="form-control" placeholder="(DD) 00000-0000"  maxlength="12"/>
                   </div>
-                </div>
+                    </div>
                 <!-- Celular -->
                 
                 <div class="col-lg-4 col-xs-12">
-                  <div class="form-group" id="input_fixo" >
+                      <div class="form-group" id="input_fixo" >
                     <label for="input_fixo">Fixo</label>
                     <input type="text" id="ffixo"  name="ffixo" class="form-control" placeholder="(DD) 0000-0000"  maxlength="12">
                   </div>
-                </div>
+                    </div>
                 <!-- Fixo --> 
               </div>
-              <!-- .row-->
-            </fieldset>
+                  <!-- .row-->
+                </fieldset>
             <!-- Telefones -->
             <hr>
             <fieldset>
-              <legend>
-              <h5>Endereço</h5>
-              </legend>
-              <div class="row">
-                <div class="col-lg-2 col-xs-12">
-                  <div class="form-group" id="input_cep" >
-                    <label for="input_cep">CEP*</label>
-                    <input type="text" id="fcep" name="fcep" class="form-control" placeholder="00000-000"  maxlength="10">
-                  </div>
-                </div>
-                <!-- CEP -->
-                
-                <div class="col-lg-4 col-xs-12">
-                  <div class="form-group" id="input_logradouro" >
-                    <label for="input_logradouro">Logradouro*</label>
-                    <input type="text" id="flogradouro" name="flogradouro" class="form-control" placeholder="Rua A"  maxlength="50" value="Disabled" disabled="disabled">
-                  </div>
-                </div>
-                <!-- Logradouro -->
-                
-                <div class="col-lg-2 col-xs-12">
-                  <div class="form-group" id="input_numero">
-                    <label for="input_numero">Número*</label>
-                    <input type="text" id="fnumero" name="fnumero" class="form-control" placeholder="Nº" value="Disabled" disabled="disabled">
-                  </div>
-                </div>
-                <!-- Número -->
-                
-                <div class="col-lg-3 col-xs-12">
-                  <div class="form-group" id="input_cidade" >
-                    <label for="input_cidade">Cidade*</label>
-                    <input type="text" id="fcidade" name="fcidade" class="form-control" placeholder=""  maxlength="10" value="Disabled" disabled="disabled"/>
-                  </div>
-                </div>
-                <!-- Cidade -->
-                
-                <div class="col-lg-1 col-xs-12">
-                  <div class="form-group">
-                    <label for="input_uf">UF*</label>
-                    <input type="text" id="fuf" name="fuf" class="form-control" value="Disabled" disabled="disabled"/>
-                  </div>
-                </div>
-                <!-- Estado -->
-                
-                <div class="col-lg-12 col-xs-12">
-                  <div class="form-group" id="input_uf" >
-                    <label for="input_uf">Complemento*</label>
-                    <input type="text" id="fcomplemento" name="fcomplemento" class="form-control" placeholder="Apartamento Nº100"  maxlength="50">
-                  </div>
-                </div>
-                <!-- Complemeno --> 
-                
+            <legend>
+            <h5>Endereço</h5>
+            </legend>
+            <div class="row">
+                  <div class="col-lg-2 col-xs-12">
+                <div class="form-group" id="input_cep" >
+                      <label for="input_cep">CEP*</label>
+                      <input type="text" id="fcep" name="fcep" class="form-control" placeholder="00000-000"  maxlength="10">
+                    </div>
               </div>
-              <!-- .row-->
-              
-            </fieldset>
-            <!-- Endereço -->
-            <!--<hr>
-            <fieldset>
-              <legend>
-              <h5>Login</h5>
-              </legend>
-              <div class="row">
-                <div class="col-lg-2 col-xs-12">
-                  <div class="form-group" id="input_matricula" >
-                    <label for="input_matricula">Matrícula*</label>
-                    <input type="text" id="fmatricula" name="fmatricula" class="form-control" placeholder="Mín. 6 caracteres"  maxlength="50" value="Disabled" disabled="disabled">
-                  </div>
-                </div>
-                <!-- matricula --> 
+                  <!-- CEP -->
+                  
+                  <div class="col-lg-4 col-xs-12">
+                <div class="form-group" id="input_logradouro" >
+                      <label for="input_logradouro">Logradouro*</label>
+                      <input type="text" id="flogradouro" name="flogradouro" class="form-control" placeholder="Rua A"  maxlength="50">
+                    </div>
               </div>
-              <!-- .row -->
-              
-              <!--<div class="row">
-                <div class="col-lg-2 col-xs-12">
-                  <div  id="input_senha"  class="form-group">
-                    <label for="input_senha">Senha*</label>
-                    <input type="password" id="fsenha" name="fsenha" class="form-control"  placeholder="********"  maxlength="30">
-                  </div>
-                </div>
-                <!-- Senha --> 
+                  <!-- Logradouro -->
+                  
+                  <div class="col-lg-3 col-xs-12">
+                <div class="form-group" id="input_cidade" >
+                      <label for="input_cidade">Cidade*</label>
+                      <input type="text" id="fcidade" name="fcidade" class="form-control" placeholder=""  maxlength="10"/>
+                    </div>
               </div>
-              <!-- .row --> 
-              
-              <!--
-              <div class="row">
-                <div class="col-lg-2 col-xs-12">
-                  <label for="input_confirmarSenha">Confirmar Senha*</label>
-                  <div id="confirmaSenha" class="form-group has-feedback">
-                    <input type="password" id="fconfirmaSenha" name="fconfirmaSenha" class="form-control" onBlur="comparaSenha()" placeholder="********"  maxlength="30"/>
-                    <span id="iconConfirmaSenha" class="form-control-feedback fui-check"></span><span id="senhaIncorreta"></span><!-- mesagem caso a senha esteja errada --> 
-                  </div>
-                </div>
-                <!-- Senha --> 
+                  <!-- Cidade -->
+                  
+                  <div class="col-lg-1 col-xs-12">
+                <div class="form-group">
+                      <label for="input_uf">UF*</label>
+                      <input type="text" id="fuf" name="fuf" class="form-control"/>
+                    </div>
               </div>
-              <!-- .row -->
-            </fieldset>
-            <!-- Login -->
+                  <!-- Estado -->
+                  
+                  <div class="col-lg-2 col-xs-12">
+                <div class="form-group" id="input_numero">
+                      <label for="input_numero">Número*</label>
+                      <input type="text" id="fnumero" name="fnumero" class="form-control" placeholder="Nº">
+                    </div>
+              </div>
+                  <!-- Número -->
+                  
+                  <div class="col-lg-12 col-xs-12">
+                <div class="form-group" id="input_uf" >
+                      <label for="input_uf">Complemento*</label>
+                      <input type="text" id="fcomplemento" name="fcomplemento" class="form-control" placeholder="Apartamento Nº100"  maxlength="50">
+                    </div>
+              </div>
+                  <!-- Complemeno --> 
+                  
+                </div>
+            <!-- .row-->
+            
             <hr>
             <div class="row">
-              <div class="col-lg-4 col-lg-offset-4  col-xs-12">
+                  <div class="col-lg-2 col-lg-offset-5  col-xs-12">
                 <div class="form-group">
-                  <button id="btn_enviar" onClick="return valida_form()" type="submit" class="col-lg-12 col-xs-12 btn btn-primary"> <span class="btn_enviar">Enviar</span> </button>
-                </div>
+                      <button id="btn_enviar" onClick="return valida_form()" type="submit" class="col-lg-12 col-xs-12 btn btn-primary"> <span class="btn_enviar">Enviar</span> </button>
+                    </div>
               </div>
-            </div>
+                </div>
             <!-- .row -->
             
           </form>
-          <br/>
-          <form th:action="@{/admin/lista/}" method="get">
+              <br/>
+              <form th:action="@{/admin/lista/}" method="get">
             <div class="row">
-              <div class="col-lg-4 col-lg-offset-4 col-xs-12">
+                  <div class="col-lg-2 col-lg-offset-5 col-xs-12">
                 <div class="form-group">
-                  <button id="btn_listaUsuarios" type="submit" class="col-lg-12 col-xs-12 btn btn-info"> <span class="btn_enviar"> Lista de Usuários </span> </button>
-                </div>
+                      <button id="btn_listaUsuarios" type="submit" class="col-lg-12 col-xs-12 btn btn-info"> <span class="btn_enviar"> Lista de Usuários </span> </button>
+                    </div>
               </div>
-            </div>
-            <!-- .row -->
+                </div>
+            <!-- .row --> 
+            <br/>
           </form>
-        </div>
+            </div>
       </div>
-      <!-- .panel panel-default --> 
-      
-    </div>
+          <!-- .panel panel-default --> 
+          
+        </div>
     <!-- Coluna do formulário --> 
   </div>
-  <!-- DIV Registro .row--> 
-  
-</div>
+      <!-- DIV Registro .row--> 
+      
+    </div>
 <!-- Container -->
 
 <footer>
-  <div class="container-fluid">
+      <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-12 texto-centro">
+          <div class="col-xs-12 texto-centro">
         <h3 class="footer-title">Pontu</h3>
         <p>Sistema de Registro de Ponto eletrônico &copy; -<span id="ano">ano</span></p>
       </div>
-    </div>
+        </div>
   </div>
-</footer>
+    </footer>
 
 <!-- Dialogo Box -->
 <div id="dialogoverlay"></div>
 <div id="dialogbox" col-xs-12>
-  <div>
+      <div>
     <div id="dialogboxhead"></div>
     <div id="dialogboxbody"></div>
     <div id="dialogboxfoot"></div>
   </div>
-</div>
+    </div>
 
+<!-- Script carregar o Jquery --> 
+<script src="../static/dist/js/jquery-3.2.1.min.js"></script>  
 <!-- Script para aparecer o modal --> 
 <script src="../static/dist/js/bootbox.min.js"></script> 
 <!-- Script para comparar se as senhas são iguais --> 
