@@ -7,41 +7,10 @@
     text-align: center;
 }
 
-#dialogoverlay {
-    display: none;
-    opacity: .8;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    background: #FFF;
-    width: 100%;
-    z-index: 10;
+.btn_enviar{
+	font-size: 1.4em;
 }
-#dialogbox {
-    display: none;
-    position: fixed;
-    background: #7F8C8D;
-    border-radius: 7px;
-    width: 550px;
-    z-index: 10;
-}
-#dialogbox > div {
-    background: #ECF0F1;
-    margin: 8px;
-}
-#dialogbox > div > #dialogboxhead {
-    background: #BDC3C7;
-    font-size: 24px;
-    padding: 1px 10px 1px 20px;
-    color: #2C3E50;
-}
-#dialogbox > div > #dialogboxbody {
-    background: #ECF0F1;
-    padding: 20px;
-    color: #2C3E50;
-}
-#dialogbox > div > #dialogboxfoot {
-    background: #ECF0F1;
-    padding: 10px;
-    text-align: right;
+
+.btn_listar{
+	font-size: 1.4em;
 }
