@@ -1,4 +1,3 @@
-// JavaScript Document
 $(document).ready(function () {
 
     function limpa_formulário_cep() {
@@ -37,6 +36,10 @@ $(document).ready(function () {
                         $("#bairro").val(dados.bairro);
                         $("#fcidade").val(dados.localidade);
                         $("#fuf").val(dados.uf);
+                        document.getElementById('input_logradouro').className = 'form-group has-success'; // muda o estilo do formulário
+                        document.getElementById('input_cidade').className = 'form-group has-success'; // muda o estilo do formulário
+                        document.getElementById('input_uf').className = 'form-group has-success'; // muda o estilo do formulário
+                        document.getElementById('input_cep').className = 'form-group has-success'; // muda o estilo do formulário
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.
