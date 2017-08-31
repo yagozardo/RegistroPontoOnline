@@ -10,6 +10,7 @@ package com.br.pontu.enums;
  * @author Robson
  */
 public enum SiglaEstados {
+    
 AC,
 AL,
 AM,
@@ -37,4 +38,5 @@ SC,
 SE,
 SP,
 TO,
+
 }

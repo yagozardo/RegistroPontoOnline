@@ -1,5 +1,10 @@
 package com.br.pontu.enums;
 
+/**
+ * Enumeração dos Estados Civis de 
+ * acordo com a legislação brasileira.
+ * @author Alves
+ */
 public enum EstadoCivil {
 	
 	SOLTEIRO,

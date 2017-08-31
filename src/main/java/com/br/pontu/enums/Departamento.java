@@ -6,7 +6,12 @@
 package com.br.pontu.enums;
 
 /**
- *
+ * Listagem de possiveis departamentos de uma empresa, 
+ * sendo assim possível fazer fáceis adaptações para cada tipo de cliente.
+ * 
+ * Lembrando que para melhor entendimento do código, 
+ * sempre manter as enumerações por ordem alfabetica.
+ * 
  * @author Alves
  */
 public enum Departamento {
@@ -17,7 +22,7 @@ public enum Departamento {
     MANUNTENCAO("Manuntenção"),
     MARKETING("Marketing"),
     RECEPCAO("Recepção"),
-     RH("Gestão de Pessoas"),
+    RH("Gestão de Pessoas"),
     SUPORTE("Suporte ao usuário"),
     TI("Informática"),
     VENDAS("Vendas");
