@@ -1,5 +1,6 @@
 package com.br.pontu.entity;
 
+import com.br.pontu.enums.Departamento;
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.br.pontu.enums.EstadoCivil;
-import com.br.pontu.enums.role;
+import com.br.pontu.enums.Role;
 
 /**
  * Entidade que é responsável pelo dados dos usuários Sendo eles de carater
@@ -33,17 +34,8 @@ import com.br.pontu.enums.role;
 @Entity
 @Table(name = "usuario")
 public class User implements Serializable {
-
-    public User() {
-        
-        
-        
-    }
-        
-        
-	private static final long serialVersionUID = 1L;
-
-	
+          
+	private static final long serialVersionUID = 1L;	
 	
 	//  Atributos Inicio   =========================================================================
 	 
@@ -58,13 +50,15 @@ public class User implements Serializable {
 	private String fixo;
 	private EstadoCivil estadoCivil;
 	private String email;
+        private String Cargo;
     
 	private Long matricula;
 	private String senha;
 	
-	private role acesso;
+	private Role acesso;
 	private Adress endereco;
-    private List<PontoDataHora> ponto;
+        private List<PontoDataHora> ponto;
+        private Departamento departamento;
 
 	
 	// FIM ========================================================================================
@@ -75,6 +69,7 @@ public class User implements Serializable {
 	 * Getters And Setters
 	 * Contendo as anotações de verificação =======================================================
 	 */
+        
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
@@ -227,12 +222,33 @@ public class User implements Serializable {
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	public role getAcesso() {
+	public Role getAcesso() {
 		return acesso;
 	}
-	public void setAcesso(role acesso) {
+	public void setAcesso(Role acesso) {
 		this.acesso = acesso;
 	}
+        
+        @NotNull
+        @NotEmpty
+        @Column(nullable = false, length = 20)
+        public String getCargo() {
+            return Cargo;
+        }
+        public void setCargo(String Cargo) {
+            this.Cargo = Cargo;
+        }
+
+        @NotNull
+        @NotEmpty
+        @Enumerated(EnumType.STRING)
+        @Column(nullable = false, length = 20)
+        public Departamento getDepartamento() {
+            return departamento;
+        }
+        public void setDepartamento(Departamento departamento) {
+            this.departamento = departamento;
+        }
 
      
 	
