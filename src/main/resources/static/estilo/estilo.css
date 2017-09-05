@@ -1,16 +1,25 @@
 /* CSS Document */
 
 .logo_pequena {
-    margin-top: -12px;
+	margin-top: -12px;
 }
 .texto-centro {
-    text-align: center;
+	font-weight: 700;
+	text-align: center;
+	color: #333;
 }
-
-.btn_enviar{
+.btn_enviar {
 	font-size: 1.4em;
+	font-weight: 900;
+	color: #000;
 }
-
-.btn_listar{
+.btn_listar {
 	font-size: 1.4em;
+	font-weight: 900;
+	color: #000;
+}
+.span_form {
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-size: 1em;
+	font-weight: 700;
 }
