@@ -58,9 +58,6 @@ function val_data() {
     if (data === "") { // campo vazio
         aviso("sdataNascimento", "input_dataNascimento");
         document.forms.cadastro.fdataNasc.focus(); // foca no campo
-    } else if (data.length <= 8) { // conteudo do campo insuficiente 
-        erro("sdataNascimento", "input_dataNascimento");
-        document.forms.cadastro.fdataNasc.focus();
     } else {
         var ano_input = parseInt(data.slice(0, 4)); // captura apenas o ano da data digitada
         var a = new Date();
@@ -87,7 +84,15 @@ function val_rg() {
         erro("srg", "input_rg");
         document.forms.cadastro.frg.focus();
     } else {
-        sucesso("srg", "input_rg");
+        if (validarRG(rg)) {
+            sucesso("srg", "input_rg");
+        } else {
+            document.getElementById('srg').style.color = "#E74C3C"; // muda a cor da fonte do aviso
+            document.getElementById('srg').innerHTML = " RG Inválido!"; // muda o estilo do formulário
+            document.getElementById('input_rg').className = 'form-group has-error'; // muda o estilo do formulário
+            val++;
+        }
+
     }
 }
 
@@ -343,6 +348,79 @@ function validarCPF(cpf) {
     return true;
 }
 
+// Função para validar RG
+function validarRG(numero) {
+    numero = numero.replace(/[^\d]+/g, '');
+    var numero = numero.split("");
+    tamanho = numero.length;
+    vetor = new Array(tamanho);
+
+    if (tamanho >= 1) {
+        vetor[0] = parseInt(numero[0]) * 2;
+    }
+    if (tamanho >= 2) {
+        vetor[1] = parseInt(numero[1]) * 3;
+    }
+    if (tamanho >= 3) {
+        vetor[2] = parseInt(numero[2]) * 4;
+    }
+    if (tamanho >= 4) {
+        vetor[3] = parseInt(numero[3]) * 5;
+    }
+    if (tamanho >= 5) {
+        vetor[4] = parseInt(numero[4]) * 6;
+    }
+    if (tamanho >= 6) {
+        vetor[5] = parseInt(numero[5]) * 7;
+    }
+    if (tamanho >= 7) {
+        vetor[6] = parseInt(numero[6]) * 8;
+    }
+    if (tamanho >= 8) {
+        vetor[7] = parseInt(numero[7]) * 9;
+    }
+    if (tamanho >= 9) {
+        vetor[8] = parseInt(numero[8]) * 100;
+    }
+
+    total = 0;
+
+    if (tamanho >= 1) {
+        total += vetor[0];
+    }
+    if (tamanho >= 2) {
+        total += vetor[1];
+    }
+    if (tamanho >= 3) {
+        total += vetor[2];
+    }
+    if (tamanho >= 4) {
+        total += vetor[3];
+    }
+    if (tamanho >= 5) {
+        total += vetor[4];
+    }
+    if (tamanho >= 6) {
+        total += vetor[5];
+    }
+    if (tamanho >= 7) {
+        total += vetor[6];
+    }
+    if (tamanho >= 8) {
+        total += vetor[7];
+    }
+    if (tamanho >= 9) {
+        total += vetor[8];
+    }
+
+
+    resto = total % 11;
+    if (resto != 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
 /*
 function comparaSenha() {
 
