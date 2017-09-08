@@ -194,13 +194,35 @@ function val_email() {
     if (email === "") { // campo vazio
         aviso("semail", "input_email");
         document.forms.cadastro.femail.focus(); // foca no campo
-    } else if (email.length < 10) { // conteudo do campo insuficiente 
+    } else if (email.length < 7) { // conteudo do campo insuficiente 
         erro("semail", "input_email");
         document.forms.cadastro.femail.focus();
     } else {
-        sucesso("semail", "input_email");
+
+        // função para validar se contem "@", "." e no minino dois caracteres entre eles
+        function validarEmail(email) {
+            e = /^[a-zA-Z0-9][a-zA-Z0-9\._-]+@([a-zA-Z0-9\._-]+\.)[a-zA-Z-0-9]{2}/;
+
+            if (e.exec(email)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
+        // Verifica o retorno da função da validação de emal
+        if (!validarEmail(email)) {
+            document.getElementById('semail').style.color = "#E74C3C"; // muda a cor da fonte do aviso
+            document.getElementById('semail').innerHTML = " E-mail Inválido!"; // muda o estilo do formulário
+            document.getElementById('input_email').className = 'form-group has-error'; // muda o estilo do formulário
+            val++;
+        } else {
+            sucesso("semail", "input_email");
+        }
+
     }
 }
+
 
 // Verifica a validade do telefone celular
 function val_fixo() {
