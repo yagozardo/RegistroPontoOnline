@@ -101,7 +101,15 @@ function val_cpf() {
         erro("scpf", "input_cpf");
         document.forms.cadastro.fcpf.focus();
     } else {
-        sucesso("scpf", "input_cpf");
+        if (validarCPF(cpf)) {
+            sucesso("scpf", "input_cpf");
+        } else {
+            document.getElementById('scpf').style.color = "#E74C3C"; // muda a cor da fonte do aviso
+            document.getElementById('scpf').innerHTML = " CPF Inválido!"; // muda o estilo do formulário
+            document.getElementById('input_cpf').className = 'form-group has-error'; // muda o estilo do formulário
+            val++;
+        }
+
     }
 }
 
@@ -297,30 +305,43 @@ function valida_form() {
 
 }
 
-
-/*function val_data() {
-    if (document.forms.cadastro.fdataNasc.value == "") {
-        document.forms.cadastro.fdataNasc.focus();
-        document.getElementById('input_dataNascimento').className = 'form-group has-warning'; // muda o estilo do formulário
+// Função que valida o cpf
+function validarCPF(cpf) {
+    cpf = cpf.replace(/[^\d]+/g, '');
+    if (cpf == '') return false;
+    // Elimina CPFs invalidos conhecidos    
+    if (cpf.length != 11 ||
+        cpf == "00000000000" ||
+        cpf == "11111111111" ||
+        cpf == "22222222222" ||
+        cpf == "33333333333" ||
+        cpf == "44444444444" ||
+        cpf == "55555555555" ||
+        cpf == "66666666666" ||
+        cpf == "77777777777" ||
+        cpf == "88888888888" ||
+        cpf == "99999999999")
         return false;
-    } else {
-        var ano_nascimento = document.forms.cadastro.fdataNasc.value;
-        // captura apanas os 4 primeiros caracteres
-        ano_nascimento = ano_nascimento.slice(0, 4);
-        // pega o ano atual
-        var Data = new Date();
-        var ano_atual = Data.getFullYear();
-        // calcula a diferença para descobrir a idade
-        var idade = ano_atual - ano_nascimento;
-        if (idade >= 90 || idade <= 12) {
-            document.getElementById('input_dataNascimento').className = 'form-group has-error'; // muda o estilo do formulário
-            return false;
-        } else {
-            document.getElementById('input_dataNascimento').className = 'form-group has-success'; // muda o estilo do formulário
-            return true;
-        }
-    }
-}*/
+    // Valida 1o digito 
+    add = 0;
+    for (i = 0; i < 9; i++)
+        add += parseInt(cpf.charAt(i)) * (10 - i);
+    rev = 11 - (add % 11);
+    if (rev == 10 || rev == 11)
+        rev = 0;
+    if (rev != parseInt(cpf.charAt(9)))
+        return false;
+    // Valida 2o digito 
+    add = 0;
+    for (i = 0; i < 10; i++)
+        add += parseInt(cpf.charAt(i)) * (11 - i);
+    rev = 11 - (add % 11);
+    if (rev == 10 || rev == 11)
+        rev = 0;
+    if (rev != parseInt(cpf.charAt(10)))
+        return false;
+    return true;
+}
 
 /*
 function comparaSenha() {
