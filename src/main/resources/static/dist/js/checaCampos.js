@@ -58,11 +58,22 @@ function val_data() {
     if (data === "") { // campo vazio
         aviso("sdataNascimento", "input_dataNascimento");
         document.forms.cadastro.fdataNasc.focus(); // foca no campo
-    } else if (data.length <= 5) { // conteudo do campo insuficiente 
+    } else if (data.length <= 8) { // conteudo do campo insuficiente 
         erro("sdataNascimento", "input_dataNascimento");
         document.forms.cadastro.fdataNasc.focus();
     } else {
-        sucesso("sdataNascimento", "input_dataNascimento");
+        var ano_input = parseInt(data.slice(0, 4)); // captura apenas o ano da data digitada
+        var a = new Date();
+        var ano_atual = parseInt(a.getFullYear());
+        var idade = ano_atual - ano_input;
+        if (idade >= 14 && idade <= 100) {
+            sucesso("sdataNascimento", "input_dataNascimento");
+        } else {
+            document.getElementById('sdataNascimento').style.color = "#E74C3C"; // muda a cor da fonte do aviso
+            document.getElementById('sdataNascimento').innerHTML = " Idade Errada!"; // muda o estilo do formulário
+            document.getElementById('input_dataNascimento').className = 'form-group has-error'; // muda o estilo do formulário
+            val++;
+        }
     }
 }
 
