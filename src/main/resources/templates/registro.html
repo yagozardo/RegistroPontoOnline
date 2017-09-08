@@ -38,7 +38,6 @@ and open the template in the editor.
                       <script src="dist/js/vendor/html5shiv.js"></script>
                       <script src="dist/js/vendor/respond.min.js"></script>
                     <![endif]-->
-
 </head>
 <body onload="ano()">
 <!-- ano() função que obtem o ano e seta ele no rodapé --> 
@@ -219,7 +218,7 @@ and open the template in the editor.
                 <div class="col-lg-4 col-xs-12">
                   <div class="form-group"  id="input_email" >
                     <label class="col-lg-12 col-xs-12">Email*<span class="span_form" id="semail"></span>
-                      <input type="text"  id="femail"  name="femail" class="form-control" oninput="val_email()" placeholder="email@email.com"  maxlength="50">
+                      <input type="text"  id="femail"  attrname="telephone1" name="femail" class="form-control" oninput="val_email()" placeholder="email@email.com"  maxlength="50">
                     </label>
                   </div>
                 </div>
@@ -228,7 +227,7 @@ and open the template in the editor.
                 <div class="col-lg-4 col-xs-12">
                   <div class="form-group"  id="input_celular" >
                     <label class="col-lg-12 col-xs-12">Celular*<span class="span_form" id="scelular"></span>
-                      <input type="text"  id="fcelular"  name="fcelular" class="form-control" oninput="val_celular()" placeholder="(DD) 00000-0000"  maxlength="12">
+                      <input type="text"  id="fcelular" name="fcelular" class="form-control input-mask-phone" oninput="val_celular()" onkeypress="return mask(event, this, '(##) #####-####')" placeholder="(DD) 00000-0000"  maxlength="15">
                     </label>
                   </div>
                 </div>
@@ -237,7 +236,7 @@ and open the template in the editor.
                 <div class="col-lg-4 col-xs-12">
                   <div class="form-group" id="input_fixo" >
                     <label class="col-lg-12 col-xs-12">Fixo<span class="span_form" id="sfixo"></span>
-                      <input type="text" id="ffixo"  name="ffixo" class="form-control" oninput="val_fixo()" placeholder="(DD) 0000-0000"  maxlength="12">
+                      <input type="text" id="ffixo"  name="ffixo" class="form-control" oninput="val_fixo()" onkeypress="return mask(event, this, '(##) ####-####')" placeholder="(DD) 0000-0000"  maxlength="14">
                     </label>
                   </div>
                 </div>
@@ -350,6 +349,7 @@ and open the template in the editor.
       <div class="col-xs-12 texto-centro">
         <h3 class="footer-title">Pontu</h3>
         <p>Sistema de Registro de Ponto eletrônico &copy; -<span id="ano"></span></p>
+        <input type="text" name="teste"  class="input-mask-phone"/>
       </div>
     </div>
   </div>
@@ -363,13 +363,15 @@ and open the template in the editor.
 <!-- Script para verificar se campos obrigatórios foram preenchidos --> 
 <script src="../static/dist/js/checaCampos.js"></script> 
 
+<!-- Script para verificar se campos obrigatórios foram preenchidos --> 
+<script src="../static/dist/js/checa_telefone.js"></script> 
+
 <!-- Script carregar o Jquery --> 
 <script src="../static/dist/js/jquery-3.2.1.min.js"></script> 
 <!-- Script para comparar se as senhas são iguais --> 
 <script src="../static/dist/js/rest_cep.js"></script> 
 <script src="../static/dist/js/obeterAno.js"></script> 
 <script src="../static/dist/js/vendor/jquery.min.js"></script> 
-<script src="../static/dist/js/vendor/video.js"></script> 
 <script src="../static/dist/js/flat-ui.min.js"></script> 
 <script src="../static/docs/assets/js/application.js"></script>
 </body>
