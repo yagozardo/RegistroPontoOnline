@@ -39,7 +39,6 @@ and open the template in the editor.
                       <script src="dist/js/vendor/respond.min.js"></script>
                     <![endif]-->
 
-
 </head>
 <body onload="ano()">
 <!-- ano() função que obtem o ano e seta ele no rodapé --> 
@@ -88,7 +87,7 @@ and open the template in the editor.
               </center>
             </h4>
           </div>
-          <div class="panel-options">  </div>
+          <div class="panel-options"> </div>
         </div>
         <div class="panel-body"> 
           <!-- Formulário principalo --> 
@@ -120,7 +119,7 @@ and open the template in the editor.
                 <div class="col-lg-3 col-xs-12">
                   <div class="form-group" id="input_dataNascimento">
                     <label class="col-lg-12 col-xs-12">Data Nascimento*<span class="span_form" id="sdataNascimento"></span>
-                      <input type="date" id="fdatanasc" name="fdataNasc" class="form-control" placeholder="dd/mm/aaaa" th:field="*{dataNascimento}"/>
+                      <input type="date" id="fdatanasc" name="fdataNasc" class="form-control" oninput="" placeholder="dd/mm/aaaa" th:field="*{dataNascimento}"/>
                     </label>
                   </div>
                 </div>
@@ -129,7 +128,7 @@ and open the template in the editor.
                 <div class="col-lg-3 col-xs-12">
                   <div class="form-group" id="input_rg">
                     <label class="col-lg-12 col-xs-12">RG*<span class="span_form" id="srg"></span>
-                      <input type="text" id="frg" name="frg" class="form-control" placeholder="RG" th:field="*{rg}" maxlength="13"/>
+                      <input type="text" id="frg" name="frg" class="form-control" oninput="val_rg()" placeholder="RG" th:field="*{rg}" maxlength="13"/>
                     </label>
                   </div>
                 </div>
@@ -138,7 +137,7 @@ and open the template in the editor.
                 <div class="col-lg-3 col-xs-12">
                   <div class="form-group" id="input_cpf">
                     <label class="col-lg-12 col-xs-12">CPF*<span class="span_form" id="scpf"></span>
-                      <input type="text" id="fcpf" name="fcpf" class="form-control" placeholder="000.000.000-00" th:field="*{cpf}"  maxlength="14"/>
+                      <input type="text" id="fcpf" name="fcpf" class="form-control" oninput="val_cpf()" placeholder="000.000.000-00" th:field="*{cpf}"  maxlength="14"/>
                     </label>
                   </div>
                 </div>
@@ -148,8 +147,8 @@ and open the template in the editor.
                   <div class="form-group">
                     <label class="col-lg-12 col-xs-12">
                     Estado Civil*<span class="span_form" id="sestadoCivil"></span>
-                    <div class="selecter closed" tabindex="0">
-                      <select name="festadoCivil" id="input_estadoCivil" class="form-group form-control selecter_1 selecter-element" tabindex="0" th:field="*{estadoCivil}">
+                    <div class="selecter closed" name="festadoCivil" tabindex="0" id="input_estadoCivil">
+                      <select name="festadoCivil"  class="form-group form-control selecter_1 selecter-element" tabindex="0" th:field="*{estadoCivil}" oninput="val_estado_civil()">
                         <option name="" th:each="estadoCivil : ${T(com.br.pontu.enums.EstadoCivil).values()}" th:value="${estadoCivil}" th:text="${estadoCivil}"></option>
                       </select>
                     </div>
@@ -162,9 +161,9 @@ and open the template in the editor.
                   <div class="form-group">
                     <label class="col-lg-12 col-xs-12">
                     Departamento*<span class="span_form" id="sdepartamento"></span>
-                    <div class="selecter closed" tabindex="0">
-                      <select name="fdepartamento" id="input_departamento" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{estadoCivil}">
-                        <option  name="" th:each="estadoCivil : ${T(com.br.pontu.enums.EstadoCivil).values()}" th:value="${estadoCivil}" th:text="${estadoCivil}"></option>
+                    <div class="selecter closed" name="fdepartamento" id="input_departamento" tabindex="0">
+                      <select name="fdepartamento" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{departamento}" oninput="val_departamento()">
+                        <option  name="" th:each="departamento : ${T(com.br.pontu.enums.EstadoCivil).values()}" th:value="${departamento}" th:text="${departamento}"></option>
                       </select>
                     </div>
                     </label>
@@ -176,8 +175,8 @@ and open the template in the editor.
                   <div class="form-group">
                     <label class="col-lg-12 col-xs-12">
                     Tipo de Acesso*<span class="span_form" id="stipoAcesso"></span>
-                    <div class="selecter closed" tabindex="0">
-                      <select name="ftipoAcesso" id="input_tipoAcesso" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{acesso}">
+                    <div class="selecter closed" tabindex="0" id="input_tipoAcesso">
+                      <select name="ftipoAcesso"  class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{acesso}">
                         <option name="ftipoAcesso" th:each="acesso : ${T(com.br.pontu.enums.role).values()}" th:value="${acesso}" th:text="${acesso}"></option>
                       </select>
                     </div>
@@ -185,13 +184,14 @@ and open the template in the editor.
                   </div>
                 </div>
                 <!-- Tipo de acesso --> 
-				</div> <!-- .row -->
-               
-               <div class="row"> 
+              </div>
+              <!-- .row -->
+              
+              <div class="row">
                 <div class="col-lg-3 col-xs-12">
                   <div class="form-group" id="input_carteiraDeTrabalho">
                     <label class="col-lg-12 col-xs-12">Carteira de Trabalho*<span class="span_form" id="scarteiraTrabalho"></span>
-                      <input type="text" id="fct"  name="fct" class="form-control" placeholder=""  th:field="*{carteiraDeTrabalho}"  maxlength="10"/>
+                      <input type="text" id="fct"  name="fct" class="form-control" oninput="val_carteira_trabalho()" placeholder=""  th:field="*{carteiraDeTrabalho}"  maxlength="10"/>
                     </label>
                   </div>
                 </div>
@@ -200,12 +200,11 @@ and open the template in the editor.
                 <div class="col-lg-3 col-xs-12">
                   <div class="form-group" id="input_cargo">
                     <label class="col-lg-12 col-xs-12">Cargo*<span class="span_form" id="scargo"></span>
-                      <input type="text" id="fcargo"  name="fcargo" class="form-control" placeholder=""  th:field="*{carteiraDeTrabalho}"  maxlength="10"/>
+                      <input type="text" id="fcargo"  name="fcargo" class="form-control" oninput="val_cargo()" placeholder="" th:field="*{carteiraDeTrabalho}"  maxlength="10"/>
                     </label>
                   </div>
                 </div>
-                <!-- Cargo -->
-                
+                <!-- Cargo --> 
                 
               </div>
               <!-- .row-->
@@ -220,7 +219,7 @@ and open the template in the editor.
                 <div class="col-lg-4 col-xs-12">
                   <div class="form-group"  id="input_email" >
                     <label class="col-lg-12 col-xs-12">Email*<span class="span_form" id="semail"></span>
-                      <input type="text"  id="femail"  name="femail" class="form-control" placeholder="email@email.com"  maxlength="50"/>
+                      <input type="text"  id="femail"  name="femail" class="form-control" oninput="val_email()" placeholder="email@email.com"  maxlength="50"/>
                     </label>
                   </div>
                 </div>
@@ -228,8 +227,8 @@ and open the template in the editor.
                 
                 <div class="col-lg-4 col-xs-12">
                   <div class="form-group"  id="input_celular" >
-                    <label class="col-lg-12 col-xs-12">Celular<span class="span_form" id="scelular"></span>
-                      <input type="text"  id="fcelular"  name="fcelular" class="form-control" placeholder="(DD) 00000-0000"  maxlength="12"/>
+                    <label class="col-lg-12 col-xs-12">Celular*<span class="span_form" id="scelular"></span>
+                      <input type="text"  id="fcelular"  name="fcelular" class="form-control" oninput="val_celular()" placeholder="(DD) 00000-0000"  maxlength="12"/>
                     </label>
                   </div>
                 </div>
@@ -238,7 +237,7 @@ and open the template in the editor.
                 <div class="col-lg-4 col-xs-12">
                   <div class="form-group" id="input_fixo" >
                     <label class="col-lg-12 col-xs-12">Fixo<span class="span_form" id="sfixo"></span>
-                      <input type="text" id="ffixo"  name="ffixo" class="form-control" placeholder="(DD) 0000-0000"  maxlength="12"/>
+                      <input type="text" id="ffixo"  name="ffixo" class="form-control" oninput="val_fixo()" placeholder="(DD) 0000-0000"  maxlength="12"/>
                     </label>
                   </div>
                 </div>
@@ -255,7 +254,7 @@ and open the template in the editor.
               <div class="row">
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group" id="input_cep" >
-                    <label class="col-lg-12 col-xs-12">CEP*<span class="span_form" id="secep"></span>
+                    <label class="col-lg-12 col-xs-12">CEP*<span class="span_form" id="scep"></span>
                       <input type="text" id="fcep" name="fcep" class="form-control" onBlur="endereco_cep()" placeholder="00000-000"  maxlength="9"/>
                     </label>
                   </div>
@@ -291,8 +290,8 @@ and open the template in the editor.
                 
                 <div class="col-lg-2 col-xs-12">
                   <div class="form-group" id="input_numero">
-                    <label class="col-lg-12 col-xs-12">Número<span class="span_form" id="snumero"></span>
-                      <input type="text" id="fnumero" name="fnumero" class="form-control" placeholder="Nº"/>
+                    <label class="col-lg-12 col-xs-12">Número*<span class="span_form" id="snumero"></span>
+                      <input type="text" id="fnumero" name="fnumero" class="form-control" oninput="val_numero()" placeholder="Nº"/>
                     </label>
                   </div>
                 </div>
@@ -301,7 +300,7 @@ and open the template in the editor.
                 <div class="col-lg-10 col-xs-12">
                   <div class="form-group" id="input_complemento" >
                     <label class="col-lg-12 col-xs-12">Complemento*<span class="span_form" id="scomplemento"></span>
-                      <input type="text" id="fcomplemento" name="fcomplemento" class="form-control" placeholder="Apartamento Nº100"  maxlength="50"/>
+                      <input type="text" id="fcomplemento" name="fcomplemento" class="form-control" oninput="val_complemento()" placeholder="Apartamento Nº100"  maxlength="50"/>
                     </label>
                   </div>
                 </div>
@@ -356,13 +355,13 @@ and open the template in the editor.
   </div>
 </footer>
 
-<!-- Sweet Alert -->
+<!-- Sweet Alert --> 
 <script src="../static/sweetalert/sweetalert.min.js"></script>
 <link href="../static/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" >
-<!-- Sweet Alert -->
+<!-- Sweet Alert --> 
 
-<!-- Script para verificar se campos obrigatórios foram preenchidos -->
-<script src="../static/dist/js/checaCampos.js"></script>
+<!-- Script para verificar se campos obrigatórios foram preenchidos --> 
+<script src="../static/dist/js/checaCampos.js"></script> 
 
 <!-- Script carregar o Jquery --> 
 <script src="../static/dist/js/jquery-3.2.1.min.js"></script> 

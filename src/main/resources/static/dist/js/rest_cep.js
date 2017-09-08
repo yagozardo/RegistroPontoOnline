@@ -14,7 +14,7 @@ $(document).ready(function () {
         var cep = $(this).val().replace(/\D/g, '');
 
         //Verifica se campo cep possui valor informado.
-        if (cep != "") {
+        if (cep !== "") {
 
             //Expressão regular para validar o CEP.
             var validacep = /^[0-9]{8}$/;
@@ -45,6 +45,7 @@ $(document).ready(function () {
                         //CEP pesquisado não foi encontrado.
                         limpa_formulário_cep();
                         alert("CEP não encontrado.");
+                        document.getElementById('input_cep').className = 'form-group has-warning'; // muda o estilo do formulário
                     }
                 });
             } //end if.
@@ -52,6 +53,7 @@ $(document).ready(function () {
                 //cep é inválido.
                 limpa_formulário_cep();
                 alert("Formato de CEP inválido.");
+                document.getElementById('input_cep').className = 'form-group has-error'; // muda o estilo do formulário
             }
         } //end if.
         else {
