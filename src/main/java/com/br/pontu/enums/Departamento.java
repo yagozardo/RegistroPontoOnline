@@ -16,27 +16,19 @@ package com.br.pontu.enums;
  */
 public enum Departamento {
      
-    FATURAMENTO("Faturamento"),
-    FINCANCEIRO("Financeiro"),
-    LIMPEZA("Limpeza"),
-    MANUNTENCAO("Manuntenção"),
-    MARKETING("Marketing"),
-    RECEPCAO("Recepção"),
-    RH("Gestão de Pessoas"),
-    SUPORTE("Suporte ao usuário"),
-    TI("Informática"),
-    VENDAS("Vendas");
+    FATURAMENTO,
+    FINCANCEIRO,
+    LIMPEZA,
+    MANUNTENCAO,
+    MARKETING,
+    RECEPCAO,
+    RH,
+    SUPORTE,
+    TI,
+    VENDAS;
 
-    private Departamento(String descricao) {
     
-        this.descricao = descricao;
-    }
-    
-    private String descricao;
 
-    public String getDescricao() {
-        return descricao;
-    }
     
     
 }

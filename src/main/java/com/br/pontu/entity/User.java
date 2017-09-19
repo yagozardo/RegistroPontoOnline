@@ -30,264 +30,258 @@ import com.br.pontu.enums.Role;
  *
  * @author Alves
  */
-
 @Entity
 @Table(name = "usuario")
 public class User implements Serializable {
-          
-	private static final long serialVersionUID = 1L;	
-	
-	//  Atributos Inicio   =========================================================================
-	 
-	private Long id;
-	private String nome;
-	private String sobrenome;
-	private String dataNascimento;
-	private String cpf;
-	private String carteiraDeTrabalho;
-	private String rg;
-	private String celular;
-	private String fixo;
-	private EstadoCivil estadoCivil;
-	private String email;
-        private String Cargo;
-    
-	private Long matricula;
-	private String senha;
-	
-	private Role acesso;
-	private Adress endereco;
-        private List<PontoDataHora> ponto;
-        private Departamento departamento;
 
-	
-	// FIM ========================================================================================
-	
-	
-	
-	/**
-	 * Getters And Setters
-	 * Contendo as anotações de verificação =======================================================
-	 */
-        
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long getId() {
-		return id;
-	}
+    private static final long serialVersionUID = 1L;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    //  Atributos Inicio   =========================================================================
+    private Long id;
+    private String nome;
+    private String sobrenome;
+    private String dataNascimento;
+    private String cpf;
+    private String carteiraDeTrabalho;
+    private String rg;
+    private String celular;
+    private String fixo;
+    private EstadoCivil estadoCivil;
+    private String email;
+    private String cargo;
 
-	@NotNull
-	@NotEmpty
-	@Column(nullable = false, length = 15)
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+//    private String senha;
 
-	@NotNull
-	@NotEmpty
-	@Column(nullable = false, length = 60)
-	public String getSobrenome() {
-		return sobrenome;
-	}
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
-	}
+    private Role acesso;
+    private Adress endereco;
+//        private List<PontoDataHora> ponto;
+    private Departamento departamento;
 
-	@NotNull
-	@Column(name = "data_nascimento", nullable = false)
-	public String getDataNascimento() {
-		return dataNascimento;
-	}
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
+    // FIM ========================================================================================
+    /**
+     * Getters And Setters Contendo as anotações de verificação
+     * =======================================================
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
 
-	@NotNull
-	@NotEmpty
-	@Column(nullable = false, length = 13)
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	@NotNull
-	@NotEmpty
-	@Column(nullable = false, length = 20)
-	public String getCarteiraDeTrabalho() {
-		return carteiraDeTrabalho;
-	}
-	public void setCarteiraDeTrabalho(String carteiraDeTrabalho) {
-		this.carteiraDeTrabalho = carteiraDeTrabalho;
-	}
+    @NotNull
+    @NotEmpty
+    @Column(nullable = false, length = 15)
+    public String getNome() {
+        return nome;
+    }
 
-	@NotNull
-	@NotEmpty
-	@Column(nullable = false, length = 20)
-	public String getRg() {
-		return rg;
-	}
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	@NotNull
-	@NotEmpty
-	@Column(nullable = false, length = 14)
-	public String getCelular() {
-		return celular;
-	}
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
+    @NotNull
+    @NotEmpty
+    @Column(nullable = false, length = 60)
+    public String getSobrenome() {
+        return sobrenome;
+    }
 
-	// Este Atributo pode ser opcional, sendo não é necessário
-	// Validação
-	@Column(length = 14)
-	public String getFixo() {
-		return fixo;
-	}
-	public void setFixo(String fixo) {
-		this.fixo = fixo;
-	}
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false, length = 60)
-	public EstadoCivil getEstadoCivil() {
-		return estadoCivil;
-	}
-	public void setEstadoCivil(EstadoCivil estadoCivil) {
-		this.estadoCivil = estadoCivil;
-	}
+    @NotNull
+    @Column(name = "data_nascimento", nullable = false)
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
 
-	
-	@NotNull
-	@NotEmpty
-	@Email
-	@Column(nullable = false, length = 30)
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 
-	@NotNull
-	 @NotEmpty
-	 @Column(nullable = false)
-   	 public Long getMatricula() {
-	 return matricula;
-	 }
-	 public void setMatricula(Long matricula) {
-	 this.matricula = matricula;
-	 }
-	
-	 @NotNull
-	 @NotEmpty
-	 @Column(nullable = false, length = 20)
-	 public String getSenha() {
-	 return senha;
-	 }
-	 public void setSenha(String senha) {
-	 this.senha = senha;
-	 }
-	 
-	 
-	 @NotNull
-	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	 public List<PontoDataHora> getPonto() {
-			return ponto;
-	}
-	public void setPonto(List<PontoDataHora> ponto) {
-			this.ponto = ponto;
-	}
-	 
-	
-	@Embedded
-	public Adress getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(Adress endereco) {
-		this.endereco = endereco;
-	}
+    @NotNull
+    @NotEmpty
+    @Column(nullable = false, length = 13)
+    public String getCpf() {
+        return cpf;
+    }
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	public Role getAcesso() {
-		return acesso;
-	}
-	public void setAcesso(Role acesso) {
-		this.acesso = acesso;
-	}
-        
-        @NotNull
-        @NotEmpty
-        @Column(nullable = false, length = 20)
-        public String getCargo() {
-            return Cargo;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    @NotNull
+    @NotEmpty
+    @Column(nullable = false, length = 20)
+    public String getCarteiraDeTrabalho() {
+        return carteiraDeTrabalho;
+    }
+
+    public void setCarteiraDeTrabalho(String carteiraDeTrabalho) {
+        this.carteiraDeTrabalho = carteiraDeTrabalho;
+    }
+
+    @NotNull
+    @NotEmpty
+    @Column(nullable = false, length = 20)
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    @NotNull
+    @NotEmpty
+    @Column(nullable = false, length = 14)
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    // Este Atributo pode ser opcional, sendo não é necessário
+    // Validação
+    @Column(length = 14)
+    public String getFixo() {
+        return fixo;
+    }
+
+    public void setFixo(String fixo) {
+        this.fixo = fixo;
+    }
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 60)
+    public EstadoCivil getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(EstadoCivil estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
+
+    @NotNull
+    @NotEmpty
+    @Email
+    @Column(nullable = false, length = 90)
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+
+//    @NotNull
+//    @NotEmpty
+//    @Column(nullable = false, length = 20)
+//    public String getSenha() {
+//        return senha;
+//    }
+//
+//    public void setSenha(String senha) {
+//        this.senha = senha;
+//    }
+
+//	 @NotNull
+//	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//	 public List<PontoDataHora> getPonto() {
+//			return ponto;
+//	}
+//	public void setPonto(List<PontoDataHora> ponto) {
+//			this.ponto = ponto;
+//	}
+    @Embedded
+    public Adress getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Adress endereco) {
+        this.endereco = endereco;
+    }
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    public Role getAcesso() {
+        return acesso;
+    }
+
+    public void setAcesso(Role acesso) {
+        this.acesso = acesso;
+    }
+
+    @NotNull
+    @NotEmpty
+    @Column(name = "cargo")
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 60)
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
+
+    /**
+     * FIM
+     * ====================================================================================
+     */
+    // Equals and Hash Code -------------------------------------------------------------------
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        public void setCargo(String Cargo) {
-            this.Cargo = Cargo;
+        if (obj == null) {
+            return false;
         }
-
-        @NotNull
-        @NotEmpty
-        @Enumerated(EnumType.STRING)
-        @Column(nullable = false, length = 20)
-        public Departamento getDepartamento() {
-            return departamento;
+        if (getClass() != obj.getClass()) {
+            return false;
         }
-        public void setDepartamento(Departamento departamento) {
-            this.departamento = departamento;
+        User other = (User) obj;
+        if (id == null) {
+            if (other.id != null) {
+                return false;
+            }
+        } else if (!id.equals(other.id)) {
+            return false;
         }
+        return true;
+    }
+    //------------------------------------------------------------------------------------------
 
-     
-	
-	
-	/**
-	 * FIM ====================================================================================
-	 */
-	
-	// Equals and Hash Code -------------------------------------------------------------------
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-	//------------------------------------------------------------------------------------------
-	
-	
-	/**
-	 * Métodos Auxiliares ---------------------------------------------------------------------
-	 */
-	
-	
+    /**
+     * Métodos Auxiliares
+     * ---------------------------------------------------------------------
+     */
 }

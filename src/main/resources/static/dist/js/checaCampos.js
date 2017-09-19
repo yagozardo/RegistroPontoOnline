@@ -43,6 +43,7 @@ function val_sobrenome() {
     var sobrenome = document.forms.cadastro.fsobrenome.value; // passa o valor do campo
     if (sobrenome === "") { // campo vazio
         aviso("ssobrenome", "input_sobrenome");
+        
         document.forms.cadastro.fsobrenome.focus(); // foca no campo
     } else if (sobrenome.length <= 2) { // conteudo do campo insuficiente 
         erro("ssobrenome", "input_sobrenome");
@@ -327,6 +328,7 @@ function valida_form() {
         swal('Erros foram encontrados!');
         return false;
     } else {
+        swal("Usuário cadastrado com sucesso!");
         return true;
     }
 

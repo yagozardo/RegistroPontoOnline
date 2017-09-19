@@ -93,7 +93,7 @@ public class Adress implements Serializable {
     
     @NotNull
     @NotEmpty
-    @Column(nullable = false, length = 8)
+    @Column(nullable = false, length = 10)
     public String getCep() {
         return cep;
     }
