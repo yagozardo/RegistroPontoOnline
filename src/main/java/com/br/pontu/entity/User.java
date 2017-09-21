@@ -22,6 +22,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.br.pontu.enums.EstadoCivil;
 import com.br.pontu.enums.Role;
+import java.util.Objects;
 
 /**
  * Entidade que é responsável pelo dados dos usuários Sendo eles de carater
@@ -244,6 +245,8 @@ public class User implements Serializable {
         this.departamento = departamento;
     }
 
+ 
+
     /**
      * FIM
      * ====================================================================================
@@ -251,10 +254,12 @@ public class User implements Serializable {
     // Equals and Hash Code -------------------------------------------------------------------
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.cpf);
+        hash = 97 * hash + Objects.hashCode(this.carteiraDeTrabalho);
+        hash = 97 * hash + Objects.hashCode(this.rg);
+        return hash;
     }
 
     @Override
@@ -268,12 +273,17 @@ public class User implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        User other = (User) obj;
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!id.equals(other.id)) {
+        final User other = (User) obj;
+        if (!Objects.equals(this.cpf, other.cpf)) {
+            return false;
+        }
+        if (!Objects.equals(this.carteiraDeTrabalho, other.carteiraDeTrabalho)) {
+            return false;
+        }
+        if (!Objects.equals(this.rg, other.rg)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
