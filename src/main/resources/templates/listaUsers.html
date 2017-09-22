@@ -85,9 +85,8 @@ xmlns:th="http://www.thymeleaf.org">
             </center>
         </h4>
     </div>
-    <div class="panel-options"> </div>
 </div>
-<div class="panel-body"> 
+<div class="panel-body">
 
     <div class="table table-responsive">
         <table class="table table-striped">
@@ -114,13 +113,32 @@ xmlns:th="http://www.thymeleaf.org">
                   <td   th:text="${lista.carteiraDeTrabalho}">12345</td>
                   <td   th:text="${lista.acesso}">admin</td>
               </tr>
+              <tr th:each="lista : ${list}">
+                  <td   th:text="${lista.matricula}">123456789</td>
+                  <td   th:text="${lista.nome}">reinaldo</td>
+                  <td   th:text="${lista.sobrenome}">Albernaz</td>
+                  <td   th:text="${lista.dataNascimento}">15/10/1994</td>
+                  <td   th:text="${lista.rg}">986532147</td>
+                  <td   th:text="${lista.cpf}">000.000.000-00</td>
+                  <td   th:text="${lista.carteiraDeTrabalho}">12345</td>
+                  <td   th:text="${lista.acesso}">admin</td>
+              </tr>
+              <tr th:each="lista : ${list}">
+                  <td   th:text="${lista.matricula}">123456789</td>
+                  <td   th:text="${lista.nome}">reinaldo</td>
+                  <td   th:text="${lista.sobrenome}">Albernaz</td>
+                  <td   th:text="${lista.dataNascimento}">15/10/1994</td>
+                  <td   th:text="${lista.rg}">986532147</td>
+                  <td   th:text="${lista.cpf}">000.000.000-00</td>
+                  <td   th:text="${lista.carteiraDeTrabalho}">12345</td>
+                  <td   th:text="${lista.acesso}">admin</td>
+              </tr>
           </tbody>
       </table>
   </div>
-
 </div>
 </div>
-
+</div>
 
 
 </div><!-- .row -->
