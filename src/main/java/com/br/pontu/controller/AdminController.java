@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,6 +54,34 @@ public class AdminController {
         
         return model;
         
+    }
+    
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable int id) {
+        userService.deletarUsuario(id);
+        return ("redirect:/admin/lista");
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView editarUser(@PathVariable int id, User user) {
+        ModelAndView model = new ModelAndView("/registro");
+
+        user = userService.findById(id);
+
+        model.addObject("user", user);
+
+        return model;
+    }
+    
+    @GetMapping("/user/{id}")
+    public ModelAndView getUser(@PathVariable int id ,User user){
+        ModelAndView model = new ModelAndView("/user");
+        
+        user = userService.findById(id);
+        
+        model.addObject("user", user);
+        
+        return model;
     }
     
     
