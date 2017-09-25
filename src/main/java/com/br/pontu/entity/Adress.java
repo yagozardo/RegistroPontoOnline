@@ -27,7 +27,7 @@ public class Adress implements Serializable {
     /**
      * Atributos ===================================================================================
      */
-    private Long numero;
+    private String numero;
     private String logradouro;  
     private String complemento;
     private String cidade; 
@@ -39,10 +39,10 @@ public class Adress implements Serializable {
     //Getters and Setters ---------------------------------------------------------------------------
     @NotNull
     @Column(nullable = false)
-    public Long getNumero() {
+    public String getNumero() {
         return numero;
     }
-    public void setNumero(Long numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
     
