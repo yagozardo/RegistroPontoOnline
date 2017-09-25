@@ -299,7 +299,7 @@ function valida_form() {
 
     val_data(); // chama a função de verifiar a data
 
-    val_rg(); // chama a função de verificar o RG
+   // val_rg(); // chama a função de verificar o RG
 
     val_cpf(); // chama a função de vereficar o CPF
 
