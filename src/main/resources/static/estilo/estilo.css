@@ -23,3 +23,48 @@
 	font-size: 1em;
 	font-weight: 700;
 }
+
+
+.icon-editar a i{
+	width: 42px;
+	height: 42px;
+	font-size: 1.5em;
+	color: #3498DB;
+	border-radius: 10%;
+	padding: 8px;
+}
+
+.icon-editar a:hover i{
+	color: #f9f9f9;
+	border: 1px solid #6db3f2;
+	background: linear-gradient(to bottom, #1e69de -50%, #6db3f2 100%) repeat scroll 0% 0% transparent;
+}
+
+.icon-excluir a i{
+	width: 42px;
+	height: 42px;
+	font-size: 1.5em;
+	color: #a90329;
+	border-radius: 10%;
+	padding: 8px;
+}
+
+.icon-excluir a:hover i{
+	color: #FFF;
+	background: linear-gradient(to bottom, #6d0019 -50%, #a90329 100%) repeat scroll 0% 0% transparent;
+}
+
+.icon-detalhes a i{
+	width: 42px;
+	height: 42px;
+	font-size: 1.5em;
+	color: #E67E22;
+	border-radius: 10%;
+	padding: 7px;
+}
+
+.icon-detalhes a:hover i{
+	color: #333;
+	background: linear-gradient(to bottom, #C97E1C -50%, #FBB450 100%) repeat scroll 0% 0% transparent;
+}
+

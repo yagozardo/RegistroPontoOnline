@@ -5,54 +5,56 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Pontu - Registro</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="keywords" content="ponto, ponto eletronico, registro de ponto"/>
-        <meta name="description" content="Sistema de registro de ponto eletronico para vc poder "/>
-        <meta name="author" content="Autor"/>
-        <meta name="robots" content="index,follow"/>
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="../static/img/favicon.ico"/>
-        <!--<link rel="shortcut icon" th:href="@{/img/favicon.ico}"/>-->
+xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pontu - Registro</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="keywords" content="ponto, ponto eletronico, registro de ponto"/>
+    <meta name="description" content="Sistema de registro de ponto eletronico para vc poder "/>
+    <meta name="author" content="Autor"/>
+    <meta name="robots" content="index,follow"/>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../static/img/favicon.ico"/>
+    <!--<link rel="shortcut icon" th:href="@{/img/favicon.ico}"/>-->
 
-        <!-- Loading Bootstrap -->
-        <link th:href="@{/dist/css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-        <!--    <link href="../static/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <!-- Loading Bootstrap -->
+    <!--  <link th:href="@{/dist/css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>-->
+    <link href="../static/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
-        <!-- Loading Flat UI -->
-        <link th:href="@{/dist/css/flat-ui.css}" rel="stylesheet"/>
-        <!--<link href="../static/dist/css/flat-ui.css" rel="stylesheet"/>-->
-        <link th:href="@{/docs/assets/css/demo.css}" rel="stylesheet"/>
-        <!--<link href="../static/docs/assets/css/demo.css" rel="stylesheet"/>-->
-        <!--<link href="../static/less/flat-ui.less" rel="stylesheet"/>-->
-        <link th:href="@{/less/flat-ui.less}" rel="stylesheet}"/>
+    <!-- Loading Flat UI -->
+    <!--<link th:href="@{/dist/css/flat-ui.css}" rel="stylesheet"/>-->
+    <link href="../static/dist/css/flat-ui.css" rel="stylesheet"/>
+    <!--<link th:href="@{/docs/assets/css/demo.css}" rel="stylesheet"/>-->
+    <link href="../static/docs/assets/css/demo.css" rel="stylesheet"/>
+    <!--<link th:href="@{/less/flat-ui.less}" rel="stylesheet}"/>-->
+    <link href="../static/less/flat-ui.less" rel="stylesheet"/>
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css">
 
-        <!-- Estilo próprio -->
-        <link th:href="@{/estilo/estilo.css}" rel="stylesheet"/>
-        <!--<link href="../static/estilo/estilo.css" rel="stylesheet"/>-->
+    <!-- Estilo próprio -->
+    <!--<link th:href="@{/estilo/estilo.css}" rel="stylesheet"/>-->
+    <link href="../static/estilo/estilo.css" rel="stylesheet"/>
 
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
         <!--[if lt IE 9]>
                               <script src="dist/js/vendor/html5shiv.js"></script>
                               <script src="dist/js/vendor/respond.min.js"></script>
                           <![endif]-->
-    </head>
-    <body onload="ano()">
-        <!-- ano() função que obtem o ano e seta ele no rodapé --> 
+                      </head>
+                      <body onload="ano()">
+                        <!-- ano() função que obtem o ano e seta ele no rodapé --> 
         <!--
         <<<<<<< Updated upstream
-        -->
-        <div class="container-fluid"> 
+    -->
+    <div class="container-fluid"> 
 
-            <!-- MENU -->
-            <div class="row menu">
-                <nav class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01"> <span class="sr-only">Toggle navigation</span> </button>
-                        <a class="navbar-brand" href="#"><img class="logo_pequena" th:src="@{/img/logo/logo_pontu_145x48.png}"></a> </div>
+        <!-- MENU -->
+        <div class="row menu">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01"> <span class="sr-only">Toggle navigation</span> </button>
+                    <a class="navbar-brand" href="#"><img class="logo_pequena" th:src="@{/img/logo/logo_pontu_145x48.png}"></a> </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse-01">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="#">Menu</a></li>
@@ -64,100 +66,99 @@ and open the template in the editor.
                                     <span class="input-group-btn">
                                         <button type="submit" class="btn"><span class="fui-search"></span></button>
                                     </span> </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- /.navbar-collapse --> 
-                </nav>
-                <!-- /navbar --> 
-            </div>
-            <!-- .row menu --> 
-            <!-- ======= -->
-
-            <div class="row">
-
-                <div class="col-lg-10 col-lg-offset-1 col-xs-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4>
-                                    <center>
-                                        Lista de Usuários
-                                    </center>
-                                </h4>
-                            </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="panel-body">
-
-                            <div class="table table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th >Nome</th>
-                                            <th >Sobrenome</th>
-                                            <th >Data de Nascimento</th>
-                                            <th >RG</th>
-                                            <th >CPF</th>
-                                            <th >PIS</th>
-                                            <th >Departamento</th>
-                                            <th>Editar</th>
-                                            <th>Apagar</th>
-                                            <th>Ver mais</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="lista : ${list}">
-                                            <td   th:text="${lista.nome}"></td>
-                                            <td   th:text="${lista.sobrenome}"></td>
-                                            <td   th:text="${lista.dataNascimento}"></td>
-                                            <td   th:text="${lista.rg}"></td>
-                                            <td   th:text="${lista.cpf}"></td>
-                                            <td   th:text="${lista.carteiraDeTrabalho}"></td>
-                                            <td   th:text="${lista.departamento}"></td>
-                                            <td align="center" th:value="${lista.id}">
-
-                                                <a th:href="@{/admin/edit/{id}(id=${lista.id})}">
-                                                    Editar
-                                                </a>
-
-                                            </td>
-
-                                            <td>
-                                                <form th:method="GET" th:action="@{/admin/delete/{id}}">
-                                                    <input type="hidden" name="method" value="delete"/>
-                                                    <a id="botaoDelete" onclick="return confirm('Deseja excluir esse usuário?')" th:href="@{/admin/delete/{id}(id=${lista.id})}">
-                                                        Apagar
-                                                    </a>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <a th:href="@{/admin/user/{id}(id=${lista.id})}">Mais</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                        <!-- /.navbar-collapse --> 
+                    </nav>
+                    <!-- /navbar --> 
                 </div>
+                <!-- .row menu --> 
+                <!-- ======= -->
 
-
-            </div><!-- .row -->
-
-
-        </div>
-        <!-- Container -->
-
-        <footer>
-            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xs-12 texto-centro">
-                        <h3 class="footer-title">Pontu</h3>
-                        <p>Sistema de Registro de Ponto eletrônico &copy; -<span id="ano"></span></p>
+
+                    <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <h4>
+                                        <center>
+                                            Lista de Usuários
+                                        </center>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="table table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th >Nome</th>
+                                                <th >Sobrenome</th>
+                                                <th >Data de Nascimento</th>
+                                                <th >RG</th>
+                                                <th >CPF</th>
+                                                <th >PIS</th>
+                                                <th >Departamento</th>
+                                                <th>Editar</th>
+                                                <th>Apagar</th>
+                                                <th>Ver mais</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="lista : ${list}">
+                                                <td   th:text="${lista.nome}"></td>
+                                                <td   th:text="${lista.sobrenome}"></td>
+                                                <td   th:text="${lista.dataNascimento}"></td>
+                                                <td   th:text="${lista.rg}"></td>
+                                                <td   th:text="${lista.cpf}"></td>
+                                                <td   th:text="${lista.carteiraDeTrabalho}"></td>
+                                                <td   th:text="${lista.departamento}"></td>
+                                                <td class="icon-editar" th:value="${lista.id}">
+                                                    <a th:href="@{/admin/edit/{id}(id=${lista.id})}">
+                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="icon-excluir" >
+                                                    <form th:method="GET" th:action="@{/admin/delete/{id}}">
+                                                        <input type="hidden" name="method" value="delete"/>
+                                                        <a id="botaoDelete" onclick="return confirm('Deseja excluir esse usuário?')" th:href="@{/admin/delete/{id}(id=${lista.id})}">
+                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                        </a>
+                                                    </form>
+                                                </td>
+                                                <td class="icon-detalhes" >
+                                                    <a th:href="@{/admin/user/{id}(id=${lista.id})}">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div><!-- .row -->
+
+
+            </div>
+            <!-- Container -->
+
+            <footer>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 texto-centro">
+                            <h3 class="footer-title">Pontu</h3>
+                            <p>Sistema de Registro de Ponto eletrônico &copy; -<span id="ano"></span></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
 
 <!--         Sweet Alert  
         <script src="../static/sweetalert/sweetalert.min.js"></script>
@@ -177,8 +178,8 @@ and open the template in the editor.
                         <script src="../static/dist/js/vendor/jquery.min.js"></script> 
                         <script src="../static/dist/js/flat-ui.min.js"></script> 
                         <script src="../static/docs/assets/js/application.js"></script>-->
-                        </body>
-                        </html>
+                    </body>
+                    </html>
 
 
 
