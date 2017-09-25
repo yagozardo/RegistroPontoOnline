@@ -68,7 +68,6 @@ public class User implements Serializable {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -79,7 +78,6 @@ public class User implements Serializable {
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -90,7 +88,6 @@ public class User implements Serializable {
     public String getSobrenome() {
         return sobrenome;
     }
-
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
     }
@@ -100,7 +97,6 @@ public class User implements Serializable {
     public String getDataNascimento() {
         return dataNascimento;
     }
-
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
@@ -111,7 +107,6 @@ public class User implements Serializable {
     public String getCpf() {
         return cpf;
     }
-
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
@@ -122,7 +117,6 @@ public class User implements Serializable {
     public String getCarteiraDeTrabalho() {
         return carteiraDeTrabalho;
     }
-
     public void setCarteiraDeTrabalho(String carteiraDeTrabalho) {
         this.carteiraDeTrabalho = carteiraDeTrabalho;
     }
@@ -133,29 +127,26 @@ public class User implements Serializable {
     public String getRg() {
         return rg;
     }
-
     public void setRg(String rg) {
         this.rg = rg;
     }
 
     @NotNull
     @NotEmpty
-    @Column(nullable = false, length = 14)
+    @Column(nullable = false, length = 16)
     public String getCelular() {
         return celular;
     }
-
     public void setCelular(String celular) {
         this.celular = celular;
     }
 
     // Este Atributo pode ser opcional, sendo não é necessário
     // Validação
-    @Column(length = 14)
+    @Column(length = 16)
     public String getFixo() {
         return fixo;
     }
-
     public void setFixo(String fixo) {
         this.fixo = fixo;
     }
@@ -166,7 +157,6 @@ public class User implements Serializable {
     public EstadoCivil getEstadoCivil() {
         return estadoCivil;
     }
-
     public void setEstadoCivil(EstadoCivil estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
@@ -191,7 +181,6 @@ public class User implements Serializable {
 //    public String getSenha() {
 //        return senha;
 //    }
-//
 //    public void setSenha(String senha) {
 //        this.senha = senha;
 //    }
@@ -204,11 +193,11 @@ public class User implements Serializable {
 //	public void setPonto(List<PontoDataHora> ponto) {
 //			this.ponto = ponto;
 //	}
+    
     @Embedded
     public Adress getEndereco() {
         return endereco;
     }
-
     public void setEndereco(Adress endereco) {
         this.endereco = endereco;
     }
@@ -218,14 +207,13 @@ public class User implements Serializable {
     public Role getAcesso() {
         return acesso;
     }
-
     public void setAcesso(Role acesso) {
         this.acesso = acesso;
     }
 
     @NotNull
     @NotEmpty
-    @Column(name = "cargo")
+    @Column(name = "cargo", nullable = false, length = 60)
     public String getCargo() {
         return cargo;
     }
@@ -245,6 +233,8 @@ public class User implements Serializable {
         this.departamento = departamento;
     }
 
+	
+
  
 
     /**
@@ -253,41 +243,59 @@ public class User implements Serializable {
      */
     // Equals and Hash Code -------------------------------------------------------------------
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.cpf);
-        hash = 97 * hash + Objects.hashCode(this.carteiraDeTrabalho);
-        hash = 97 * hash + Objects.hashCode(this.rg);
-        return hash;
-    }
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((carteiraDeTrabalho == null) ? 0 : carteiraDeTrabalho.hashCode());
+		result = prime * result + ((celular == null) ? 0 : celular.hashCode());
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((rg == null) ? 0 : rg.hashCode());
+		return result;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final User other = (User) obj;
-        if (!Objects.equals(this.cpf, other.cpf)) {
-            return false;
-        }
-        if (!Objects.equals(this.carteiraDeTrabalho, other.carteiraDeTrabalho)) {
-            return false;
-        }
-        if (!Objects.equals(this.rg, other.rg)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (carteiraDeTrabalho == null) {
+			if (other.carteiraDeTrabalho != null)
+				return false;
+		} else if (!carteiraDeTrabalho.equals(other.carteiraDeTrabalho))
+			return false;
+		if (celular == null) {
+			if (other.celular != null)
+				return false;
+		} else if (!celular.equals(other.celular))
+			return false;
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (rg == null) {
+			if (other.rg != null)
+				return false;
+		} else if (!rg.equals(other.rg))
+			return false;
+		return true;
+	}
     //------------------------------------------------------------------------------------------
 
     /**
