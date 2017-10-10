@@ -68,3 +68,6 @@
 	background: linear-gradient(to bottom, #C97E1C -50%, #FBB450 100%) repeat scroll 0% 0% transparent;
 }
 
+.bg-login{
+ background-color: #ECF0F1;
+}

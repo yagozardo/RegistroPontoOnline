@@ -19,70 +19,54 @@ xmlns:th="http://www.thymeleaf.org">
 
   <!-- site css -->
   <link rel="stylesheet" href="../static/css/site.css">
-  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/dist/css/vendor/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../static/bootflat/css/bootflat.css">
-  <link rel="stylesheet" href="../static/css/estilos.css">
+  <link href="../static/dist/css/flat-ui.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../static/estilo/estilo.css">
   <script type="text/javascript" src="../static/js/site.min.js"></script>
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
 
 </head>
-<body>
+<body class="bg-login" onload="ano()">
+  <div class="container-fluid"> 
 
-  <div class="container documents">
-    <div class="example cor">
-      <h2 class="example-title">Color Swatches <span>(<b>More Colors See</b>: <a href="color-picker.html">Flat UI Color Picker</a>)</span></h2>
-      <div class="row">
-        <div class="col-md-12">
+    <div class="login-form col-lg-offset-5 col-lg-2 col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4 col-xs-12">
+      <center style="margin-bottom: 20px;">
+        <img src="../static/img/logo/logo_pontu_145x48.png">
+      </center>
+      <div class="form-group ">
+        <form name="login" method="POST">
+          <input type="text" class="form-control login-field" value="" placeholder="Matrícula" id="login-matricula" name="loginMatricula" required>
+          <label class="login-field-icon fui-user" for="login-name"></label>
+        </div>
 
-   
-            </fieldset>
-            <!-- Endereço -->
-            <!--<hr>
-            <fieldset>
-              <legend>
-              <h5>Login</h5>
-              </legend>
-              <div class="row">
-                <div class="col-lg-2 col-xs-12">
-                  <div class="form-group" id="input_matricula" >
-                    <label for="input_matricula">Matrícula*</label>
-                    <input type="text" id="fmatricula" name="fmatricula" class="form-control" placeholder="Mín. 6 caracteres"  maxlength="50" value="Disabled" disabled="disabled">
-                  </div>
-                </div>
-                <!-- matricula --> 
-              </div>
-              <!-- .row -->
-              
-              <!--<div class="row">
-                <div class="col-lg-2 col-xs-12">
-                  <div  id="input_senha"  class="form-group">
-                    <label for="input_senha">Senha*</label>
-                    <input type="password" id="fsenha" name="fsenha" class="form-control"  placeholder="********"  maxlength="30">
-                  </div>
-                </div>
-                <!-- Senha --> 
-              </div>
-              <!-- .row --> 
-              
-              <!--
-              <div class="row">
-                <div class="col-lg-2 col-xs-12">
-                  <label for="input_confirmarSenha">Confirmar Senha*</label>
-                  <div id="confirmaSenha" class="form-group has-feedback">
-                    <input type="password" id="fconfirmaSenha" name="fconfirmaSenha" class="form-control" onBlur="comparaSenha()" placeholder="********"  maxlength="30"/>
-                    <span id="iconConfirmaSenha" class="form-control-feedback fui-check"></span><span id="senhaIncorreta"></span><!-- mesagem caso a senha esteja errada --> 
-                  </div>
-                </div>
-                <!-- Senha --> 
-              </div>
-              <!-- .row -->
-            </fieldset>
-            <!-- Login -->
+        <div class="form-group">
+          <input type="password" class="form-control login-field" value="" placeholder="Senha" id="login-pass" name="loginPass" required>
+          <label class="login-field-icon fui-lock" for="login-pass"></label>
+        </div>
 
-        </div>  
-      </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">ENTRAR</button> 
+        <a class="login-link" href="#">Esqueceu sua senha?</a>
+      </form>
     </div>
 
+
   </div><!-- Container -->
+
+
+  <!-- Sweet Alert --> 
+  <script th:src="@{/sweetalert/sweetalert.min.js}"></script>
+  <link th:href="@{/sweetalert/sweetalert.css}" rel="stylesheet" type="text/css" >
+  <!-- Sweet Alert --> 
+
+  <!-- Script para verificar se campos obrigatórios foram preenchidos --> 
+  <script src="../static/dist/js/checaCampos.js"></script> 
+
+  <!-- Script carregar o Jquery --> 
+  <script th:src="@{/dist/js/jquery-3.2.1.min.js}"></script> 
+  <script th:src="@{/dist/js/obeterAno.js}"></script> 
+  <script th:src="@{/dist/js/vendor/jquery.min.js}"></script> 
+  <script th:src="@{/dist/js/flat-ui.min.js}"></script> 
+  <script th:src="@{/docs/assets/js/application.js}"></script>
 </body>
 </html>
