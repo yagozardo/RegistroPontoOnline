@@ -8,6 +8,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -38,7 +39,8 @@ public class Adress implements Serializable {
     
     //Getters and Setters ---------------------------------------------------------------------------
     @NotNull
-    @Column(nullable = false)
+    @Size(min = 1, max = 10)
+    @Column(nullable = false, length = 10)
     public String getNumero() {
         return numero;
     }
@@ -49,6 +51,7 @@ public class Adress implements Serializable {
 
     @NotNull
     @NotEmpty
+    @Size(min = 3, max = 60)
     @Column(nullable = false, length = 60)
     public String getLogradouro() {
         return logradouro;
@@ -60,6 +63,7 @@ public class Adress implements Serializable {
     
     @NotNull
     @NotEmpty
+    @Size(min = 3, max = 80)
     @Column(nullable = false, length = 80)
     public String getComplemento() {
         return complemento;
@@ -71,6 +75,7 @@ public class Adress implements Serializable {
     
     @NotNull
     @NotEmpty
+    @Size(min = 3, max = 30)
     @Column(nullable = false, length = 30)
     public String getCidade() {
         return cidade;
@@ -93,6 +98,7 @@ public class Adress implements Serializable {
     
     @NotNull
     @NotEmpty
+    @Size(min = 8, max = 10)
     @Column(nullable = false, length = 10)
     public String getCep() {
         return cep;
