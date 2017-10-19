@@ -3,21 +3,25 @@
 .logo_pequena {
 	margin-top: -12px;
 }
+
 .texto-centro {
 	font-weight: 700;
 	text-align: center;
 	color: #333;
 }
+
 .btn_enviar {
 	font-size: 1.4em;
 	font-weight: 900;
 	color: #2C3E50;
 }
+
 .btn_listar {
 	font-size: 1.4em;
 	font-weight: 900;
 	color: #2C3E50;
 }
+
 .span_form {
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 	font-size: 1em;
@@ -69,5 +73,23 @@
 }
 
 .bg-login{
- background-color: #ECF0F1;
+	background-color: #ECF0F1;
 }
+
+.bg-modal{
+	background-color: rgba(20, 20, 20, 0.2);
+}
+
+.lista-detalhes{
+	margin: 30px 0px 30px 0px;
+}
+
+.lista-detalhes td{
+	padding: 5px;
+}
+
+.lista-atributo{
+	text-align: right;
+	font-weight: bold;
+}
+
