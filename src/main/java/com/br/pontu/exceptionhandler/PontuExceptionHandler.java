@@ -1,5 +1,6 @@
 package com.br.pontu.exceptionhandler;
 
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
@@ -10,6 +11,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  * 
  * @author Alves
  */
+
+
+//Anotação de efeito global.
+@ControllerAdvice
 public class PontuExceptionHandler extends ResponseEntityExceptionHandler{
 	
 	
