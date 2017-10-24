@@ -58,7 +58,20 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 //
 //	}
 
-	
+//	private Boolean verificarSenha() {
+//		
+//		// TODO 
+//		
+//		return false;
+//	}
+//	
+//	
+//	private Boolean verificarPontosRepetidos() {
+//		
+//		// TODO 
+//		
+//		return false;
+//	}
 
 }
 
