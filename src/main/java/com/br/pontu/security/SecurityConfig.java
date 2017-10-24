@@ -33,16 +33,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                
-                .antMatchers("/admin/registro").permitAll()
-//                .antMatchers("/admin/registro").hasAuthority(Role.Admin.toString())
+//                .antMatchers("/admin/registro").permitAll()
+                .antMatchers("/admin/**").hasAuthority(Role.Admin.toString())
+                
                 .antMatchers("/login").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                .loginPage("/login").permitAll()
                 .usernameParameter("matricula")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/admin/registro/");
+                .defaultSuccessUrl("/admin/menu");
     }
 
 }

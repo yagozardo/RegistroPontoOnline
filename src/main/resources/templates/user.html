@@ -51,7 +51,8 @@ and open the template in the editor.
                         <a class="navbar-brand" href="#"><img class="logo_pequena" th:src="@{/img/logo/logo_pontu_145x48.png}"></a> </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse-01">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#fakelink">ESPELHO</a></li>
+                            <li class="active"><a th:href="@{/admin/menu}">Menu</a></li>
+                            <li class="active"><a th:href="@{/logout}">Logout</a></li>
                         </ul>
                         <form class="navbar-form navbar-right" action="#" role="search">
                             <div class="form-group">
@@ -86,45 +87,45 @@ and open the template in the editor.
 
                                 <div class="form-group">
                                     <label for="input_dataNascimento">Data Nascimento</label>
-                                    <input type="text" class="form-control" id="input_dataNascimento" th:placeholder="${user.dataNascimento}" >
+                                    <input type="text" class="form-control" id="input_dataNascimento" th:value="${user.dataNascimento}" disabled="true" >
                                 </div>
                                 <!-- Data Nascimento -->
 
                                 <div class="form-group">
                                     <label for="input_rg">RG</label>
-                                    <input type="text" class="form-control" id="input_rg" th:placeholder="${user.rg}" >
+                                    <input type="text" class="form-control" id="input_rg" th:value="${user.rg}" disabled="true">
                                 </div>
                                 <!-- RG -->
 
                                 <div class="form-group">
                                     <label for="input_cpf">CPF</label>
-                                    <input type="text" class="form-control" id="input_cpf" th:placeholder="${user.cpf}">
+                                    <input type="text" class="form-control" id="input_cpf" th:value="${user.cpf}"disabled="true">
                                 </div>
                                 <!-- CPF -->
 
                                 <div class="form-group">
                                     <label for="input_carteiraDeTrabalho">Carteira de Trabalho</label>
-                                    <input type="text" class="form-control" id="input_carteiraDeTrabalho" th:placeholder="${user.carteiraDeTrabalho}">
+                                    <input type="text" class="form-control" id="input_carteiraDeTrabalho" th:value="${user.carteiraDeTrabalho}" disabled="true">
                                 </div>
                                 <!-- CPF -->
 
                                 <div class="form-group">
                                     <label for="input_estadoCivil">Estado Civil</label>
-                                    <input type="text" class="form-control" id="input_carteiraDeTrabalho" th:placeholder="${user.estadoCivil}">
+                                    <input type="text" class="form-control" id="input_carteiraDeTrabalho" th:value="${user.estadoCivil}" disabled="true">
                                 </div>
                                 <!-- Estado Civil -->
 
                                 <div class="form-group">
                                     <label for="input_rg">Departamento</label>
-                                    <input type="text" class="form-control" id="input_rg" th:placeholder="${user.departamento}" >
+                                    <input type="text" class="form-control" id="input_rg" th:value="${user.departamento}" disabled="true">
                                 </div>
                                 <div class="form-group">
                                     <label for="input_rg">Cargo</label>
-                                    <input type="text" class="form-control" id="input_rg" th:placeholder="${user.cargo}" >
+                                    <input type="text" class="form-control" id="input_rg" th:value="${user.cargo}" disabled="true">
 
                                         <div class="form-group">
                                             <label for="input_rg">Nível de Acesso ao sistema</label>
-                                            <input type="text" class="form-control" id="input_rg" th:placeholder="${user.acesso}" >
+                                            <input type="text" class="form-control" id="input_rg" th:value="${user.acesso}" disabled="true" >
                                         </div>
                                 </div>
 
@@ -134,13 +135,13 @@ and open the template in the editor.
                                     <legend>Telefones</legend>
                                     <div class="form-group">
                                         <label for="input_celular">Celular</label>
-                                        <input type="text" class="form-control" id="input_celular" th:placeholder="${user.celular}">
+                                        <input type="text" class="form-control" id="input_celular" th:value="${user.celular}" disabled="true">
                                     </div>
                                     <!-- Celular -->
 
                                     <div class="form-group">
                                         <label for="input_fixo">Fixo</label>
-                                        <input type="text" class="form-control" id="input_fixo" th:placeholder="${user.fixo}">
+                                        <input type="text" class="form-control" id="input_fixo" th:value="${user.fixo}" disabled="true">
                                     </div>
                                     <!-- Celular -->
                                 </fieldset>
@@ -150,47 +151,47 @@ and open the template in the editor.
                                         <legend>Endereço</legend>
                                         <div class="form-group">
                                             <label for="input_numero">Número</label>
-                                            <input type="number" class="form-control" id="input_numero" th:placeholder="${user.endereco.numero}">
+                                            <input type="number" class="form-control" id="input_numero" th:value="${user.endereco.numero}" disabled="true">
                                         </div>
                                         <!-- Número -->
 
                                         <div class="form-group">
                                             <label for="input_logradouro">Logradouro</label>
-                                            <input type="text" class="form-control" id="input_logradouro" th:placeholder="${user.endereco.logradouro}">
+                                            <input type="text" class="form-control" id="input_logradouro" th:value="${user.endereco.logradouro}" disabled="true">
                                         </div>
                                         <!-- Logradouro -->
 
                                         <div class="form-group">
                                             <label for="input_complemeno">Complemento</label>
-                                            <input type="text" class="form-control" id="input_complemeno" th:placeholder="${user.endereco.complemento}">
+                                            <input type="text" class="form-control" id="input_complemeno" th:value="${user.endereco.complemento}" disabled="true">
                                         </div>
                                         <!-- Complemeno -->
 
                                         <div class="form-group">
                                             <label for="input_cidade">Cidade</label>
-                                            <input type="text" class="form-control" id="input_cidade" th:placeholder="${user.endereco.cidade}">
+                                            <input type="text" class="form-control" id="input_cidade" th:value="${user.endereco.cidade}" disabled="true">
                                         </div>
                                         <!-- Cidade -->
 
                                         <div class="form-group">
                                             <label for="input_uf">UF</label>
-                                            <input type="text" class="form-control" id="input_uf" th:placeholder="${user.endereco.uf}">
+                                            <input type="text" class="form-control" id="input_uf" th:value="${user.endereco.uf}" disabled="true">
                                         </div>
                                         <!-- Estado -->
 
                                         <div class="form-group">
                                             <label for="input_cep">CEP</label>
-                                            <input type="number" class="form-control" id="input_cep" th:placeholder="${user.endereco.cep}">
+                                            <input type="number" class="form-control" id="input_cep" th:value="${user.endereco.cep}" disabled="true">
                                         </div>
                                         <form method="get" th:action="@{/admin/lista}">
-                                        <div class="row">
-                                            <div class="col-lg-3 col-lg-offset-5  col-xs-12">
-                                                <div class="form-group">
-                                                    <button id="btn_enviar" type="submit" class="col-lg-12 col-xs-12 btn btn-primary"><span class="btn_enviar">Voltar</span></button>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-lg-offset-5  col-xs-12">
+                                                    <div class="form-group">
+                                                        <button id="btn_enviar" type="submit" class="col-lg-12 col-xs-12 btn btn-primary"><span class="btn_enviar">Voltar</span></button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                            </form>
+                                        </form>
                                         <!-- CEP -->
 
                                     </fieldset>

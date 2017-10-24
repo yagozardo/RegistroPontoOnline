@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findByMatriculaAndPassword(String matricula, String password) {
-        return userRepository.findByMatriculaAndPassword(password, password);
+        return userRepository.findByMatriculaAndPassword(matricula, password);
     }
 
 
