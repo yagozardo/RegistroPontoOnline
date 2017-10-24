@@ -27,8 +27,4 @@ public enum Departamento {
     TI,
     VENDAS;
 
-    
-
-    
-    
 }

@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -66,6 +67,7 @@ public class User implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
     public Long getId() {
         return id;
     }
@@ -98,6 +100,7 @@ public class User implements Serializable {
 
     @NotNull
     @NotEmpty
+    @Size(min = 3, max = 60)
     @Column(nullable = false, length = 60)
     public String getSobrenome() {
         return sobrenome;
@@ -119,7 +122,8 @@ public class User implements Serializable {
 
     @NotNull
     @NotEmpty
-    @Column(nullable = false, length = 13)
+    @Size(min = 13, max = 13)
+    @Column(nullable = false, length = 13, unique = true)
     public String getCpf() {
         return cpf;
     }
@@ -130,7 +134,8 @@ public class User implements Serializable {
 
     @NotNull
     @NotEmpty
-    @Column(nullable = false, length = 20)
+    @Size(min = 1, max = 20)
+    @Column(nullable = false, length = 20, unique = true)
     public String getCarteiraDeTrabalho() {
         return carteiraDeTrabalho;
     }
@@ -141,7 +146,8 @@ public class User implements Serializable {
 
     @NotNull
     @NotEmpty
-    @Column(nullable = false, length = 20)
+    @Size(min = 1, max = 20)
+    @Column(nullable = false, length = 20, unique = true)
     public String getRg() {
         return rg;
     }
@@ -152,6 +158,7 @@ public class User implements Serializable {
 
     @NotNull
     @NotEmpty
+    @Size(min = 8, max = 16)
     @Column(nullable = false, length = 16)
     public String getCelular() {
         return celular;
@@ -163,6 +170,7 @@ public class User implements Serializable {
 
     // Este Atributo pode ser opcional, sendo não é necessário
     // Validação
+    @Size(max = 16)
     @Column(length = 16)
     public String getFixo() {
         return fixo;
@@ -186,7 +194,8 @@ public class User implements Serializable {
     @NotNull
     @NotEmpty
     @Email
-    @Column(nullable = false, length = 90)
+    @Size(min = 7, max = 90)
+    @Column(nullable = false, length = 90, unique = true)
     public String getEmail() {
         return email;
     }
