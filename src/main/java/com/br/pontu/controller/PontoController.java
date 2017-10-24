@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author sltnote-6354
  */
 @Controller
-@RequestMapping("/sistema")
+
 public class PontoController {
     
-    @GetMapping("/inicio")
-    public String paginaBatida(){
-        
-        
+    @GetMapping(value = {"", "/", "/index", "/home", "/ponto"})
+    public String index() {
         return "/index";
     }
     

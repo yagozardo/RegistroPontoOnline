@@ -7,11 +7,73 @@ and open the template in the editor.
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>PAGINA INICIAL</title>
+        <title>Pontu - Registro</title>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0"/>
+        <meta name="keywords" content="ponto, ponto eletronico, registro de ponto"/>
+        <meta name="description" content="Sistema de registro de ponto eletronico para vc poder "/>
+        <meta name="author" content="Autor"/>
+        <meta name="robots" content="index,follow"/>
+
+        <link rel="shortcut icon" href="../static/img/favicon.ico"/>
+
+        <!-- site css -->
+        <link rel="stylesheet" th:href="@{/css/site.css}"/>
+        <link rel="stylesheet" th:href="@{/dist/css/vendor/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/bootflat/css/bootflat.css}"/>
+        <link th:href="@{/dist/css/flat-ui.css}" rel="stylesheet"/>
+        <link rel="stylesheet" th:href="@{/estilo/estilo.css}"/>
+        <script type="text/javascript" th:src="@{/js/site.min.js}"></script>
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css"/>
+
+
+
     </head>
-    <body>
-        <div>Página carregada com sucesso</div>
+    <body class="bg-login" onload="ano()">
+        <div class="container-fluid"> 
+
+            <div class="login-form col-lg-offset-5 col-lg-2 col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4 col-xs-12">
+                <center style="margin-bottom: 20px;">
+                    <img th:src="@{/img/logo/logo_pontu_145x48.png}"/>
+                </center>
+                <form name="login" method="post" th:action="@{/login}">
+                    <div class="panel-title">
+                        <center>  <h6>Registro de Ponto</h6></center>
+                    </div>
+                    <br/>
+                    <div class="form-group ">
+
+                        <input type="text" class="form-control login-field" value="" placeholder="Matrícula" id="matricula" name="matricula"/>
+                        <label class="login-field-icon fui-user" for="login-name"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control login-field" value="" placeholder="Senha" id="password" name="password"/>
+                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Registrar Ponto</button> 
+                    <a class="login-link" th:href="@{/admin/registro}">Administrador</a>
+                </form>
+            </div>
+
+
+        </div><!-- Container -->
+
+
+        <!-- Sweet Alert --> 
+        <script th:src="@{/sweetalert/sweetalert.min.js}"></script>
+        <link th:href="@{/sweetalert/sweetalert.css}" rel="stylesheet" type="text/css"/> >
+        <!-- Sweet Alert --> 
+
+        <!-- Script para verificar se campos obrigatórios foram preenchidos --> 
+        <script th:src="@{/dist/js/checaCampos.js}"></script> 
+
+        <!-- Script carregar o Jquery --> 
+        <script th:src="@{/dist/js/jquery-3.2.1.min.js}"></script> 
+        <script th:src="@{/dist/js/obeterAno.js}"></script> 
+        <script th:src="@{/dist/js/vendor/jquery.min.js}"></script> 
+        <script th:src="@{/dist/js/flat-ui.min.js}"></script> 
+        <script th:src="@{/docs/assets/js/application.js}"></script>
     </body>
 </html>

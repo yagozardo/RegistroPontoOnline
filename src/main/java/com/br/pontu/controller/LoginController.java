@@ -18,11 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 
 public class LoginController {
-    
-    @GetMapping(value = {"", "/", "/index", "/home"})
-    public String index() {
-        return "redirect:/admin/registro";
-    }
+   
 
     @GetMapping("/login")
     public ModelAndView login() {
