@@ -15,13 +15,15 @@ import org.springframework.stereotype.Service;
  */
 @Service("userService")
 public interface UserService {
+
+    public List<User> findByMatriculaAndPassword(String matricula, String password);
+
     public User cadastrarUsuario(User user);
-    
+
     public List<User> getAllUsers();
-    
+
     public void deletarUsuario(long id);
-    
+
     public User findById(long id);
-    
-    
+
 }
