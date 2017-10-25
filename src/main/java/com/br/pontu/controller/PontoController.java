@@ -7,9 +7,8 @@ package com.br.pontu.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -17,20 +16,17 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 
-public class LoginController {
-   
-
-    @GetMapping("/login")
-    public ModelAndView login() {
-
-        ModelAndView model = new ModelAndView("/login");
-        return model;
+public class PontoController {
+    
+    @GetMapping(value = {"", "/", "/index", "/home", "/ponto"})
+    public String index() {
+        return "/index";
     }
     
-    @GetMapping("/acesso")
-    public ModelAndView accessDenied(){
-        ModelAndView model = new ModelAndView("/accessDenied");
-        
-        return model;
+    @PostMapping("/inicio")
+    public String registraPonto(){
+        return ("redirect: /index");
     }
+    
+    
 }

@@ -122,7 +122,6 @@ public class User implements Serializable {
 
     @NotNull
     @NotEmpty
-    @Size(min = 13, max = 13)
     @Column(nullable = false, length = 13, unique = true)
     public String getCpf() {
         return cpf;

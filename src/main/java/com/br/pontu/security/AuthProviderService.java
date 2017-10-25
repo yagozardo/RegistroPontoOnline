@@ -36,8 +36,7 @@ public class AuthProviderService implements AuthenticationProvider {
     public Authentication authenticate(Authentication auth) throws AuthenticationException {
         String login = auth.getName();
         String senha = auth.getCredentials().toString();
-        System.out.println("USER AUTHPROVIDER ----------> " + login);
-        System.out.println("SENHA AUTHPROVIDER ----------> " + senha);
+
         
 
         try {
@@ -46,17 +45,20 @@ public class AuthProviderService implements AuthenticationProvider {
             Logger.getLogger(AuthProviderService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-       System.out.println("SENHA ENCRIPTADA AUTHPROVIDER ----------> " + senha);
+
         
         
 
         
 
         List<User> users = this.userService.findByMatriculaAndPassword(login, senha);
+        
+
 
         if (users.isEmpty()) {
-            // nao existe
+      
             throw new UsernameNotFoundException("Login e/ou Senha inválidos.");
+            
         } else {
             final User user = users.get(0);
             GrantedAuthority autorizacao = new GrantedAuthority() {

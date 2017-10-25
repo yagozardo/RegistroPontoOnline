@@ -84,5 +84,10 @@ public class AdminController {
         return model;
     }
     
+    @GetMapping("/menu")
+    public String menu(){
+        return "/menu";
+    }
+    
     
 }
