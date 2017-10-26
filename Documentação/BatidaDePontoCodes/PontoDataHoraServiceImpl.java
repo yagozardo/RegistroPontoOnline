@@ -61,7 +61,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 	}
 
-	private Boolean verificarSenha() {
+	private Boolean verificarUserESenha() {
 
 		// TODO
 

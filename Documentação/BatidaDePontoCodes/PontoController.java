@@ -35,9 +35,9 @@ public class PontoController {
     }
     
     @PostMapping("/inicio")
-    public String registraPonto(@PathVariable User user){
+    public String registraPonto(@PathVariable String matricula, @PathVariable String password){
     	
-    	service.baterPonto(user);
+    	service.baterPonto(matricula, password);
     	
         return ("redirect: /index");
     }
