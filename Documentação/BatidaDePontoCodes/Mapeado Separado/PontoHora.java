@@ -9,9 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "ponto_hora")
@@ -22,7 +25,7 @@ public class PontoHora implements Serializable{
 	
 	//Atributos =======================================================================
 	private PontoData dia;
-	private String hora;
+	private LocalDate hora;
 	
 	//Getters and Setters -------------------------------------------------------------
 	
@@ -31,10 +34,12 @@ public class PontoHora implements Serializable{
 	@NotNull
 	@NotBlank
 	@Column(nullable = false)
-	public String getHora() {
+	@DateTimeFormat("HH:mm")
+	@Temporal(TemporalType.TIME)
+	public LocalDate getHora() {
 		return hora;
 	}
-	public void setHora(String hora) {
+	public void setHora(LocalDate hora) {
 		this.hora = hora;
 	}
 	

@@ -12,7 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "ponto_data")
@@ -22,8 +26,7 @@ public class PontoData implements Serializable{
 	
 	
 	//Atributos =======================================================================
-	private String dia;
-	//private String hora;
+	private LocalDate dia;
 	private User users;
 	private List<PontoHora> hora;
 	
@@ -32,24 +35,16 @@ public class PontoData implements Serializable{
 	@Id
 	@NotNull
 	@Column(nullable = false)
-	public String getDia() {
+	@DateTimeFormat("dd-MM-yyyy")
+	@Temporal(TemporalType.DATE)
+	public LocalDate getDia() {
 		return dia;
 	}
-	public void setDia(String dia) {
+	public void setDia(LocalDate dia) {
 		this.dia = dia;
 	}
 	
-//	@NotNull
-//	@NotBlank
-//	@Column(nullable = false)
-//	public String getHora() {
-//		return hora;
-//	}
-//	public void setHora(String hora) {
-//		this.hora = hora;
-//	}
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	public User getUsers() {
