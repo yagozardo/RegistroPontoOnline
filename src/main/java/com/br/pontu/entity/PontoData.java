@@ -2,6 +2,7 @@
 package com.br.pontu.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -35,7 +36,7 @@ public class PontoData implements Serializable{
 	@Id
 	@NotNull
 	@Column(nullable = false)
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	public LocalDate getDia() {
 		return dia;

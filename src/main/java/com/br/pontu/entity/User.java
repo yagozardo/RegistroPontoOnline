@@ -56,7 +56,7 @@ public class User implements Serializable {
 
     private Role acesso;
     private Adress endereco;
-//    private List<PontoData> ponto;
+    private List<PontoData> ponto;
     private Departamento departamento;
 
     // FIM ========================================================================================
@@ -217,13 +217,13 @@ public class User implements Serializable {
 
 
     //Ponto
-//	 @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
-//	 public List<PontoData> getPonto() {
-//			return ponto;
-//	}
-//	public void setPonto(List<PontoData> ponto) {
-//			this.ponto = ponto;
-//	}
+	 @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+	 public List<PontoData> getPonto() {
+			return ponto;
+	}
+	public void setPonto(List<PontoData> ponto) {
+			this.ponto = ponto;
+	}
     
     @Embedded
     public Adress getEndereco() {

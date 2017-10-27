@@ -73,6 +73,15 @@ public class UserServiceImpl implements UserService {
     public List<User> findByMatriculaAndPassword(String matricula, String password) {
         return userRepository.findByMatriculaAndPassword(matricula, password);
     }
+    
+    public User findByMatriculaAndPasswordOne(String matricula, String password) {
+    	
+    	// TODO
+    	
+    	User user =  null;
+    	
+        return user;
+    }
 
 
 }

@@ -12,7 +12,7 @@ import com.br.pontu.entity.User;
 @Service("pontoDataHoraService")
 public interface PontoDataHoraService {
 	
-	public boolean baterPonto(User user);
+	public boolean baterPonto(String matricula, String password);
 	
 	public User editarPonto(User user);
 	

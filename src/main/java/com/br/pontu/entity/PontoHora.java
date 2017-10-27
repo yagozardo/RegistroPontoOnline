@@ -2,6 +2,7 @@
 package com.br.pontu.entity;
 
 import java.io.Serializable;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ public class PontoHora implements Serializable{
 	
 	//Atributos =======================================================================
 	private PontoData dia;
-	private LocalDate hora;
+	private LocalTime hora;
 	
 	//Getters and Setters -------------------------------------------------------------
 	
@@ -36,10 +37,10 @@ public class PontoHora implements Serializable{
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "HH:mm")
 	@Temporal(TemporalType.TIME)
-	public LocalDate getHora() {
+	public LocalTime getHora() {
 		return hora;
 	}
-	public void setHora(LocalDate hora) {
+	public void setHora(LocalTime hora) {
 		this.hora = hora;
 	}
 	
