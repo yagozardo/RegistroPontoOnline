@@ -36,7 +36,7 @@ public class PontoHora implements Serializable{
 	@NotBlank
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "HH:mm")
-	@Temporal(TemporalType.TIME)
+	//@Temporal(TemporalType.TIME)
 	public LocalTime getHora() {
 		return hora;
 	}

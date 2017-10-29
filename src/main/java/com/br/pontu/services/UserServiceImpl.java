@@ -5,15 +5,23 @@
  */
 package com.br.pontu.services;
 
-import com.br.pontu.entity.User;
-import com.br.pontu.repositories.UserRepository;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.br.pontu.entity.User;
+import com.br.pontu.repositories.UserRepository;
 
 /**
  *
@@ -24,6 +32,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
+    
+//    @PersistenceContext
+//	private EntityManager manager;
 
     @Override
     public User cadastrarUsuario(User user) {
@@ -73,14 +84,18 @@ public class UserServiceImpl implements UserService {
     public List<User> findByMatriculaAndPassword(String matricula, String password) {
         return userRepository.findByMatriculaAndPassword(matricula, password);
     }
+
+
     
     public User findByMatriculaAndPasswordOne(String matricula, String password) {
     	
-    	// TODO
+    	// Criando criteria do  JPA 
+//    	CriteriaBuilder builder = manager.getCriteriaBuilder();
+//		CriteriaQuery<User> criteria = builder.createQuery(User.class);
+//		Root<User> root = criteria.from(User.class);
     	
-    	User user =  null;
     	
-        return user;
+        return null;
     }
 
 

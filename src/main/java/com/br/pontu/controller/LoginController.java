@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
  * @author sltnote-6354
  */
 @Controller
-
 public class LoginController {
    
 

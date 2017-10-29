@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.br.pontu.entity.PontoData;
 import com.br.pontu.entity.PontoHora;
@@ -18,6 +19,7 @@ import com.br.pontu.repositories.UserRepository;
  * @author Alves
  */
 
+@Service("pontoDataHoraService")
 public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 	@Autowired

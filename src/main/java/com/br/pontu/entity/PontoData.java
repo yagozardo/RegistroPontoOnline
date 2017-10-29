@@ -37,7 +37,7 @@ public class PontoData implements Serializable{
 	@NotNull
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Temporal(TemporalType.DATE)
+	//@Temporal(TemporalType.DATE)
 	public LocalDate getDia() {
 		return dia;
 	}
