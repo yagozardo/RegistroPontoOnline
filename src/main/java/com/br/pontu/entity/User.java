@@ -217,7 +217,8 @@ public class User implements Serializable {
 
 
     //Ponto
-	 @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+	 //@OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+	 @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
 	 public List<PontoData> getPonto() {
 			return ponto;
 	}

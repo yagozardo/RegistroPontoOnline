@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.br.pontu.services.PontoDataHoraServiceImpl;
 
@@ -28,12 +29,14 @@ public class PontoController {
         return "/index";
     }
     
-    @PostMapping("/inicio")
-    public String registraPonto(@PathVariable String matricula, @PathVariable String password){
+    @PostMapping("/ponto")
+    public String registraPonto(@RequestParam String matricula, @RequestParam String password){
     	
+    	System.out.println(matricula + password);
+    	System.out.println("Chegou\n\n\n\n\n\n\n\n\n\n\n");
     	service.baterPonto(matricula, password);
     	
-        return ("redirect: /index");
+        return ("redirect: /ponto");
     }
     
     

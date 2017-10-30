@@ -1,8 +1,10 @@
 package com.br.pontu.services;
 
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,13 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 	@Override
 	public boolean baterPonto(String matricula, String password) {
 
-		if (verificarUserESenha(matricula, password)) {
+		List<User> users = userService.findByMatricula(matricula);
+
+		User user = users.get(0);
+
+		if (verificarUserESenha(matricula, password, user)) {
+
+			
 
 			LocalDate data = LocalDate.now();
 			DateTimeFormatter fomatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -47,30 +55,50 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 			PontoData pdata = new PontoData();
 			PontoHora phora = new PontoHora();
+			List<PontoHora> lhora = new ArrayList<>();
+			List<PontoData> ldata = new ArrayList<>();
 			
-			List<User> user = userService.findByMatricula(matricula);
+			System.out.println("\n\n" + data + "\n" + time);
 			
 			phora.setHora(time);
-			phora.getDia().setDia(data);
+			phora.setDia(pdata);
 			pdata.setDia(data);
-			pdata.getHora().add(phora);
-			pdata.getUsers().getPonto().add(pdata);
-			//user.getPonto().add(pdata);
 			
+			lhora.add(phora);
+			pdata.setHora(lhora);
+		
+			pdata.setUsers(user);
+	
+			ldata.add(pdata);
+			user.setPonto(ldata);
+
 			userRepository.save(user);
 			pontoDataRepository.save(pdata);
 			pontoHoraRepository.save(phora);
-			
-			
 
 		}
 
 		return true;
 	}
 
-	private Boolean verificarUserESenha(String matricula, String password) {
+	// Função que checa se o Usuário buscado do banco, tenha a matricula e a senha
+	// iguais as do banco.
+	private Boolean verificarUserESenha(String matricula, String password, User user) {
 
-		// TODO
+		try {
+
+			String passwordEncode = userService.encodePassword(password);
+
+			// Checa se ambos tanto a matricula, quanto o password é o mesmo do banco
+			if (matricula.equals(user.getMatricula()) && passwordEncode.equals(user.getPassword())) {
+
+				return true;
+			}
+
+		} catch (NoSuchAlgorithmException e) {
+
+			e.printStackTrace();
+		}
 
 		return false;
 	}
