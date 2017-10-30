@@ -3,6 +3,7 @@ package com.br.pontu.services;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,14 +48,14 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			PontoData pdata = new PontoData();
 			PontoHora phora = new PontoHora();
 			
-			User user = userService.findByMatriculaAndPasswordOne(matricula, password);
+			List<User> user = userService.findByMatricula(matricula);
 			
 			phora.setHora(time);
 			phora.getDia().setDia(data);
 			pdata.setDia(data);
 			pdata.getHora().add(phora);
 			pdata.getUsers().getPonto().add(pdata);
-			user.getPonto().add(pdata);
+			//user.getPonto().add(pdata);
 			
 			userRepository.save(user);
 			pontoDataRepository.save(pdata);

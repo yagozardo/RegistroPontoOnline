@@ -26,6 +26,6 @@ public interface UserService {
 
     public User findById(long id);
     
-    public User findByMatriculaAndPasswordOne(String matricula, String password);
+    public List<User> findByMatricula(String matricula);
 
 }
