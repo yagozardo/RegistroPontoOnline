@@ -2,20 +2,14 @@
 package com.br.pontu.entity;
 
 import java.io.Serializable;
-import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "ponto_hora")
@@ -25,33 +19,29 @@ public class PontoHora implements Serializable{
 	
 	
 	//Atributos =======================================================================
-	private PontoData hdia;
-	private LocalTime hora;
+	private Long dataId;
+	private String hora;
 	
 	//Getters and Setters -------------------------------------------------------------
-	
-	
-	@Id
 	@NotNull
+	@NotBlank
 	@Column(nullable = false)
-	@DateTimeFormat(pattern = "HH:mm")
-	//@Temporal(TemporalType.TIME)
-	public LocalTime getHora() {
+	public String getHora() {
 		return hora;
 	}
-	public void setHora(LocalTime hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 	
 	
-	
-	@ManyToOne
-	@JoinColumn(name = "data_id", nullable = false)
-	public PontoData getHdia() {
-		return hdia;
+	@Id
+	@NotNull
+	@Column(name = "data_id", nullable = false)
+	public Long getDataId() {
+		return dataId;
 	}
-	public void setHdia(PontoData hdia) {
-		this.hdia = hdia;
+	public void setDataId(Long dataId) {
+		this.dataId = dataId;
 	}
 }
 

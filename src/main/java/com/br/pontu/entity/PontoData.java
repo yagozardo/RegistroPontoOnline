@@ -2,67 +2,62 @@
 package com.br.pontu.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "ponto_data")
-public class PontoData implements Serializable{
+public class PontoData implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	// Atributos
+	// =======================================================================
+	private Long id;
+	private String dia;
+	private Long userId;
+
 	
 	
-	//Atributos =======================================================================
-	private LocalDate dia;
-	private User users;
-	private List<PontoHora> hora;
-	
-	//Getters and Setters -------------------------------------------------------------
-	
+	// Getters and Setters
+	// -------------------------------------------------------------
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(nullable = false, unique = true)
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@NotNull
+	@NotBlank
 	@Column(nullable = false)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	//@Temporal(TemporalType.DATE)
-	public LocalDate getDia() {
+	public String getDia() {
 		return dia;
 	}
-	public void setDia(LocalDate dia) {
+	public void setDia(String dia) {
 		this.dia = dia;
 	}
-	
 
-	@ManyToOne
+
+	@NotNull
 	@JoinColumn(name = "user_id", nullable = false)
-	public User getUsers() {
-		return users;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setUsers(User users) {
-		this.users = users;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
-	
-	//@OneToMany(mappedBy = "dia", cascade = CascadeType.ALL, orphanRemoval = true)
-	@OneToMany(mappedBy = "hdia", cascade = CascadeType.ALL)
-	public List<PontoHora> getHora() {
-		return hora;
-	}
-	public void setHora(List<PontoHora> hora) {
-		this.hora = hora;
-	}
-	
-}
 
+}

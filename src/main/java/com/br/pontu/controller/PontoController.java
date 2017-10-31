@@ -8,7 +8,6 @@ package com.br.pontu.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,7 +33,7 @@ public class PontoController {
     	
        	service.baterPonto(matricula, password);
     	
-        return ("redirect: /ponto");
+        return ("redirect:/ponto");
     }
     
     
