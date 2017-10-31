@@ -32,9 +32,7 @@ public class PontoController {
     @PostMapping("/ponto")
     public String registraPonto(@RequestParam String matricula, @RequestParam String password){
     	
-    	System.out.println(matricula + password);
-    	System.out.println("Chegou\n\n\n\n\n\n\n\n\n\n\n");
-    	service.baterPonto(matricula, password);
+       	service.baterPonto(matricula, password);
     	
         return ("redirect: /ponto");
     }

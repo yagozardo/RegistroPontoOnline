@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.br.pontu.entity.PontoData;
@@ -58,23 +59,35 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			List<PontoHora> lhora = new ArrayList<>();
 			List<PontoData> ldata = new ArrayList<>();
 			
-			System.out.println("\n\n" + data + "\n" + time);
+			
 			
 			phora.setHora(time);
-			phora.setDia(pdata);
+			//phora.setDia(pdata);
 			pdata.setDia(data);
 			
 			lhora.add(phora);
 			pdata.setHora(lhora);
-		
 			pdata.setUsers(user);
 	
 			ldata.add(pdata);
-			user.setPonto(ldata);
+			//user.setPonto(ldata);
+			
 
-			userRepository.save(user);
-			pontoDataRepository.save(pdata);
+			System.out.println(pdata.getDia() + "\n\n");
+			
 			pontoHoraRepository.save(phora);
+			System.out.println("\\n\\n\\nSalvou Hora\n\n\n");
+			
+			pontoDataRepository.save(pdata);
+			System.out.println("\n\n\nSalvou Data\n\n\n");
+			
+			
+			
+			
+		
+			userRepository.save(user);
+			System.out.println("\\n\\n\\nSalvou User\n\n\n");
+			
 
 		}
 

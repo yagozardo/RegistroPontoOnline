@@ -25,7 +25,7 @@ public class PontoHora implements Serializable{
 	
 	
 	//Atributos =======================================================================
-	private PontoData dia;
+	private PontoData hdia;
 	private LocalTime hora;
 	
 	//Getters and Setters -------------------------------------------------------------
@@ -33,7 +33,6 @@ public class PontoHora implements Serializable{
 	
 	@Id
 	@NotNull
-	@NotBlank
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "HH:mm")
 	//@Temporal(TemporalType.TIME)
@@ -45,13 +44,14 @@ public class PontoHora implements Serializable{
 	}
 	
 	
+	
 	@ManyToOne
 	@JoinColumn(name = "data_id", nullable = false)
-	public PontoData getDia() {
-		return dia;
+	public PontoData getHdia() {
+		return hdia;
 	}
-	public void setDia(PontoData dia) {
-		this.dia = dia;
+	public void setHdia(PontoData hdia) {
+		this.hdia = hdia;
 	}
 }
 

@@ -56,7 +56,7 @@ public class PontoData implements Serializable{
 	}
 	
 	//@OneToMany(mappedBy = "dia", cascade = CascadeType.ALL, orphanRemoval = true)
-	@OneToMany(mappedBy = "dia", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "hdia", cascade = CascadeType.ALL)
 	public List<PontoHora> getHora() {
 		return hora;
 	}
