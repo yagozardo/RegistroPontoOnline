@@ -1,7 +1,5 @@
 package com.br.pontu.services;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -59,7 +57,12 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			
 			// Garante apenas uma data por usuário
 			Long dia_id = verificarDiaExistente(diaFormatado, user.getId());
+			
+			System.out.println(dia_id);
+			
 			if(dia_id != null) {
+				
+				System.out.println("\nEntrou 1:" + dia_id + "\n");
 				
 				// Salva a hora, e o ID do dia correspondente
 				phora.setHora(horaFormatado);
@@ -69,6 +72,8 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 				return true;
 				
 			} else {
+				
+				System.out.println("\nEntrou 2:" + dia_id + "\n");
 				
 				// Salva o dia com a data, e o ID do usuário
 				pdata.setDia(diaFormatado);
@@ -97,7 +102,9 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		
 		for(int i = 0; i < datas.size(); i++) {
 			
-			if(diaFormatado.equals(datas.get(i).getDia())) {
+			if(diaFormatado.equals(datas.get(i).getDia()) && datas.get(i).getUserId().equals(userId)) {
+				
+				System.out.println("\n------------------\nID do user" + datas.get(i).getId());
 				
 				return datas.get(i).getId();
 			}
