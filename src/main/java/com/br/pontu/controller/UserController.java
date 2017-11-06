@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author sltnote-6354
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/espelho")
 public class UserController {
     
-    @GetMapping("/profile")
+    @GetMapping("/resumo")
     public String paginaUser(){
-        return "/profile";
+        return "/espelho";
     }
     
     

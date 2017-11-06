@@ -7,9 +7,7 @@ package com.br.pontu.security;
 
 import com.br.pontu.entity.User;
 import com.br.pontu.services.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.stereotype.Component;import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
