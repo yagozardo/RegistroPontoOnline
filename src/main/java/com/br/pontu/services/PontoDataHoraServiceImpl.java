@@ -23,6 +23,8 @@ import com.br.pontu.repositories.PontoHoraRepository;
 @Service("pontoDataHoraService")
 public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
+	
+	// Injeções 
 	@Autowired
 	private PontoHoraRepository pontoHoraRepository;
 	@Autowired
@@ -30,6 +32,8 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 	@Autowired
 	private UserServiceImpl userService;
 
+	
+	// Função resposável por bater ponto, garantir unicidade e conscistência do banco. 
 	@Override
 	public boolean baterPonto(String matricula, String password) {
 
@@ -58,12 +62,9 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			// Garante apenas uma data por usuário
 			Long dia_id = verificarDiaExistente(diaFormatado, user.getId());
 			
-			System.out.println(dia_id);
-			
+			// 
 			if(dia_id != null) {
-				
-				System.out.println("\nEntrou 1:" + dia_id + "\n");
-				
+								
 				// Salva a hora, e o ID do dia correspondente
 				phora.setHora(horaFormatado);
 				phora.setDataId(dia_id);
@@ -72,9 +73,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 				return true;
 				
 			} else {
-				
-				System.out.println("\nEntrou 2:" + dia_id + "\n");
-				
+								
 				// Salva o dia com a data, e o ID do usuário
 				pdata.setDia(diaFormatado);
 				pdata.setUserId(user.getId());
@@ -139,7 +138,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 	private Boolean verificarPontosRepetidos() {
 
-		// TODO
+		
 
 		return false;
 	}

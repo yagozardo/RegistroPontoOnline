@@ -61,10 +61,8 @@ public class Adress implements Serializable {
     }
     
     
-    @NotNull
-    @NotEmpty
     @Size(min = 3, max = 80)
-    @Column(nullable = false, length = 80)
+    @Column(length = 80)
     public String getComplemento() {
         return complemento;
     }
