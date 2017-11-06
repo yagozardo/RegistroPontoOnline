@@ -54,6 +54,11 @@ and open the template in the editor.
 
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Registrar Ponto</button> 
                     <a class="login-link" th:href="@{/admin/registro}">Administrador</a>
+                    
+                    <div th:if="${#bools.isTrue(param.error)}">
+                        <center><font color="Red" size="2" > O usuário e/ou senha não conferem</font></center>
+                        <a class="login-link" th:href="@{/}">Esqueceu sua senha?</a>
+                    </div>
                 </form>
             </div>
 

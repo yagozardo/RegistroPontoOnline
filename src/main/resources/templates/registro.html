@@ -91,7 +91,7 @@ and open the template in the editor.
         </div>
         <div class="panel-body"> 
           <!-- Formulário principalo --> 
-          <form name="cadastro" role="form" th:action="@{/admin/menu}" method="POST" onsubmit="return valida_form()" th:object="${user}">
+          <form name="cadastro" role="form" th:action="@{/admin/registro}" method="POST" onsubmit="return valida_form()" th:object="${user}">
               <input type="hidden" th:field="*{id}" />
           <!--<form name="cadastro" role="form" action="" method="POST">-->
             <fieldset>
