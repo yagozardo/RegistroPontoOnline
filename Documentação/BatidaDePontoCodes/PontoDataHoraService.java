@@ -9,14 +9,14 @@ import com.br.pontu.entity.User;
  * 
  * @author Alves
  */
-//@Service("pontoDataHoraService")
+@Service("pontoDataHoraService")
 public interface PontoDataHoraService {
 	
-//	public boolean baterPonto(User user);
-//	
-//	public User editarPonto(User user);
-//	
-//	public void deletarPonto(User user);
+	public boolean baterPonto(User user);
+	
+	public User editarPonto(User user);
+	
+	public void deletarPonto(User user);
 
 }
 

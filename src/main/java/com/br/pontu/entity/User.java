@@ -1,6 +1,5 @@
 package com.br.pontu.entity;
 
-import com.br.pontu.enums.Departamento;
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,9 +20,9 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.br.pontu.enums.Departamento;
 import com.br.pontu.enums.EstadoCivil;
 import com.br.pontu.enums.Role;
-import java.util.Objects;
 
 /**
  * Entidade que é responsável pelo dados dos usuários Sendo eles de carater
@@ -51,16 +50,18 @@ public class User implements Serializable {
     private EstadoCivil estadoCivil;
     private String email;
     private String cargo;
+    
     private String matricula;
-
     private String password;
 
     private Role acesso;
     private Adress endereco;
-//        private List<PontoDataHora> ponto;
+//    private List<PontoData> ponto;
     private Departamento departamento;
 
     // FIM ========================================================================================
+    
+    
     /**
      * Getters And Setters Contendo as anotações de verificação
      * =======================================================
@@ -214,14 +215,16 @@ public class User implements Serializable {
         this.password = password;
     }
 
-//	 @NotNull
-//	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//	 public List<PontoDataHora> getPonto() {
+
+    //Ponto
+//	 @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+//	 public List<PontoData> getPonto() {
 //			return ponto;
 //	}
-//	public void setPonto(List<PontoDataHora> ponto) {
+//	public void setPonto(List<PontoData> ponto) {
 //			this.ponto = ponto;
 //	}
+    
     @Embedded
     public Adress getEndereco() {
         return endereco;
@@ -243,6 +246,7 @@ public class User implements Serializable {
 
     @NotNull
     @NotEmpty
+    @Size(min = 2, max = 60)
     @Column(name = "cargo", nullable = false, length = 60)
     public String getCargo() {
         return cargo;

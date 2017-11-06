@@ -18,47 +18,61 @@ import com.br.pontu.repositories.UserRepository;
 
 public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
-//	@Autowired
-//	PontoDataHoraRepository pontoDataHoraRepository;
-//	UserRepository userRepository;
-//
-//	@Override
-//	public boolean baterPonto(User user) {
-//		
-//		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); 
-//        Calendar dia = null; 
-//        dia = Calendar.getInstance(); 
-//        String diaFormatado = dateFormat.format(dia.getTime()); 
-//         
-//        DateFormat hourFormat = new SimpleDateFormat("HH:mm"); 
-//        Calendar hour = null; 
-//        hour = Calendar.getInstance(); 
-//        String horaFormatado = hourFormat.format(hour.getTime()); 
-//        
-//        PontoDataHora ponto = new PontoDataHora();
-//        ponto.setDia(diaFormatado);
-//        ponto.setDia(horaFormatado);
-//        
-//        user.getPonto().add(ponto);
-//		
-//        this.pontoDataHoraRepository.save(ponto);
-//        
-//		return true;
-//	}
-//
-//	@Override
-//	public User editarPonto(User user) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public void deletarPonto(User user) {
-//		// TODO Auto-generated method stub
-//
-//	}
+	@Autowired
+	private PontoDataHoraRepository pontoDataHoraRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-	
+	@Override
+	public boolean baterPonto(User user) {
+
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar dia = null;
+		dia = Calendar.getInstance();
+		String diaFormatado = dateFormat.format(dia.getTime());
+
+		DateFormat hourFormat = new SimpleDateFormat("HH:mm");
+		Calendar hour = null;
+		hour = Calendar.getInstance();
+		String horaFormatado = hourFormat.format(hour.getTime());
+
+		PontoDataHora ponto = new PontoDataHora();
+		ponto.setDia(diaFormatado);
+		ponto.setDia(horaFormatado);
+
+		user.getPonto().add(ponto);
+
+		this.userRepository.save(user);
+		this.pontoDataHoraRepository.save(ponto);
+
+		
+		return true;
+	}
+
+	@Override
+	public User editarPonto(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deletarPonto(User user) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private Boolean verificarUserESenha() {
+
+		// TODO
+
+		return false;
+	}
+
+	private Boolean verificarPontosRepetidos() {
+
+		// TODO
+
+		return false;
+	}
 
 }
-
