@@ -64,13 +64,17 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			
 			// 
 			if(dia_id != null) {
-								
-				// Salva a hora, e o ID do dia correspondente
-				phora.setHora(horaFormatado);
-				phora.setDataId(dia_id);
-				pontoHoraRepository.save(phora);
 				
-				return true;
+				if(!verificarPontosRepetidos(dia_id, horaFormatado)) {
+					
+					// Salva a hora, e o ID do dia correspondente
+					phora.setHora(horaFormatado);
+					phora.setDataId(dia_id);
+					pontoHoraRepository.save(phora);
+					
+					return true;
+					
+				} 
 				
 			} else {
 								
@@ -136,8 +140,12 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		return false;
 	}
 
-	private Boolean verificarPontosRepetidos() {
+	
+	//Return true: se houver pontos repetidos
+	//Return false: não houver pontos repetidos
+	private Boolean verificarPontosRepetidos(Long dia_id, String horaFormatado) {
 
+		//pontoHoraRepository.
 		
 
 		return false;
