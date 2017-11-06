@@ -12,3 +12,5 @@
 PontuSistemas\.iml
 
 *.tmp
+
+src/main/webapp/META-INF/context\.xml
