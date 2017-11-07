@@ -12,7 +12,9 @@ import com.br.pontu.entity.PontoData;
 @Repository
 public interface PontoDataRepository extends JpaRepository<PontoData, Long>{
 	
-	@Query(value = "SELECT * FROM ponto_data WHERE user_id = :userid", nativeQuery = true)
-	List<PontoData> findByUserId(@Param("userid") Long userId);
+	//Params: Id do usuário e o dia em questão
+	//Return: Lista de datas
+	@Query(value = "SELECT * FROM ponto_data WHERE user_id = :userid AND dia = :diaF", nativeQuery = true)
+	List<PontoData> findByUserId(@Param("userid") Long userId, @Param("diaF") String diaFormatado);
 
 }

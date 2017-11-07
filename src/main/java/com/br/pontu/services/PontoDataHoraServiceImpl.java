@@ -63,8 +63,11 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			//
 			if (dia_id != null) {
 
-				// if(!verificarPontosRepetidos(dia_id, horaFormatado)) {
-
+				 if(!verificarPontosRepetidos(dia_id, horaFormatado)) {
+					 
+				 }
+				
+				
 				// Salva a hora, e o ID do dia correspondente
 				phora.setHora(horaFormatado);
 				phora.setDataId(dia_id);
@@ -72,7 +75,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 				return true;
 
-				// }
+				
 
 			} else {
 
@@ -104,7 +107,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 	// caso contrário = Retorna null
 	private Long verificarDiaExistente(String diaFormatado, Long userId) {
 
-		List<PontoData> datas = pontoDataRepository.findByUserId(userId);
+		List<PontoData> datas = pontoDataRepository.findByUserId(userId, diaFormatado);
 
 		for (int i = 0; i < datas.size(); i++) {
 
@@ -155,9 +158,33 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 	// Return false: não houver pontos repetidos
 	private Boolean verificarPontosRepetidos(Long dia_id, String horaFormatado) {
 
-		// pontoHoraRepository.
-
+		List<String> horarios = pontoHoraRepository.findByDayId(dia_id);
+		
+		int temporizador = 3;
+		
+		int horBanco = 0, horFormat = 0;
+		int minBanco = 0, minFormat = 0;
+		
+		for(int i = 0; i < horarios.size(); i++) {
+			
+			//Formata horas
+			horFormat = Integer.parseInt(horaFormatado.substring(0, 2));
+			horBanco = Integer.parseInt(horarios.get(i).substring(0, 2));
+			
+			//Formata minutos
+			minFormat = Integer.parseInt(horaFormatado.substring(3));
+			minBanco = Integer.parseInt(horarios.get(i).substring(3));
+			
+		
+			
+			
+			
+		}
+		
+		
+//		return ((minF - minB) >= temporizador) ?  true : false;
 		return false;
+		
 	}
 
 	
