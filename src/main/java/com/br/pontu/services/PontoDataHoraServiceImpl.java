@@ -23,8 +23,7 @@ import com.br.pontu.repositories.PontoHoraRepository;
 @Service("pontoDataHoraService")
 public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
-	
-	// Injeções 
+	// Injeções
 	@Autowired
 	private PontoHoraRepository pontoHoraRepository;
 	@Autowired
@@ -32,8 +31,8 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 	@Autowired
 	private UserServiceImpl userService;
 
-	
-	// Função resposável por bater ponto, garantir unicidade e conscistência do banco. 
+	// Função resposável por bater ponto, garantir unicidade e conscistência do
+	// banco.
 	@Override
 	public boolean baterPonto(String matricula, String password) {
 
@@ -58,65 +57,73 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			PontoData pdata = new PontoData();
 			PontoHora phora = new PontoHora();
 
-			
 			// Garante apenas uma data por usuário
 			Long dia_id = verificarDiaExistente(diaFormatado, user.getId());
-			
-			// 
-			if(dia_id != null) {
-				
-				if(!verificarPontosRepetidos(dia_id, horaFormatado)) {
-					
-					// Salva a hora, e o ID do dia correspondente
-					phora.setHora(horaFormatado);
-					phora.setDataId(dia_id);
-					pontoHoraRepository.save(phora);
-					
-					return true;
-					
-				} 
-				
+
+			//
+			if (dia_id != null) {
+
+				// if(!verificarPontosRepetidos(dia_id, horaFormatado)) {
+
+				// Salva a hora, e o ID do dia correspondente
+				phora.setHora(horaFormatado);
+				phora.setDataId(dia_id);
+				pontoHoraRepository.save(phora);
+
+				return true;
+
+				// }
+
 			} else {
-								
+
 				// Salva o dia com a data, e o ID do usuário
 				pdata.setDia(diaFormatado);
 				pdata.setUserId(user.getId());
 				pdata = pontoDataRepository.save(pdata);
-				
+
 				// Salva a hora, e o ID do dia correspondente
 				phora.setHora(horaFormatado);
 				phora.setDataId(pdata.getId());
 				pontoHoraRepository.save(phora);
-				
+
 				return true;
-				
+
 			}
 		}
 
 		return false;
 	}
+	
+	
+	
+	
+	
 
 	// Função que verifica se já existe aquela data salva no banco
 	// caso exista = Retorna ID do dia
 	// caso contrário = Retorna null
 	private Long verificarDiaExistente(String diaFormatado, Long userId) {
-		
-		List<PontoData> datas = pontoDataRepository.findAll();
-		
-		for(int i = 0; i < datas.size(); i++) {
-			
-			if(diaFormatado.equals(datas.get(i).getDia()) && datas.get(i).getUserId().equals(userId)) {
-				
-				System.out.println("\n------------------\nID do user" + datas.get(i).getId());
-				
+
+		List<PontoData> datas = pontoDataRepository.findByUserId(userId);
+
+		for (int i = 0; i < datas.size(); i++) {
+
+			if (diaFormatado.equals(datas.get(i).getDia()) && datas.get(i).getUserId().equals(userId)) {
+
 				return datas.get(i).getId();
 			}
 		}
-		
+
 		return null;
 	}
 
-	// Função que checa se o Usuário buscado do banco, tenha a matricula e a senha iguais as do banco.
+	
+	
+	
+	
+	
+	// Função que checa se o Usuário buscado do banco, tenha a matricula e a senha
+	// iguais as do banco.
 	private Boolean verificarUserESenha(String matricula, String password, User user) {
 
 		try {
@@ -129,9 +136,9 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 				return true;
 			}
-			
+
 			return false;
-			
+
 		} catch (NoSuchAlgorithmException e) {
 
 			e.printStackTrace();
@@ -141,16 +148,24 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 	}
 
 	
-	//Return true: se houver pontos repetidos
-	//Return false: não houver pontos repetidos
+	
+	
+	
+	// Return true: se houver pontos repetidos
+	// Return false: não houver pontos repetidos
 	private Boolean verificarPontosRepetidos(Long dia_id, String horaFormatado) {
 
-		//pontoHoraRepository.
-		
+		// pontoHoraRepository.
 
 		return false;
 	}
 
+	
+	
+	
+	
+	
+	
 	// =======================================================================================
 	// Métodos posteriores para serem implementados
 	@Override
