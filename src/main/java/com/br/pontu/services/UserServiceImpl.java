@@ -22,7 +22,6 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.br.pontu.entity.User;
 import com.br.pontu.repositories.UserRepository;
@@ -76,6 +75,7 @@ public class UserServiceImpl implements UserService {
 		return userRepository.getOne(id);
 	}
 
+	@SuppressWarnings("restriction")
 	public String encodePassword(String senha) throws NoSuchAlgorithmException {
 
 		MessageDigest md = MessageDigest.getInstance("SHA-256");
