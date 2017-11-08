@@ -171,6 +171,14 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 		return false;
 	}
+	
+	
+	@Override
+	public void buscar30Dias(String matricula) {
+		
+		
+		
+	}
 
 	// =======================================================================================
 	// Métodos posteriores para serem implementados
@@ -185,4 +193,20 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		// TODO Auto-generated method stub
 
 	}
+
+	
+
+	@Override
+	public void buscar60Dias() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void buscar90Dias() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

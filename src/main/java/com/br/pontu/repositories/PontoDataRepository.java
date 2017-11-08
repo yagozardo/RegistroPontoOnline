@@ -16,5 +16,7 @@ public interface PontoDataRepository extends JpaRepository<PontoData, Long>{
 	//Return: Lista de datas
 	@Query(value = "SELECT * FROM ponto_data WHERE user_id = :userid AND dia = :diaF", nativeQuery = true)
 	List<PontoData> findByUserId(@Param("userid") Long userId, @Param("diaF") String diaFormatado);
+	
+	
 
 }

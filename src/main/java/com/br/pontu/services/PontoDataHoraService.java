@@ -18,5 +18,13 @@ public interface PontoDataHoraService {
 	
 	public void deletarPonto(User user);
 
+	public void buscar30Dias(String matricula);
+	
+	public void buscar60Dias();
+	
+	public void buscar90Dias();
+
+	
+	
 }
 
