@@ -63,19 +63,16 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			//
 			if (dia_id != null) {
 
-				 if(!verificarPontosRepetidos(dia_id, horaFormatado)) {
-					 
-				 }
-				
-				
-				// Salva a hora, e o ID do dia correspondente
-				phora.setHora(horaFormatado);
-				phora.setDataId(dia_id);
-				pontoHoraRepository.save(phora);
+				if (!verificarPontosRepetidos(dia_id, horaFormatado)) {
+
+					// Salva a hora, e o ID do dia correspondente
+					phora.setHora(horaFormatado);
+					phora.setDataId(dia_id);
+					pontoHoraRepository.save(phora);
+
+				}
 
 				return true;
-
-				
 
 			} else {
 
@@ -96,11 +93,6 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 		return false;
 	}
-	
-	
-	
-	
-	
 
 	// Função que verifica se já existe aquela data salva no banco
 	// caso exista = Retorna ID do dia
@@ -120,11 +112,6 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		return null;
 	}
 
-	
-	
-	
-	
-	
 	// Função que checa se o Usuário buscado do banco, tenha a matricula e a senha
 	// iguais as do banco.
 	private Boolean verificarUserESenha(String matricula, String password, User user) {
@@ -150,49 +137,41 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		return false;
 	}
 
-	
-	
-	
-	
 	// Return true: se houver pontos repetidos
 	// Return false: não houver pontos repetidos
 	private Boolean verificarPontosRepetidos(Long dia_id, String horaFormatado) {
 
 		List<String> horarios = pontoHoraRepository.findByDayId(dia_id);
-		
+
+		// Variável que permite desconsiderar pontos batidos nesse intervalo de tempo 
 		int temporizador = 3;
-		
+
 		int horBanco = 0, horFormat = 0;
 		int minBanco = 0, minFormat = 0;
-		
-		for(int i = 0; i < horarios.size(); i++) {
-			
-			//Formata horas
-			horFormat = Integer.parseInt(horaFormatado.substring(0, 2));
-			horBanco = Integer.parseInt(horarios.get(i).substring(0, 2));
-			
-			//Formata minutos
-			minFormat = Integer.parseInt(horaFormatado.substring(3));
+
+		// Formata horas e min atuais
+		horFormat = Integer.parseInt(horaFormatado.substring(0, 2));
+		minFormat = Integer.parseInt(horaFormatado.substring(3));
+		// Converte tudo para minutos
+		minFormat = minFormat + (horFormat * 60);
+
+		for (int i = 0; i < horarios.size(); i++) {
+
+			// Formata horas e min vindos do banco
 			minBanco = Integer.parseInt(horarios.get(i).substring(3));
-			
-		
-			
-			
-			
+			horBanco = Integer.parseInt(horarios.get(i).substring(0, 2));
+			minBanco = minBanco + (horBanco * 60);
+
+			// Faz uma subtração e checa com o temporizador
+			if ((minFormat - minBanco) <= temporizador) {
+
+				return true;
+			}
 		}
-		
-		
-//		return ((minF - minB) >= temporizador) ?  true : false;
+
 		return false;
-		
 	}
 
-	
-	
-	
-	
-	
-	
 	// =======================================================================================
 	// Métodos posteriores para serem implementados
 	@Override
