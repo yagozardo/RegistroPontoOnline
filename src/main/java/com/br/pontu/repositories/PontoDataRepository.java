@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.br.pontu.entity.PontoData;
+import com.br.pontu.services.PontoDataHoraServiceImpl;
 
 @Repository
 public interface PontoDataRepository extends JpaRepository<PontoData, Long>{
@@ -18,5 +19,11 @@ public interface PontoDataRepository extends JpaRepository<PontoData, Long>{
 	List<PontoData> findByUserId(@Param("userid") Long userId, @Param("diaF") String diaFormatado);
 	
 	
+    //Query resposável por buscar os últimos 30 dias e os horários de ponto de um determinado usuário.
+	//Params: Id do usuário, dia atual.
+	//Return: Dias e horas.
+	@Query(value = "SELECT dia, hora FROM ponto_data INNER JOIN ponto_hora ON ponto_data.id = ponto_hora.data_id WHERE ponto_data.user_id = :userid", nativeQuery = true)
+	List<PontoDataHoraServiceImpl.diaComHoras> findLast30Days(@Param("userid") Long userId, String dataFormatada);
+
 
 }

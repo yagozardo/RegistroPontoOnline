@@ -18,4 +18,5 @@ public interface PontoHoraRepository extends JpaRepository<PontoHora, Long>{
 	@Query(value = "SELECT hora FROM ponto_hora WHERE data_id = :diaid", nativeQuery = true)
 	List<String> findByDayId(@Param("diaid") Long dia_id);
 
+        
 }
