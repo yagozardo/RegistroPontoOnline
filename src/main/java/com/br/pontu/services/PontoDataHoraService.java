@@ -1,9 +1,12 @@
 
 package com.br.pontu.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.br.pontu.entity.User;
+import com.br.pontu.services.PontoDataHoraServiceImpl.diaComHoras;
 
 /**
  * 
@@ -18,7 +21,7 @@ public interface PontoDataHoraService {
 	
 	public void deletarPonto(User user);
 
-	public void buscar30Dias(String matricula);
+	public List<diaComHoras> buscar30Dias(Long userId);
 	
 	public void buscar60Dias();
 	

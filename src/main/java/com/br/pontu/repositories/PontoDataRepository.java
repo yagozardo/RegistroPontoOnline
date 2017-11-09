@@ -20,10 +20,14 @@ public interface PontoDataRepository extends JpaRepository<PontoData, Long>{
 	
 	
     //Query resposável por buscar os últimos 30 dias e os horários de ponto de um determinado usuário.
-	//Params: Id do usuário, dia atual.
+	//Params: Id do usuário, data com 30 dias atrás, data atual.
 	//Return: Dias e horas.
-	@Query(value = "SELECT dia, hora FROM ponto_data INNER JOIN ponto_hora ON ponto_data.id = ponto_hora.data_id WHERE ponto_data.user_id = :userid", nativeQuery = true)
-	List<PontoDataHoraServiceImpl.diaComHoras> findLast30Days(@Param("userid") Long userId, String dataFormatada);
+	@Query(value = "SELECT dia, hora" + 
+					"FROM ponto_data INNER JOIN ponto_hora ON ponto_data.id = ponto_hora.data_id" +
+					"WHERE ponto_data.user_id = :userid" + 
+					"AND dia BETWEEN :data_anterior AND :data_atual;", nativeQuery = true)
+	List<PontoDataHoraServiceImpl.diaComHoras> findLastDays(@Param("userid") Long userId, 
+			@Param("data_anterior") String dataAnterior, @Param("data_atual") String dataAtual);
 
 
 }
