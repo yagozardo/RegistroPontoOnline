@@ -1,8 +1,10 @@
 package com.br.pontu.services;
 
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import com.br.pontu.entity.PontoHora;
 import com.br.pontu.entity.User;
 import com.br.pontu.repositories.PontoDataRepository;
 import com.br.pontu.repositories.PontoHoraRepository;
+import com.mysql.jdbc.PreparedStatement;
 
 /**
  *
@@ -173,7 +176,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 	// Função que retorna os dias com horários de um determinado usuário
 	@Override
-	public List<diaComHoras> buscar30Dias(Long userId) {
+	public List<diaComHoras> buscar30Dias(Long userId) throws SQLException {
 
 		String dataAnterior = null, dataAtual = null;
 
@@ -182,24 +185,42 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		Calendar dia = null;
 		dia = Calendar.getInstance();
 		dataAtual = dateFormat.format(dia.getTime());
-		
-		//Pega a data e subtrai 30 dias
+
+		// Pega a data e subtrai 30 dias
 		dia = Calendar.getInstance();
 		dia.add(Calendar.DATE, -30);
 		dataAnterior = dateFormat.format(dia.getTime());
 
-		return pontoDataRepository.findLastDays(userId, dataAnterior, dataAtual);
+		
+		final PreparedStatement ps = con.prepareStatement("");
+		Object object = pontoDataRepository.findLastDays(userId, dataAnterior, dataAtual);
+
+		
+		Object[] objects= (Object[]) object;
+		
+		List<Object> list = Arrays.asList(objects);
+		
+		
+		System.out.println("Dia mais format " + list.get(1).toString());
+		System.out.println("Dia mais format " + list.get(2));
+		
+		return null;
 
 	}
 
 	// Classe utilitária para fazer composição dos dias com as horas de um
 	// determinado usuário
-	public class diaComHoras {
+	public class diaComHoras extends Object{
 
 		// Atributos
 		private String cDia;
 		private String cHora;
 
+		diaComHoras() {
+
+		}
+
+		
 		diaComHoras(String cDia, String cHora) {
 
 			this.cDia = cDia;

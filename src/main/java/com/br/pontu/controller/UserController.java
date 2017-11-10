@@ -5,6 +5,7 @@
  */
 package com.br.pontu.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,9 @@ public class UserController {
     }
     
     @GetMapping
-    public List<diaComHoras> listaDiasComHoras(@PathVariable Long userId) {
+    public List<diaComHoras> listaDiasComHoras() throws SQLException {
 
-    	userId = (long) 1;
+    	Long userId = (long) 1;
     	return pontoDataHoraServiceImpl.buscar30Dias(userId);
     }
     
