@@ -5,12 +5,16 @@
  */
 package com.br.pontu.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.br.pontu.services.PontoDataHoraServiceImpl;
+import com.br.pontu.services.PontoDataHoraServiceImpl.diaComHoras;
 
 /**
  *
@@ -30,10 +34,11 @@ public class UserController {
         return "/profile";
     }
     
-//    @GetMapping("/{id}")
-//    public List<diaComHoras> listaDiasComHoras(@PathVariable Long userId) {
-//
-//    	return pontoDataHoraServiceImpl.buscar30Dias(userId);
-//    }
+    @GetMapping
+    public List<diaComHoras> listaDiasComHoras(@PathVariable Long userId) {
+
+    	userId = (long) 1;
+    	return pontoDataHoraServiceImpl.buscar30Dias(userId);
+    }
     
 }
