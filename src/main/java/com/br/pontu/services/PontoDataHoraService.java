@@ -1,13 +1,12 @@
 
 package com.br.pontu.services;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.br.pontu.entity.DiaComHoras;
 import com.br.pontu.entity.User;
-import com.br.pontu.services.PontoDataHoraServiceImpl.DiaComHoras;
 
 /**
  * 
@@ -22,7 +21,7 @@ public interface PontoDataHoraService {
 	
 	public void deletarPonto(User user);
 
-	public List<DiaComHoras> buscar30Dias(Long userId) throws SQLException;
+	public List<DiaComHoras> buscar30Dias(Long userId);
 	
 	public void buscar60Dias();
 	

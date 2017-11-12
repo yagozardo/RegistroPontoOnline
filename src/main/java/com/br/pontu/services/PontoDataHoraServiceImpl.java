@@ -14,6 +14,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.pontu.entity.DiaComHoras;
 import com.br.pontu.entity.PontoData;
 import com.br.pontu.entity.PontoHora;
 import com.br.pontu.entity.User;
@@ -178,9 +179,10 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 	// Função que retorna os dias com horários de um determinado usuário
 	@Override
-	public List<DiaComHoras> buscar30Dias(Long userId) throws SQLException {
+	public List<DiaComHoras> buscar30Dias(Long userId) {
 
 		String dataAnterior = null, dataAtual = null;
+		int qDias = 30;
 
 		// Pega a data e formata
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -190,13 +192,13 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 		// Pega a data e subtrai 30 dias
 		dia = Calendar.getInstance();
-		dia.add(Calendar.DATE, -30);
+		dia.add(Calendar.DATE, - qDias);
 		dataAnterior = dateFormat.format(dia.getTime());
 
 		//Query para select ao banco
 		String sql = "SELECT dia, hora FROM ponto_data INNER JOIN ponto_hora ON ponto_data.id = ponto_hora.data_id "
-				+ "WHERE ponto_data.user_id = '" + userId + "' AND ponto_data.dia BETWEEN '" + dataAnterior + "' AND '"
-				+ dataAtual + "';";
+				+ "WHERE ponto_data.user_id = '" + userId + "' AND (ponto_data.dia BETWEEN '" + dataAnterior + "' AND '"
+				+ dataAtual + "');";
 
 		try {
 			
@@ -230,44 +232,8 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		return null;
 	}
 
-	// Classe utilitária para fazer composição dos dias com as horas de um
-	// determinado usuário
-	public class DiaComHoras {
 
-		// Atributos
-		private String dia;
-		private String hora;
-		
-		DiaComHoras() {
-
-		}
-		DiaComHoras(String dia, String hora) {
-			super();
-			this.dia = dia;
-			this.hora = hora;
-		}
-		
-		// Getters and setters ---------------
-		public String getDia() {
-			return dia;
-		}
-		public void setDia(String dia) {
-			this.dia = dia;
-		}
-		public String getHora() {
-			return hora;
-		}
-		public void setHora(String hora) {
-			this.hora = hora;
-		}
-
-		// To String ------------------------------
-		@Override
-		public String toString() {
-			return "DiaComHoras [dia=" + dia + ", hora=" + hora + "]";
-		}
-	}
-
+	// Resposável por criar conexão com o SGBD
 	public static Connection getConnection() {
 
 		Connection con = null;
@@ -277,9 +243,8 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/usuariodb", "root", "123456");
 			
 		} catch (SQLException ex) {
-			
 		}
-
+		
 		return con;
 	}
 

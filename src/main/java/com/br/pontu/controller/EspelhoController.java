@@ -1,18 +1,23 @@
 package com.br.pontu.controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.br.pontu.entity.DiaComHoras;
 import com.br.pontu.services.PontoDataHoraServiceImpl;
-import com.br.pontu.services.PontoDataHoraServiceImpl.DiaComHoras;
 
+/**
+ * 
+ * @author Alves
+ * @since 12/11/2017
+ */
 @RestController
-@RequestMapping("/foda")
+@RequestMapping("/espelho")
 public class EspelhoController {
 	
 	@Autowired
@@ -20,9 +25,8 @@ public class EspelhoController {
 
     
     @PostMapping
-    public List<DiaComHoras> listaDiasComHoras() throws SQLException {
+    public List<DiaComHoras> listaDiasComHoras(@RequestBody Long userId) {
 
-    	Long userId = (long) 15;
     	return pontoDataHoraServiceImpl.buscar30Dias(userId);
     }
 
