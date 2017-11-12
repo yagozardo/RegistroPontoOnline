@@ -1,10 +1,13 @@
 package com.br.pontu.services;
 
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -16,7 +19,6 @@ import com.br.pontu.entity.PontoHora;
 import com.br.pontu.entity.User;
 import com.br.pontu.repositories.PontoDataRepository;
 import com.br.pontu.repositories.PontoHoraRepository;
-import com.mysql.jdbc.PreparedStatement;
 
 /**
  *
@@ -176,7 +178,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 	// Função que retorna os dias com horários de um determinado usuário
 	@Override
-	public List<diaComHoras> buscar30Dias(Long userId) throws SQLException {
+	public List<DiaComHoras> buscar30Dias(Long userId) throws SQLException {
 
 		String dataAnterior = null, dataAtual = null;
 
@@ -191,58 +193,94 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		dia.add(Calendar.DATE, -30);
 		dataAnterior = dateFormat.format(dia.getTime());
 
-		
-		final PreparedStatement ps = con.prepareStatement("");
-		Object object = pontoDataRepository.findLastDays(userId, dataAnterior, dataAtual);
+		//Query para select ao banco
+		String sql = "SELECT dia, hora FROM ponto_data INNER JOIN ponto_hora ON ponto_data.id = ponto_hora.data_id "
+				+ "WHERE ponto_data.user_id = '" + userId + "' AND ponto_data.dia BETWEEN '" + dataAnterior + "' AND '"
+				+ dataAtual + "';";
 
+		try {
+			
+			//Instacia lista da Classe utilitária DiaComHoras
+			List<DiaComHoras> listaDiasComHoras = new ArrayList<>();
+			
+			//Cria conexão com o SBGD e realiza a consulta
+			Connection conn = PontoDataHoraServiceImpl.getConnection();
+			java.sql.PreparedStatement p = conn.prepareStatement(sql);
+			ResultSet rs = p.executeQuery();
+
+			//Loop para extrair todas as tuplas
+			while (rs.next()) {
+
+				DiaComHoras aux = new DiaComHoras();
+				
+				aux.setDia(rs.getString("dia"));
+				aux.setHora(rs.getString("hora"));
+
+				listaDiasComHoras.add(aux);	
+			}
+
+			return listaDiasComHoras;
+			
+		} catch (Exception ex) {
+			
+			ex.printStackTrace();
+		}
 		
-		Object[] objects= (Object[]) object;
-		
-		List<Object> list = Arrays.asList(objects);
-		
-		
-		System.out.println("Dia mais format " + list.get(1).toString());
-		System.out.println("Dia mais format " + list.get(2));
-		
+		//Por defult caso encotre algum erro 
 		return null;
-
 	}
 
 	// Classe utilitária para fazer composição dos dias com as horas de um
 	// determinado usuário
-	public class diaComHoras extends Object{
+	public class DiaComHoras {
 
 		// Atributos
-		private String cDia;
-		private String cHora;
-
-		diaComHoras() {
-
-		}
-
+		private String dia;
+		private String hora;
 		
-		diaComHoras(String cDia, String cHora) {
+		DiaComHoras() {
 
-			this.cDia = cDia;
-			this.cHora = cHora;
 		}
-
+		DiaComHoras(String dia, String hora) {
+			super();
+			this.dia = dia;
+			this.hora = hora;
+		}
+		
 		// Getters and setters ---------------
-		public String getcDia() {
-			return cDia;
+		public String getDia() {
+			return dia;
+		}
+		public void setDia(String dia) {
+			this.dia = dia;
+		}
+		public String getHora() {
+			return hora;
+		}
+		public void setHora(String hora) {
+			this.hora = hora;
 		}
 
-		public void setcDia(String cDia) {
-			this.cDia = cDia;
+		// To String ------------------------------
+		@Override
+		public String toString() {
+			return "DiaComHoras [dia=" + dia + ", hora=" + hora + "]";
+		}
+	}
+
+	public static Connection getConnection() {
+
+		Connection con = null;
+
+		try {
+			
+			con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/usuariodb", "root", "123456");
+			
+		} catch (SQLException ex) {
+			
 		}
 
-		public String getcHora() {
-			return cHora;
-		}
-
-		public void setcHora(String cHora) {
-			this.cHora = cHora;
-		}
+		return con;
 	}
 
 	// =======================================================================================

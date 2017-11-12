@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.br.pontu.entity.User;
-import com.br.pontu.services.PontoDataHoraServiceImpl.diaComHoras;
+import com.br.pontu.services.PontoDataHoraServiceImpl.DiaComHoras;
 
 /**
  * 
@@ -22,7 +22,7 @@ public interface PontoDataHoraService {
 	
 	public void deletarPonto(User user);
 
-	public List<diaComHoras> buscar30Dias(Long userId) throws SQLException;
+	public List<DiaComHoras> buscar30Dias(Long userId) throws SQLException;
 	
 	public void buscar60Dias();
 	
