@@ -81,19 +81,11 @@ function val_rg() {
     if (rg === "") { // campo vazio
         aviso("srg", "input_rg");
         document.forms.cadastro.frg.focus(); // foca no campo
-    } else if (rg.length <= 5) { // conteudo do campo insuficiente 
+    } else if (rg.length <= 3) { // conteudo do campo insuficiente 
         erro("srg", "input_rg");
         document.forms.cadastro.frg.focus();
     } else {
-        if (validarRG(rg)) {
-            sucesso("srg", "input_rg");
-        } else {
-            document.getElementById('srg').style.color = "#E74C3C"; // muda a cor da fonte do aviso
-            document.getElementById('srg').innerHTML = " RG Inválido!"; // muda o estilo do formulário
-            document.getElementById('input_rg').className = 'form-group has-error'; // muda o estilo do formulário
-            val++;
-        }
-
+        sucesso("srg", "input_rg");
     }
 }
 
