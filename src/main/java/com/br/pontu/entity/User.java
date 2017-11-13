@@ -147,7 +147,6 @@ public class User implements Serializable {
 		this.rg = rg;
 	}
 
-
 	@NotNull
 	@NotEmpty
 	@Size(min = 8, max = 16)
