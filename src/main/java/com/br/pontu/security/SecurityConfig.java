@@ -33,15 +33,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                
-<<<<<<< HEAD
+
 //                .antMatchers("/admin/registro").permitAll()
                 .antMatchers("/admin/**").hasAuthority(Role.Admin.toString())
                 .antMatchers("/espelho/**").hasAnyAuthority(Role.Admin.toString(), Role.User.toString())
-=======
+
                 .antMatchers("/admin/registro").permitAll()
 //                .antMatchers("/admin/**").hasAuthority(Role.Admin.toString())
->>>>>>> WSPonto
-                
+
                 .antMatchers("/login").permitAll()
                 .and()
                 .formLogin()
