@@ -237,7 +237,7 @@ function val_celular() {
     if (celular === "") { // campo vazio
         aviso("scelular", "input_celular");
         document.forms.cadastro.fcelular.focus(); // foca no campo
-    } else if (celular.length < 10) { // conteudo do campo insuficiente 
+    } else if (celular.length < 15) { // conteudo do campo insuficiente 
         erro("scelular", "input_celular");
         document.forms.cadastro.fcelular.focus();
     } else {
