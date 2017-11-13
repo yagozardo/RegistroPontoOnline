@@ -159,7 +159,7 @@ function val_carteira_trabalho() {
     if (ct === "") { // campo vazio
         aviso("scarteiraTrabalho", "input_carteiraDeTrabalho");
         document.forms.cadastro.fct.focus(); // foca no campo
-    } else if (ct.length < 5) { // conteudo do campo insuficiente 
+    } else if (ct.length < 1) { // conteudo do campo insuficiente 
         erro("scarteiraTrabalho", "input_carteiraDeTrabalho");
         document.forms.cadastro.fct.focus();
     } else {
@@ -173,7 +173,7 @@ function val_cargo() {
     if (cargo === "") { // campo vazio
         aviso("scargo", "input_cargo");
         document.forms.cadastro.fcargo.focus(); // foca no campo
-    } else if (cargo.length < 10) { // conteudo do campo insuficiente 
+    } else if (cargo.length < 2) { // conteudo do campo insuficiente 
         erro("scargo", "input_cargo");
         document.forms.cadastro.fcargo.focus();
     } else {
