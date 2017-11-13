@@ -59,6 +59,11 @@ and open the template in the editor.
                         <center><font color="Red" size="2" > O usuário e/ou senha não conferem</font></center>
                         <a class="login-link" th:href="@{/}">Esqueceu sua senha?</a>
                     </div>
+                    
+                     <div th:if="${#bools.isTrue(param.sucess)}">
+                        <center><font color="Green" size="2" >Ponto batido!</font></center>
+                        
+                    </div>
                 </form>
             </div>
 
