@@ -20,4 +20,6 @@ import com.br.pontu.entity.User;
 public interface UserRepository extends JpaRepository<User, Long>{
     
     List<User> findByMatriculaAndPassword(String matricula, String password);
+
+
 }

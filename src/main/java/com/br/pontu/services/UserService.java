@@ -25,5 +25,7 @@ public interface UserService {
     public void deletarUsuario(long id);
 
     public User findById(long id);
+    
+    public List<User> findByMatricula(String matricula);
 
 }
