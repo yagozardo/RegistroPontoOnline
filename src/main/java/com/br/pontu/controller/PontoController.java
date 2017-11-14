@@ -30,10 +30,13 @@ public class PontoController {
     
     @PostMapping("/ponto")
     public String registraPonto(@RequestParam String matricula, @RequestParam String password){
+   
+        if(service.baterPonto(matricula, password)){
+            
+            return ("redirect:/ponto?sucess");
+        } 
     	
-       	service.baterPonto(matricula, password);
-    	
-        return ("redirect:/ponto");
+        return ("redirect:/ponto/?error");
     }
     
     
