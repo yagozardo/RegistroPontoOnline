@@ -145,9 +145,6 @@ function val_tipo_acesso() {
     if (TA === "") { // campo vazio
         aviso("stipoAcesso", "input_tipoAcesso");
         document.forms.cadastro.ftipoAcesso.focus(); // foca no campo
-    } else if (TA.length < 11) { // conteudo do campo insuficiente 
-        erro("stipoAcesso", "input_tipoAcesso");
-        document.forms.cadastro.ftipoAcesso.focus();
     } else {
         sucesso("stipoAcesso", "input_tipoAcesso");
     }
