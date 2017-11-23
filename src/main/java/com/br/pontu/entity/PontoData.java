@@ -2,12 +2,17 @@
 package com.br.pontu.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -24,7 +29,16 @@ public class PontoData implements Serializable {
 	private Long id;
 	private String dia;
 	private Long userId;
-
+	private List<User> usuario;
+	
+	@ManyToMany(mappedBy = "ponto")
+	public List<User> getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(List<User> usuario) {
+		this.usuario = usuario;
+	}
+	private List<PontoHora> horas;
 	
 	
 	// Getters and Setters
@@ -59,6 +73,14 @@ public class PontoData implements Serializable {
 		this.userId = userId;
 	}
 	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "datas_horas", joinColumns = @JoinColumn(name = "id_data"), inverseJoinColumns = @JoinColumn(name = "id_hora"))
+	public List<PontoHora> getHoras() {
+		return horas;
+	}
+	public void setHoras(List<PontoHora> horas) {
+		this.horas = horas;
+	}
 	
 	// Equals and Hashcode --------------------------------------------------
 	@Override

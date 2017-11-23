@@ -1,15 +1,20 @@
 package com.br.pontu.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -56,7 +61,7 @@ public class User implements Serializable {
 	private Adress endereco;
 	private Departamento departamento;
 
-//	private List<PontoData> ponto;
+	private List<PontoData> ponto;
 	
 	// FIM
 	// ========================================================================================
@@ -201,16 +206,15 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-//	 Ponto
-//	 @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval =
-//	 true)
-//	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-//	public List<PontoData> getPonto() {
-//		return ponto;
-//	}
-//	public void setPonto(List<PontoData> ponto) {
-//		this.ponto = ponto;
-//	}
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_datas", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_data"))
+	public List<PontoData> getPonto() {
+		return ponto;
+	}
+	public void setPonto(List<PontoData> ponto) {
+		this.ponto = ponto;
+	}
 
 	@Embedded
 	public Adress getEndereco() {
@@ -326,9 +330,11 @@ public class User implements Serializable {
 		return true;
 	}
 	// ------------------------------------------------------------------------------------------
+	
+	//ToString ---------------------------------------------------------------------------------
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", nome=" + nome + ", ponto=" + ponto + "]";
+	}
 
-	/**
-	 * Métodos Auxiliares
-	 * ---------------------------------------------------------------------
-	 */
 }
