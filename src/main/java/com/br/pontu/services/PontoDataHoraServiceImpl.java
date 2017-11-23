@@ -42,9 +42,18 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 	public boolean baterPonto(String matricula, String password) {
 
 		List<User> users = userService.findByMatricula(matricula);
+		
+		//Condição para caso não tenha encontrado nada no banco
+		if (users.size() == 0 || matricula.isEmpty() || password.isEmpty()) {
+			
+			return false;
+		}
+		
 		User user = users.get(0);
 
 		if (verificarUserESenha(matricula, password, user)) {
+			
+			System.out.println("Entrou");
 
 			// Pega a data e formata
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -126,7 +135,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			// Encripta se a senha recebida para comparar com a do banco
 			String passwordEncode = userService.encodePassword(password);
 
-			// Checa se ambos tanto a matricula, quanto o password é o mesmo do banco
+			// Checa se ambos tanto a matricula, quanto o password é o mesmo do banco	
 			if (matricula.equals(user.getMatricula()) && passwordEncode.equals(user.getPassword())) {
 
 				return true;
