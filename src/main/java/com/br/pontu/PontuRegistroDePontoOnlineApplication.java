@@ -10,3 +10,4 @@ public class PontuRegistroDePontoOnlineApplication {
 		SpringApplication.run(PontuRegistroDePontoOnlineApplication.class, args);
 	}
 }
+

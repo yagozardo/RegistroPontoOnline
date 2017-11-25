@@ -11,15 +11,19 @@
 }
 
 .btn_enviar {
-	font-size: 1.4em;
-	font-weight: 900;
-	color: #2C3E50;
+	text-transform: uppercase;
+	font-size: 1.2em;
+	font-weight: 700;
+	color: #ECF0F1;
+	text-shadow: 1px 1px 8px #111;
 }
 
 .btn_listar {
-	font-size: 1.4em;
-	font-weight: 900;
-	color: #2C3E50;
+	text-transform: uppercase;
+	font-size: 1.2em;
+	font-weight: 700;
+	color: #ECF0F1;
+	text-shadow: 1px 1px 8px #111;
 }
 
 .span_form {
@@ -115,6 +119,6 @@
 	font-weight: 700;
 }
 
-.alinhadoEsquerda {text-align:left; margin-right: 20px;}
+.alinhadoEsquerda {text-align:left;}
 .alinhadoCentro {text-align:center;}
 .alinhadoDireita {text-align:right;}
