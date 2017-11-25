@@ -81,11 +81,40 @@
 }
 
 .titulo-modal{
-	font-size: 24px;
-	font-weight: bold;
-	padding-right: 3px;
+	text-transform: uppercase;
+	font-size: 1.5em;
+	color:#2C3E50;
+	margin-right: 10px;
+	font-weight: 700;
 }
 
-.campo-lista-modal{
-
+.lista-modal{
+	padding: 15px;
 }
+
+.lista-modal tr{
+	line-height: 2.2em;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.atributoModal{
+	text-align: right; 
+	text-transform: uppercase;
+	font-size: 1em;
+	color:#2C3E50;
+	margin-right: 10px;
+	font-weight: normal;
+}
+
+.valorModal span{
+	text-align:left;
+	text-transform: uppercase;
+	font-size: 1em;
+	color:#2C3E50;
+	margin-left: 10px;
+	font-weight: 700;
+}
+
+.alinhadoEsquerda {text-align:left; margin-right: 20px;}
+.alinhadoCentro {text-align:center;}
+.alinhadoDireita {text-align:right;}

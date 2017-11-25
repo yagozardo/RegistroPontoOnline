@@ -11,7 +11,7 @@ xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="keywords" content="ponto, ponto eletronico, registro de ponto"/>
-    <meta name="description" content="Sistema de registro de ponto eletronico para vc poder "/>
+    <meta name="description" content="Sistema de registro de ponto eletronico"/>
     <meta name="author" content="Autor"/>
     <meta name="robots" content="index,follow"/>
     <!-- Favicon -->
@@ -34,146 +34,122 @@ xmlns:th="http://www.thymeleaf.org">
     <!-- Fonte Open Sans -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css"/>
 
-          </head>
-          <body>
-            <div class="container-fluid"> 
+</head>
+<body>
+    <div class="container-fluid">
 
-                <!-- Conteúdo -->
-                <div class="row">
-                    <br/>
-                    <div class="col-lg-10 col-lg-offset-1 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <span class="titulo-modal" th:text="${user.nome}">espaco</span>
-                                    <span class="titulo-modal" th:text="${user.sobrenome}"></span>
-                                </div>
-                                <div class="panel-options"> <a class="bg" data-target="#sample-modal-dialog-1" data-toggle="modal" href="#sample-modal"><i class="entypo-cog"></i></a> <a data-rel="collapse" href="#"><i class="entypo-down-open"></i></a> <a data-rel="close" href="#!/tasks" ui-sref="Tasks"><i class="entypo-cancel"></i></a> </div>
-                            </div>
+        <!-- Conteúdo -->
+        <div class="row">
 
-                            <div class="panel-body lista-modal">
-
-                                <div class="campo-lista-modal">
-                                    <label>Data Nascimento: </label>
-                                    <span th:value="${user.dataNascimento}"></span>
-                                </div>
-                                <!-- Data Nascimento -->
-
-                                <div class="campo-lista-modal">
-                                    <label>RG: </label>
-                                    <span th:value="${user.rg}"></span>
-                                </div>
-                                <!-- RG -->
-
-                                <div class="campo-lista-modal">
-                                    <label>CPF: </label>
-                                    <span th:value="${user.cpf}"disabled="true"></span>
-                                </div>
-                                <!-- CPF -->
-
-                                <div class="campo-lista-modal">
-                                    <label>Carteira de Trabalho: </label>
-                                    <span th:value="${user.carteiraDeTrabalho}"></span>
-                                </div>
-                                <!-- CPF -->
-
-                                <div class="campo-lista-modal">
-                                    <label>Estado Civil: </label>
-                                    <span th:value="${user.estadoCivil}"></span>
-                                </div>
-                                <!-- Estado Civil -->
-
-                                <div class="campo-lista-modal">
-                                    <label>Departamento: </label>
-                                    <span th:value="${user.departamento}"></span>
-                                </div>
-
-                                <div class="campo-lista-modal">
-                                    <label>Cargo: </label>
-                                    <span th:value="${user.cargo}"></span>
-                                </div>
-
-                                <div class="campo-lista-modal">
-                                    <label>Nível de Acesso ao sistema: </label>
-                                    <span th:value="${user.acesso}"></span>
-                                </div>
-
-                                <div class="campo-lista-modal">
-                                    <label>Celular: </label>
-                                    <span th:value="${user.celular}"></span>
-                                </div>
-                                <!-- Celular -->
-
-                                <div class="campo-lista-modal">
-                                    <label>Fixo: </label>
-                                    <span th:value="${user.fixo}"></span>
-                                </div>
-                                <!-- Celular -->
-
-                                <div class="campo-lista-modal">
-                                    <label>Número: </label>
-                                    <span th:value="${user.endereco.numero}"></span>
-                                </div>
-                                <!-- Número -->
-
-                                <div class="campo-lista-modal">
-                                    <label>Logradouro: </label>
-                                    <span th:value="${user.endereco.logradouro}"></span>
-                                </div>
-                                <!-- Logradouro -->
-
-                                <div class="campo-lista-modal">
-                                    <label>Complemento: </label>
-                                    <span th:value="${user.endereco.complemento}"></span>
-                                </div>
-                                <!-- Complemeno -->
-
-                                <div class="campo-lista-modal">
-                                    <label>Cidade: </label>
-                                    <span th:value="${user.endereco.cidade}"></span>
-                                </div>
-                                <!-- Cidade -->
-
-                                <div class="campo-lista-modal">
-                                    <label>UF: </label>
-                                    <span th:value="${user.endereco.uf}"></span>
-                                </div>
-                                <!-- Estado -->
-
-                                <div class="campo-lista-modal">
-                                    <label>CEP: </label>
-                                    <span th:value="${user.endereco.cep}"></span>
-                                </div>
-                                <!-- CEP -->
-
-                            </div>
-                        </div>
-                        <!-- .panel panel-default --> 
-
+            <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+               <br>
+               <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <span class="titulo-modal" th:text="${user.nome}"></span>
+                        <span class="titulo-modal" th:text="${user.sobrenome}"></span>
                     </div>
-                    <!-- Coluna do formulário --> 
+                    <div class="panel-options"> <a class="bg" data-target="#sample-modal-dialog-1" data-toggle="modal" href="#sample-modal"><i class="entypo-cog"></i></a> <a data-rel="collapse" href="#"><i class="entypo-down-open"></i></a> <a data-rel="close" href="#!/tasks" ui-sref="Tasks"><i class="entypo-cancel"></i></a> </div>
                 </div>
-                <!-- DIV Registro .row--> 
 
+
+                <div class="panel-body lista-modal">
+
+                    <table style="width:100%" cellspacing="6">  
+                        <tr>
+                            <td class="atributoModal">DATA NASCIMENTO:</td> 
+                            <td class="valorModal"><span th:text="${user.dataNascimento}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">RG:</td>
+                            <td class="valorModal"><span th:text="${user.rg}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">CPF:</td>
+                            <td class="valorModal"><span th:text="${user.cpf}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">CARTEIRA DE TRABALHO:</td>
+                            <td class="valorModal"><span th:text="${user.carteiraDeTrabalho}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">Estado Civil:</td>
+                            <td class="valorModal"><span th:text="${user.estadoCivil}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">Departamento:</td>
+                            <td class="valorModal"><span th:text="${user.departamento}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">Cargo:</td>
+                            <td class="valorModal"><span th:text="${user.cargo}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">Nível de Acesso:</td>
+                            <td class="valorModal"><span th:text="${user.acesso}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">celular:</td>
+                            <td class="valorModal"><span th:text="${user.celular}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">Fixo:</td>
+                            <td class="valorModal"><span th:text="${user.fixo}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">Número:</td>
+                            <td class="valorModal"><span th:text="${user.endereco.numero}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">Logradouro:</td>
+                            <td class="valorModal"><span th:text="${user.endereco.logradouro}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">Complemento:</td>
+                            <td class="valorModal"><span th:text="${user.endereco.complemento}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">Cidade:</td>
+                            <td class="valorModal"><span th:text="${user.endereco.cidade}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">UF:</td>
+                            <td class="valorModal"><span th:text="${user.endereco.uf}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">CEP:</td>
+                            <td class="valorModal"><span th:text="${user.endereco.cep}"></span></td>
+                        </tr>
+                    </table>
+
+                </div>
             </div>
-            <!-- Container -->
+            <!-- .panel panel-default --> 
 
-            <form method="get" th:action="@{/admin/lista}">
-                <div class="row">
-                    <div class="col-lg-4 col-lg-offset-4  col-xs-12">
-                        <div class="form-group">
-                            <button id="btn_enviar" type="submit" class="col-lg-12 col-xs-12 btn btn-primary"><span class="btn_enviar">Voltar</span></button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <br/>
-            <!-- voltar -->
+        </div>
+        <!-- Coluna do formulário --> 
+    </div>
+    <!-- DIV Registro .row--> 
 
-            <script src="../static/dist/js/vendor/jquery.min.js" type="text/javascript"></script> 
-            <script src="../static/dist/js/vendor/video.js" type="text/javascript"></script> 
-            <script src="../static/dist/js/flat-ui.min.js" type="text/javascript"></script> 
-            <script src="assets/js/prettify.js" type="text/javascript"></script> 
-            <script src="assets/js/application.js" type="text/javascript"></script>
-        </body>
-        </html>
+</div>
+<!-- Container -->
+
+<form method="get" th:action="@{/admin/lista}">
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4  col-xs-10 col-xs-offset-1">
+            <div class="form-group">
+                <button id="btn_enviar" type="submit" class="col-lg-12 col-xs-12 btn btn-primary"><span class="btn_enviar">Voltar</span></button>
+            </div>
+        </div>
+    </div>
+</form>
+<br/>
+<!-- voltar -->
+
+<script src="../static/dist/js/vendor/jquery.min.js" type="text/javascript"></script> 
+<script src="../static/dist/js/vendor/video.js" type="text/javascript"></script> 
+<script src="../static/dist/js/flat-ui.min.js" type="text/javascript"></script> 
+<script src="assets/js/prettify.js" type="text/javascript"></script> 
+<script src="assets/js/application.js" type="text/javascript"></script>
+</body>
+</html>
