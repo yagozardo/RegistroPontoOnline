@@ -14,30 +14,27 @@ and open the template in the editor.
         <meta name="description" content="Sistema de registro de ponto eletronico para vc poder "/>
         <meta name="author" content="Autor"/>
         <meta name="robots" content="index,follow"/>
+
         <!-- Favicon -->
-        <!--<link rel="shortcut icon" href="../static/img/favicon.ico"/>-->
         <link rel="shortcut icon" th:href="@{/img/favicon.ico}"/>
 
         <!-- Loading Bootstrap -->
-        <link th:href="@{/dist/css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-        <!--<link href="../static/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>-->
+        <link href="../static/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Loading Flat UI -->
-        <link th:href="@{/dist/css/flat-ui.css}" rel="stylesheet"/>
-        <!--<link href="../static/dist/css/flat-ui.css" rel="stylesheet"/>-->
-        <link th:href="@{/docs/assets/css/demo.css}" rel="stylesheet"/>
-        <!--<link href="../static/docs/assets/css/demo.css" rel="stylesheet"/>-->
-        <link th:href="@{/less/flat-ui.less}" rel="stylesheet"/>
+        <link href="../static/dist/css/flat-ui.css" rel="stylesheet" type="text/css"/>
+        <link href="../staticdocs/assets/css/demo.css" rel="stylesheet" type="text/css"/>
+        <link href="../staticless/flat-ui.less" rel="stylesheet" type="text/css"/>
+
+        <!-- Icones -->
+        <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css"/>
 
         <!-- Estilo próprio -->
-        <link th:href="@{/estilo/estilo.css}" rel="stylesheet"/>
-        <!--<link href="../static/estilo/estilo.css" rel="stylesheet"/>-->
+        <link href="../static/estilo/estilo.css" rel="stylesheet" type="text/css"/>
 
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-        <!--[if lt IE 9]>
-                              <script src="dist/js/vendor/html5shiv.js"></script>
-                              <script src="dist/js/vendor/respond.min.js"></script>
-                            <![endif]-->
+        <!-- Fonte Open Sans -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css"/>
+
     </head>
     <body onload="ano()">
         <!-- ano() função que obtem o ano e seta ele no rodapé --> 
@@ -81,17 +78,33 @@ and open the template in the editor.
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                <h4>
-                                    <center>
-                                        Espelho de Ponto 
-                                    </center>
-                                </h4>
+                                <!-- Título da seção da página, mês e ano -->
+                                <h4>Espelho de Ponto - Novembro/2017</h4>   
                             </div>
                             <div class="panel-options"> </div>
                         </div>
                         <div class="panel-body"> 
-                            
-             
+
+                            <!-- Título e funções -->
+                            <div class="col-lg-9 col-xs-12">
+                                <h6>Nome Sobrenome</h6>
+                            </div>   
+                            <div class="col-lg-3 col-xs-12">
+                                <button class="btn btn-info"><i class="fa fa-calendar" aria-hidden="true"></i><b> Alterar Mês</b></button>
+                                <button class="btn btn-inverse"><i class="fa fa-print" aria-hidden="true"></i><b> Imprimir</b></button>
+                            </div> <!-- FIM Título e funções -->
+
+                            <div class="row">
+                                <div class="col-lg-12 col-xs-12">
+
+                                </div>
+                            </div>
+
+
+
+
+
+
 
                         </div>
                     </div>
