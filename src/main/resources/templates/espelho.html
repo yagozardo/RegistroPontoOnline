@@ -6,35 +6,7 @@ and open the template in the editor.
 -->
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Pontu - Registro</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="keywords" content="ponto, ponto eletronico, registro de ponto"/>
-        <meta name="description" content="Sistema de registro de ponto eletronico para vc poder "/>
-        <meta name="author" content="Autor"/>
-        <meta name="robots" content="index,follow"/>
-
-        <!-- Favicon -->
-        <link rel="shortcut icon" th:href="@{/img/favicon.ico}"/>
-
-        <!-- Loading Bootstrap -->
-        <link href="../static/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-        <!-- Loading Flat UI -->
-        <link href="../static/dist/css/flat-ui.css" rel="stylesheet" type="text/css"/>
-        <link href="../staticdocs/assets/css/demo.css" rel="stylesheet" type="text/css"/>
-        <link href="../staticless/flat-ui.less" rel="stylesheet" type="text/css"/>
-
-        <!-- Icones -->
-        <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css"/>
-
-        <!-- Estilo próprio -->
-        <link href="../static/estilo/estilo.css" rel="stylesheet" type="text/css"/>
-
-        <!-- Fonte Open Sans -->
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css"/>
-
+    <head th:include="/fragments/header">
     </head>
     <body onload="ano()">
         <!-- ano() função que obtem o ano e seta ele no rodapé --> 
@@ -43,33 +15,8 @@ and open the template in the editor.
         -->
         <div class="container-fluid"> 
 
-            <!-- MENU -->
-            <div class="row menu">
-                <nav class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01"> <span class="sr-only">Toggle navigation</span> </button>
-                        <a class="navbar-brand" href="#"><img class="logo_pequena" th:src="@{/img/logo/logo_pontu_145x48.png}"/><!--<img class="logo_pequena" src="../static/img/logo/logo_pontu_145x48.png" alt="logo da pontu">--></a> </div>
-                    <div class="collapse navbar-collapse" id="navbar-collapse-01">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a th:href="@{/admin/menu}">Menu</a></li>
-                            <li class="active"><a th:href="@{/logout}">Logout</a></li>
-                        </ul>
-                        <form class="navbar-form navbar-right" action="#" role="search">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input class="form-control" id="navbarInput-01" type="search" placeholder="Procurar"/>
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn"><span class="fui-search"></span></button>
-                                    </span> </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- /.navbar-collapse --> 
-                </nav>
-                <!-- /navbar --> 
-            </div>
-            <!-- .row menu --> 
-            <!-- ======= -->
+            <!-- INCLUDE NAVBAR -->
+            <div th:include="/fragments/navbar"></div>
 
             <div class="row"> 
                 <!--
@@ -138,33 +85,9 @@ and open the template in the editor.
         </div>
         <!-- Container -->
 
-        <footer>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xs-12 texto-centro">
-                        <h3 class="footer-title">Pontu</h3>
-                        <p>Sistema de Registro de Ponto eletrônico &copy; -<span id="ano"></span></p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Sweet Alert --> 
-        <script th:src="@{/sweetalert/sweetalert.min.js}"></script>
-        <link th:href="@{/sweetalert/sweetalert.css}" rel="stylesheet" type="text/css" >
-            <!-- Sweet Alert --> 
-
-            <!-- Script para verificar se campos obrigatórios foram preenchidos --> 
-            <script th:src="@{/dist/js/checaCampos.js}"></script> 
-
-            <!-- Script carregar o Jquery --> 
-            <script th:src="@{/dist/js/jquery-3.2.1.min.js}"></script> 
-            <!-- Script para comparar se as senhas são iguais --> 
-            <script th:src="@{/dist/js/rest_cep.js}"></script> 
-            <script th:src="@{/dist/js/obeterAno.js}"></script> 
-            <script th:src="@{/dist/js/vendor/jquery.min.js}"></script> 
-            <script th:src="@{/dist/js/flat-ui.min.js}"></script> 
-            <script th:src="@{/docs/assets/js/application.js}"></script>
+        <div th:replace="/fragments/footer"></div> 
+        <div th:replace="/fragments/js"></div> 
+        
     </body>
 </html>
 <!-- >>>>>>> Stashed changes -->
