@@ -152,33 +152,7 @@ xmlns:th="http://www.thymeleaf.org">
         </div>
         <!-- Container -->
 
-        <footer>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xs-12 texto-centro">
-                        <h3 class="footer-title">Pontu</h3>
-                        <p>Sistema de Registro de Ponto eletrônico &copy; -<span id="ano"></span></p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Sweet Alert --> 
-        <script th:src="@{/sweetalert/sweetalert.min.js}" type="text/javascript"></script>
-        <link th:href="@{/sweetalert/sweetalert.css}" rel="stylesheet" type="text/css" >
-        <!-- Sweet Alert --> 
-
-        <!-- Script para verificar se campos obrigatórios foram preenchidos --> 
-        <script th:src="@{/dist/js/checaCampos.js}" type="text/javascript"></script> 
-
-        <!-- Script carregar o Jquery --> 
-        <script th:src="@{/dist/js/jquery-3.2.1.min.js}" type="text/javascript"></script> 
-        <!-- Script para comparar se as senhas são iguais --> 
-        <script th:src="@{/dist/js/rest_cep.js}" type="text/javascript"></script> 
-        <script th:src="@{/dist/js/obeterAno.js}" type="text/javascript"></script> 
-        <script th:src="@{/dist/js/vendor/jquery.min.js}" type="text/javascript"></script> 
-        <script th:src="@{/dist/js/flat-ui.min.js}" type="text/javascript"></script> 
-        <script th:src="@{/docs/assets/js/application.js}" type="text/javascript"></script>
-    </body>
-    </html>
-<!-- >>>>>>> Stashed changes -->
+        <div th:replace="/fragments/footer"></div>
+        <div th:replace="/fragments/js"></div>
+</body>
+</html>
