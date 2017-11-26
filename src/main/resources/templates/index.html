@@ -6,28 +6,7 @@ and open the template in the editor.
 -->
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Pontu - Registro</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0"/>
-        <meta name="keywords" content="ponto, ponto eletronico, registro de ponto"/>
-        <meta name="description" content="Sistema de registro de ponto eletronico para vc poder "/>
-        <meta name="author" content="Autor"/>
-        <meta name="robots" content="index,follow"/>
-
-        <link rel="shortcut icon" th:href="@{/img/favicon.ico}"/>
-
-        <!-- site css -->
-        <link rel="stylesheet" type="text/css" th:href="@{/css/site.css}"/>
-        <link rel="stylesheet" type="text/css" th:href="@{/dist/css/vendor/bootstrap/css/bootstrap.min.css}"/>
-        <link rel="stylesheet" type="text/css" th:href="@{/bootflat/css/bootflat.css}"/>
-        <link th:href="@{/dist/css/flat-ui.css}" type="text/css" rel="stylesheet"/>
-        <link rel="stylesheet" type="text/css" th:href="@{/estilo/estilo.css}"/>
-        <script type="text/javascript" th:src="@{/js/site.min.js}"></script>
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css"/>
-
-
-
+    <head th:include="/fragments/header">
     </head>
     <body class="bg-login" onload="ano()">
         <div class="container-fluid"> 

@@ -6,34 +6,7 @@ and open the template in the editor.
 -->
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Pontu - Registro</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="keywords" content="ponto, ponto eletronico, registro de ponto"/>
-    <meta name="description" content="Sistema de registro de ponto eletronico"/>
-    <meta name="author" content="Autor"/>
-    <meta name="robots" content="index,follow"/>
-    <!-- Favicon -->
-    <link rel="shortcut icon" th:href="@{/img/favicon.ico}"/>
-
-    <!-- Loading Bootstrap -->
-    <link th:href="@{/dist/css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-
-    <!-- Loading Flat UI -->
-    <link th:href="@{/dist/css/flat-ui.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/docs/assets/css/demo.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/less/flat-ui.less}" rel="stylesheet" type="text/css"/>
-
-    <!-- Icones -->
-    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}" type="text/css"/>
-
-    <!-- Estilo próprio -->
-    <link th:href="@{/estilo/estilo.css}" rel="stylesheet" type="text/css"/>
-
-    <!-- Fonte Open Sans -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css"/>
-
+<head th:include="/fragments/header">
 </head>
 <body>
     <div class="container-fluid">
