@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head th:include="/fragments/header">
+    <title>Pontu - Lista de Usuários</title>
+</head>
+<body onload="ano()">
+    <!-- ano() função que obtem o ano e seta ele no rodapé --> 
+	<div class="container-fluid"> 
+
+		<!-- INCLUDE NAVBAR -->
+        <div th:include="/fragments/navbar"></div>
+
+                <div class="row">
+
+                    <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <h4>
+                                        <center>
+                                            Lista de Usuários
+                                        </center>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="table table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th >Nome</th>
+                                                <th >Sobrenome</th>
+                                                <th >Matrícula</th>
+                                                <th >RG</th>
+                                                <th >CPF</th>
+                                                <th >PIS</th>
+                                                <th >Departamento</th>
+                                                <th>Ver mais</th>
+                                                <th>Editar</th>
+                                                <th>Apagar</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="lista : ${list}">
+                                                <td   th:text="${lista.nome}"></td>
+                                                <td   th:text="${lista.sobrenome}"></td>
+                                                <td   th:text="${lista.matricula}"></td>
+                                                <td   th:text="${lista.rg}"></td>
+                                                <td   th:text="${lista.cpf}"></td>
+                                                <td   th:text="${lista.carteiraDeTrabalho}"></td>
+                                                <td   th:text="${lista.departamento}"></td>
+                                                <td class="icon-detalhes" >
+                                                    <a th:href="@{/admin/user/{id}(id=${lista.id})}" data-toggle="modal" data-target=".bs-example-modal-md">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="icon-editar" th:value="${lista.id}">
+                                                    <a th:href="@{/admin/edit/{id}(id=${lista.id})}">
+                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="icon-excluir" >
+                                                    <form th:method="GET" th:action="@{/admin/delete/{id}}">
+                                                        <input type="hidden" name="method" value="delete"/>
+                                                        <a id="botaoDelete" onclick="return confirm('Deseja excluir esse usuário?')" th:href="@{/admin/delete/{id}(id=${lista.id})}">
+                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                        </a>
+                                                    </form>
+                                                </td>
+                                                <td class="icon-editar" th:value="${lista.id}">
+                                                    <a th:href="@{/user/espelho/{id}(id=${lista.id})}">
+                                                        <i class="fa fa-id-badge" aria-hidden="true"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- .row -->
+
+                <!-- Modal -->
+                <div class="modal fade bs-example-modal-md bg-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div class="modal-dialog modal-md" role="document">
+                        <div class="modal-content">
+                        <!-- <table class="lista-detalhes">
+                            <tbody>
+                                <tr>
+                                    <td class="lista-atributo">Nome:</td>
+                                    <td class="lista-esquerda">Exemplo</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Sobrenome:</td>
+                                    <td class="lista-esquerda">Exemplo</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">RG:</td>
+                                    <td class="lista-esquerda">00000000</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">CPF:</td>
+                                    <td class="lista-esquerda">000.000.000-00</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Estado Civil:</td>
+                                    <td class="lista-esquerda">Exemplo</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Departamento:</td>
+                                    <td class="lista-esquerda">Exemplo</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Tipo de Acesso:</td>
+                                    <td class="lista-esquerda">Exemplo</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Carteira de Trabalho:</td>
+                                    <td class="lista-esquerda">Exemplo</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Cargo:</td>
+                                    <td class="lista-esquerda">Exemplo</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Email:</td>
+                                    <td class="lista-esquerda">Exemplo@exemplo.com</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Celular:</td>
+                                    <td class="lista-esquerda">(00) 00000-0000</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Fixo:</td>
+                                    <td class="lista-esquerda">(00) 0000-0000</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">CEP:</td>
+                                    <td class="lista-esquerda">00000-000</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Logradouro:</td>
+                                    <td class="lista-esquerda">Exemplo</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Cidade:</td>
+                                    <td class="lista-esquerda">Exemplo</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">UF:</td>
+                                    <td class="lista-esquerda">GO</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Número:</td>
+                                    <td class="lista-esquerda">00</td>
+                                </tr>
+                                <tr>
+                                    <td class="lista-atributo">Complemento:</td>
+                                    <td class="lista-esquerda">Exemplo</td>
+                                </tr>
+                            </tbody>
+                        </table>-->
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Container -->
+
+        <div th:replace="/fragments/footer"></div>
+        <div th:replace="/fragments/js"></div>
+    </body>
+    </html>

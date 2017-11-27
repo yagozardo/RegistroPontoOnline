@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="/fragments/header">
+        <title>Pontu - Espelho</title>
+    </head>
+    <body onload="ano()">
+        <!-- ano() função que obtem o ano e seta ele no rodapé --> 
+        <div class="container-fluid"> 
+
+            <!-- INCLUDE NAVBAR -->
+            <div th:include="/fragments/navbar"></div>
+
+            <div class="row"> 
+                <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <!-- Título da seção da página, mês e ano -->
+                                <h4>Espelho de Ponto - Novembro/2017</h4>   
+                            </div>
+                            <div class="panel-options"> </div>
+                        </div>
+                        <div class="panel-body"> 
+
+                            <div class="row">
+                                <!-- Título e funções -->
+                                <div class="col-lg-9 col-xs-8">
+                                    <span th:text="${user.nome}"></span>
+                                    <span th:text="${user.sobrenome}"></span>
+                                </div>   
+                                <div class="col-lg-3 col-xs-4">
+                                    <button class="btn btn-info btn-sm"><i class="fa fa-calendar" aria-hidden="true"></i><b> Alterar Mês</b></button>
+                                    <button class="btn btn-inverse btn-sm"><i class="fa fa-print" aria-hidden="true"></i><b> Imprimir</b></button>
+                                </div>
+                            </div> <!-- FIM Título e funções -->
+
+                            <hr>
+
+                                <!-- Tabela dos pontos -->
+                                <div class="row">
+                                    <div class="col-lg-12 col-xs-12">
+
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Dia</th>
+                                                    <th>Jornada</th>
+                                                    <th>Batidas</th>
+                                                    <th>Apurado</th>
+                                                    <th>Opções</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="lista : ${list}">
+                                                    <td th:text="${lista.dia}"></td><!-- Dia -->
+                                                    <td>8h - 12h - 14h - 18h</td><!-- Jornada -->
+                                                    <td th:text="${lista.hora}"></td><!-- Batidas -->
+                                                    <td>Horas Trabalhadas</td><!-- Apurado -->
+                                                    <td ><i class="fa fa-comment" aria-hidden="true"></i></td><!-- Opções -->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                    <!-- .panel panel-default --> 
+
+                </div>
+                <!-- Coluna do formulário --> 
+            </div>
+            <!-- DIV Registro .row--> 
+
+        </div>
+        <!-- Container -->
+
+        <div th:replace="/fragments/footer"></div> 
+        <div th:replace="/fragments/js"></div> 
+        
+    </body>
+</html>
+<!-- >>>>>>> Stashed changes -->

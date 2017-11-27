@@ -1,0 +1,2 @@
+use usuariodb;
+INSERT INTO usuario (acesso, cargo, carteira_de_trabalho, celular, cpf, data_nascimento, departamento, email, cep, cidade, logradouro, numero, uf, estado_civil, matricula, nome, password, rg, sobrenome) VALUES ('Admin', 'TI', '987654', '62 987654321', '11122233344', '01/01/2000', 'TI', 'teste@teste.com', '74000000', 'Goiânia', 'Rua 1', '1', 'GO', 'SOLTEIRO', '111', 'Joaquim', 'pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=', '12345678', 'Santos');

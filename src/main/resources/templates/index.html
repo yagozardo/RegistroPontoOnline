@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="/fragments/header">
+        <title>Pontu - Registro de ponto online</title>
+    </head>
+    <body class="bg-login" onload="ano()">
+        <div class="container-fluid"> 
+
+            <div class="login-form col-lg-offset-5 col-lg-2 col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4 col-xs-12">
+                <center style="margin-bottom: 20px;">
+                    <img th:src="@{/img/logo/logo_pontu_145x48.png}"/>
+                </center>
+                <form name="login" method="post" th:action="@{/ponto}">
+                    <div class="panel-title">
+                        <center>  <h6>Registro de Ponto</h6></center>
+                    </div>
+                    <br/>
+                    <div class="form-group ">
+
+                        <input type="text" class="form-control login-field" value="" placeholder="Matrícula" id="matricula" name="matricula"/>
+                        <label class="login-field-icon fui-user" for="login-name"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control login-field" value="" placeholder="Senha" id="password" name="password"/>
+                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Registrar Ponto</button> 
+                    <a class="login-link" th:href="@{/admin/registro}">Administrador</a>
+                    
+                    <div th:if="${#bools.isTrue(param.error)}">
+                        <center><font color="Red" size="2" > O usuário e/ou senha não conferem</font></center>
+                        <a class="login-link" th:href="@{/}">Esqueceu sua senha?</a>
+                    </div>
+                    
+                     <div th:if="${#bools.isTrue(param.sucess)}">
+                        <center><font color="Green" size="2" >Ponto batido!</font></center>
+                        
+                    </div>
+                </form>
+            </div>
+
+
+        </div><!-- Container -->
+
+    </body>
+</html>

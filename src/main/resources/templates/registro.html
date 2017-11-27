@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="/fragments/header">
+        <title>Pontu - Registro</title>
+    </head>
+    <body onload="ano()">
+        <!-- ano() função que obtem o ano e seta ele no rodapé --> 
+        <div class="container-fluid"> 
+
+            <!-- INCLUDE NAVBAR -->
+            <div th:include="/fragments/navbar"></div>
+
+            <div class="row"> 
+                <!--
+                  <<<<<<< Updated upstream -->
+                <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4><center>Registro</center></h4>
+                            </div>
+                            <div class="panel-options"> </div>
+                        </div>
+                        <div class="panel-body"> 
+                            <!-- Formulário principalo --> 
+                            <form name="cadastro" role="form" th:action="@{/admin/registro}" method="POST" onsubmit="return valida_form()" th:object="${user}">
+                                <input type="hidden" th:field="*{id}" />
+                                <!--<form name="cadastro" role="form" action="" method="POST">-->
+                                <fieldset>
+                                    <legend>
+                                        <h5>Dados Pessoais</h5>
+                                    </legend>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div class="form-group" id="input_nome">
+                                                <label class="col-lg-12 col-xs-12">Nome*<span class="span_form" id="snome"></span>
+                                                    <input type="text" id="fnome" name="fnome" class="form-control" oninput="val_nome()" placeholder="Nome" th:field="*{nome}" maxlength="20">
+                                                </label>
+                                            </div>
+                                        </div><!-- Nome -->
+
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div class="form-group" id="input_sobrenome">
+                                                <label class="col-lg-12 col-xs-12">Sobrenome*<span class="span_form" id="ssobrenome"></span>
+                                                    <input type="text" id="fsobrenome" name="fsobrenome" class="form-control" oninput="val_sobrenome()" placeholder="Sobrenome" th:field="*{sobrenome}" maxlength="50">
+                                                </label>
+                                            </div>
+                                        </div><!-- Sobrenome -->
+
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div class="form-group" id="input_dataNascimento">
+                                                <label class="col-lg-12 col-xs-12">Data Nascimento*<span class="span_form" id="sdataNascimento"></span>
+                                                    <input type="date" id="fdatanasc" name="fdataNasc" class="form-control" oninput="val_data()" placeholder="dd/mm/aaaa" th:field="*{dataNascimento}">
+                                                </label>
+                                            </div>
+                                        </div><!-- Data Nascimento -->
+
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div class="form-group" id="input_rg">
+                                                <label class="col-lg-12 col-xs-12">RG*<span class="span_form" id="srg"></span>
+                                                    <input type="number" id="frg" name="frg" class="form-control" oninput="val_rg()" placeholder="RG" th:field="*{rg}" maxlength="12">
+                                                </label>
+                                            </div>
+                                        </div><!-- RG -->
+
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div class="form-group" id="input_cpf">
+                                                <label class="col-lg-12 col-xs-12">CPF*<span class="span_form" id="scpf"></span>
+                                                    <input type="number" id="fcpf" name="fcpf" class="form-control" oninput="val_cpf()" placeholder="000.000.000-00" th:field="*{cpf}"  maxlength="14">
+                                                </label>
+                                            </div>
+                                        </div><!-- CPF -->
+
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="col-lg-12 col-xs-12">
+                                                    Estado Civil*<span class="span_form" id="sestadoCivil"></span>
+                                                    <div class="selecter closed" name="festadoCivil" tabindex="0" id="input_estadoCivil">
+                                                        <select name="festadoCivil"  class="form-group form-control selecter_1 selecter-element" tabindex="0" th:field="*{estadoCivil}" oninput="val_estado_civil()">
+                                                            <option name="" th:each="estadoCivil : ${T(com.br.pontu.enums.EstadoCivil).values()}" th:value="${estadoCivil}" th:text="${estadoCivil}"></option>
+                                                        </select>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div><!-- Estado Civil -->
+
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="col-lg-12 col-xs-12">
+                                                    Departamento*<span class="span_form" id="sdepartamento"></span>
+                                                    <div class="selecter closed" name="fdepartamento" id="input_departamento" tabindex="0">
+                                                        <select name="fdepartamento" class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{departamento}" oninput="val_departamento()">
+                                                            <option  name="" th:each="departamento : ${T(com.br.pontu.enums.Departamento).values()}" th:value="${departamento}" th:text="${departamento}"></option>
+                                                        </select>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div><!-- Departamento -->
+
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="col-lg-12 col-xs-12">
+                                                    Tipo de Acesso*<span class="span_form" id="stipoAcesso"></span>
+                                                    <div class="selecter closed" tabindex="0" id="input_tipoAcesso">
+                                                        <select name="ftipoAcesso"  class="form-group form-control selecter_1 selecter-element" tabindex="-1" th:field="*{acesso}">
+                                                            <option name="ftipoAcesso" th:each="acesso : ${T(com.br.pontu.enums.Role).values()}" th:value="${acesso}" th:text="${acesso}"></option>
+                                                        </select>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div><!-- Tipo de acesso --> 
+
+                                    </div><!-- .row -->
+
+                                    <div class="row">
+
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div class="form-group" id="input_cargo">
+                                                <label class="col-lg-12 col-xs-12">Cargo*<span class="span_form" id="scargo"></span>
+                                                    <input type="text" id="fcargo"  name="fcargo" class="form-control" oninput="val_cargo()" placeholder="" th:field="*{Cargo}" >
+                                                </label>
+                                            </div>
+                                        </div><!-- Cargo --> 
+
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div class="form-group" id="input_carteiraDeTrabalho">
+                                                <label class="col-lg-12 col-xs-12">Carteira de Trabalho*<span class="span_form" id="scarteiraTrabalho"></span>
+                                                    <input type="number" id="fct"  name="fct" class="form-control" oninput="val_carteira_trabalho()" placeholder=""  th:field="*{carteiraDeTrabalho}"  maxlength="10">
+                                                </label>
+                                            </div>
+                                        </div><!-- Carteira de Trabalho -->
+
+                                    </div>
+                                    <!-- .row-->
+
+                                </fieldset>
+                                <hr>
+                                    <fieldset>
+                                        <legend>
+                                            <h5>Contatos</h5>
+                                        </legend>
+
+                                        <div class="row">
+                                            <div class="col-lg-4 col-xs-12">
+                                                <div class="form-group"  id="input_email" >
+                                                    <label class="col-lg-12 col-xs-12">Email*<span class="span_form" id="semail"></span>
+                                                        <input type="text"  id="femail"  attrname="telephone1" name="femail" class="form-control" oninput="val_email()" th:field="*{email}" placeholder="email@email.com"  maxlength="50">
+                                                    </label>
+                                                </div>
+                                            </div><!-- E-mail -->
+
+                                            <div class="col-lg-4 col-xs-12">
+                                                <div class="form-group"  id="input_celular" >
+                                                    <label class="col-lg-12 col-xs-12">Celular*<span class="span_form" id="scelular"></span>
+                                                        <input type="text"  id="fcelular" name="fcelular" class="form-control input-mask-phone" oninput="val_celular()" th:field="*{celular}" onkeypress="return mask(event, this, '(##) #####-####')" placeholder="(DD) 00000-0000"  maxlength="15">
+                                                    </label>
+                                                </div>
+                                            </div><!-- Celular -->
+
+                                            <div class="col-lg-4 col-xs-12">
+                                                <div class="form-group" id="input_fixo" >
+                                                    <label class="col-lg-12 col-xs-12">Fixo<span class="span_form" id="sfixo"></span>
+                                                        <input type="text" id="ffixo"  name="ffixo" class="form-control" oninput="val_fixo()" th:field="*{fixo}" onkeypress="return mask(event, this, '(##) ####-####')" placeholder="(DD) 0000-0000"  maxlength="14">
+                                                    </label>
+                                                </div>
+                                            </div><!-- Fixo -->
+
+                                        </div><!-- .row-->
+
+                                    </fieldset>
+                                    <!-- Telefones -->
+                                    <hr>
+                                        <fieldset>
+                                            <legend>
+                                                <h5>Endereço</h5>
+                                            </legend>
+                                            <div class="row">
+                                                <div class="col-lg-2 col-xs-12">
+                                                    <div class="form-group" id="input_cep" >
+                                                        <label class="col-lg-12 col-xs-12">CEP*<span class="span_form" id="scep"></span>
+                                                            <input type="text" id="fcep" name="fcep" class="form-control" onBlur="endereco_cep()" th:field="*{endereco.cep}" placeholder="00000-000"  maxlength="9">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <!-- CEP -->
+
+                                                <div class="col-lg-4 col-xs-12">
+                                                    <div class="form-group" id="input_logradouro" >
+                                                        <label class="col-lg-12 col-xs-12">Logradouro*<span class="span_form" id="slogradouro"></span>
+                                                            <input type="text" id="flogradouro" name="flogradouro" class="form-control" th:field="*{endereco.logradouro}" placeholder="Rua A"  maxlength="50" >
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <!-- Logradouro -->
+
+                                                <div class="col-lg-3 col-xs-12">
+                                                    <div class="form-group" id="input_cidade" >
+                                                        <label class="col-lg-12 col-xs-12">Cidade*<span class="span_form" id="scidade"></span>
+                                                            <input type="text" id="fcidade" name="fcidade" class="form-control" th:field="*{endereco.cidade}" placeholder=""  maxlength="10" >
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <!-- Cidade -->
+
+                                                <div class="col-lg-2 col-xs-12">
+                                                    <div class="form-group" id="input_uf">
+                                                        <label class="col-lg-12 col-xs-12">UF*<span class="span_form" id="suf"></span>
+                                                            <input type="text" id="fuf" name="fuf" class="form-control" th:field="*{endereco.uf}" >
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <!-- Estado -->
+
+                                                <div class="col-lg-2 col-xs-12">
+                                                    <div class="form-group" id="input_numero">
+                                                        <label class="col-lg-12 col-xs-12">Número*<span class="span_form" id="snumero"></span>
+                                                            <input type="text" id="fnumero" name="fnumero" class="form-control" th:field="*{endereco.numero}" oninput="val_numero()" placeholder="Nº">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <!-- Número -->
+
+                                                <div class="col-lg-10 col-xs-12">
+                                                    <div class="form-group" id="input_complemento" >
+                                                        <label class="col-lg-12 col-xs-12">Complemento*<span class="span_form" id="scomplemento"></span>
+                                                            <input type="text" id="fcomplemento" name="fcomplemento" class="form-control"  th:field="*{endereco.complemento}" oninput="val_complemento()" placeholder="Apartamento Nº100"  maxlength="50">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <!-- Complemeno --> 
+
+                                            </div>
+                                            <!-- .row-->
+                                        </fieldset>
+                                        <hr>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-lg-offset-4  col-xs-12">
+                                                    <div class="form-group">
+                                                        <button id="btn_enviar" type="submit" class="col-lg-12 col-xs-12 btn btn-primary"><span class="btn_enviar"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Enviar</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- .row -->
+
+                                            </form>
+                                            <br/>
+                                            <form th:action="@{/admin/lista/}" method="get">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-lg-offset-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <button id="btn_listaUsuarios" type="submit" class="col-lg-12 col-xs-12 btn btn-info"><span class="btn_listar"><i class="fa fa-address-card-o" aria-hidden="true"></i>  Lista de Usuários</span></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- .row --> 
+                                                <br/>
+                                            </form>
+
+                                            </div><!-- .panel-body --> 
+                                            </div><!-- .panel panel-default --> 
+                                            </div><!-- Coluna do formulário --> 
+                                            </div><!-- DIV Registro .row--> 
+
+                                            </div>
+                                            <!-- Container -->
+
+                                            <div th:include="/fragments/footer"></div> 
+                                            <div th:include="/fragments/js"></div> 
+                                            </body>
+                                            </html>
+                                            <!-- >>>>>>> Stashed changes -->

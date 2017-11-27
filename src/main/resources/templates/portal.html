@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:include="/fragments/header">
+        <title>Pontu - Portal</title>
+    </head>
+    <body onload="ano()">
+        <!-- ano() função que obtem o ano e seta ele no rodapé --> 
+        <div class="container-fluid"> 
+
+            <!-- INCLUDE NAVBAR -->
+            <div th:include="/fragments/navbar"></div>
+
+            <div class="row"> 
+                <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <!-- Título da seção da página, mês e ano -->
+                                <h4>Espelho de Ponto - Novembro/2017</h4>   
+                            </div>
+                            <div class="panel-options"> </div>
+                        </div>
+                        <div class="panel-body"> 
+
+                            <div class="row">
+                                <!-- Título e funções -->
+                                <div class="col-lg-10 col-xs-8">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="panel-title">
+                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                                <span class="titulo-modal" ></span>
+                                                <span class="titulo-modal" ></span>
+                                                <h6> Nome Sobrenome</h6>
+                                            </div>
+                                            <div class="panel-options"> </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <h4>Dados Pessoias</h4>
+                                            <div class="table table-responsive">
+                                                <table class="table table-striped" style="width:100%" cellspacing="6">
+                                                    <tr>
+                                                        <td class="atributoModal">Nome</td> 
+                                                        <td class="valorModal"><span></span> <span ></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="atributoModal">DATA NASCIMENTO</td> 
+                                                        <td class="valorModal"><span >15/10/1994</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="atributoModal">e-mail</td>
+                                                        <td class="valorModal"><span >rei@gmail.com</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="atributoModal">CARTEIRA DE TRABALHO</td>
+                                                        <td class="valorModal"><span >102030</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="atributoModal">RG</td>
+                                                        <td class="valorModal"><span >123456</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="atributoModal">CPF</td>
+                                                        <td class="valorModal"><span >14725836900</span></td>
+                                                    </tr>
+                                                </table>
+
+                                                <h4>Dados da Empresa</h4>
+                                                <div class="table table-responsive">
+                                                    <table class="table table-striped" style="width:100%" cellspacing="6">
+                                                        <tr>
+                                                            <td class="atributoModal">Matrícula:</td>
+                                                            <td class="valorModal"><span>1921</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="atributoModal">Cargo:</td>
+                                                            <td class="valorModal"><span >Desenvolvedor</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="atributoModal">Departamento:</td>
+                                                            <td class="valorModal"><span >TI</span></td>
+                                                        </tr>
+                                                    </table>
+
+                                                </div>   
+                                            </div>
+                                        </div>
+                                    </div> <!-- FIM Título e funções -->
+
+                                </div>
+
+                                <div class="col-lg-2 col-xs-4">
+
+                                    <div class="col-lg-12 col-xs-12">
+                                        <button type="button" class="btn btn-lg btn-primary"><i class="fa fa-calendar" aria-hidden="true"></i> Espelho de ponto</button>
+                                    </div>  
+                                </div>
+
+                            </div>  <!-- .row --> 
+                        </div>
+                        <!-- .panel panel-default --> 
+
+                    </div>
+                    <!-- Coluna do formulário -->
+                </div>
+            </div><!-- .row--> 
+
+        </div><!-- .container-fluid -->
+
+        <div th:replace="/fragments/footer"></div> 
+        <div th:replace="/fragments/js"></div> 
+    </body>
+</html>
+<!-- >>>>>>> Stashed changes -->
