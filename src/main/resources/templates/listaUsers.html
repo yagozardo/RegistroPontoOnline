@@ -45,6 +45,7 @@ xmlns:th="http://www.thymeleaf.org">
                                                 <th>Ver mais</th>
                                                 <th>Editar</th>
                                                 <th>Apagar</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -73,6 +74,11 @@ xmlns:th="http://www.thymeleaf.org">
                                                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                         </a>
                                                     </form>
+                                                </td>
+                                                <td class="icon-editar" th:value="${lista.id}">
+                                                    <a th:href="@{/user/espelho/{id}(id=${lista.id})}">
+                                                        <i class="fa fa-id-badge" aria-hidden="true"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         </tbody>
