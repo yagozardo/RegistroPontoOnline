@@ -23,11 +23,7 @@ and open the template in the editor.
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                <h4>
-                                    <center>
-                                        Registro
-                                    </center>
-                                </h4>
+                                <h4><center>Registro</center></h4>
                             </div>
                             <div class="panel-options"> </div>
                         </div>
@@ -47,8 +43,7 @@ and open the template in the editor.
                                                     <input type="text" id="fnome" name="fnome" class="form-control" oninput="val_nome()" placeholder="Nome" th:field="*{nome}" maxlength="20">
                                                 </label>
                                             </div>
-                                        </div>
-                                        <!-- Nome -->
+                                        </div><!-- Nome -->
 
                                         <div class="col-lg-3 col-xs-12">
                                             <div class="form-group" id="input_sobrenome">
@@ -56,8 +51,7 @@ and open the template in the editor.
                                                     <input type="text" id="fsobrenome" name="fsobrenome" class="form-control" oninput="val_sobrenome()" placeholder="Sobrenome" th:field="*{sobrenome}" maxlength="50">
                                                 </label>
                                             </div>
-                                        </div>
-                                        <!-- Sobrenome -->
+                                        </div><!-- Sobrenome -->
 
                                         <div class="col-lg-3 col-xs-12">
                                             <div class="form-group" id="input_dataNascimento">
@@ -65,8 +59,7 @@ and open the template in the editor.
                                                     <input type="date" id="fdatanasc" name="fdataNasc" class="form-control" oninput="val_data()" placeholder="dd/mm/aaaa" th:field="*{dataNascimento}">
                                                 </label>
                                             </div>
-                                        </div>
-                                        <!-- Data Nascimento -->
+                                        </div><!-- Data Nascimento -->
 
                                         <div class="col-lg-3 col-xs-12">
                                             <div class="form-group" id="input_rg">
@@ -74,8 +67,7 @@ and open the template in the editor.
                                                     <input type="number" id="frg" name="frg" class="form-control" oninput="val_rg()" placeholder="RG" th:field="*{rg}" maxlength="12">
                                                 </label>
                                             </div>
-                                        </div>
-                                        <!-- RG -->
+                                        </div><!-- RG -->
 
                                         <div class="col-lg-3 col-xs-12">
                                             <div class="form-group" id="input_cpf">
@@ -83,8 +75,7 @@ and open the template in the editor.
                                                     <input type="number" id="fcpf" name="fcpf" class="form-control" oninput="val_cpf()" placeholder="000.000.000-00" th:field="*{cpf}"  maxlength="14">
                                                 </label>
                                             </div>
-                                        </div>
-                                        <!-- CPF -->
+                                        </div><!-- CPF -->
 
                                         <div class="col-lg-3 col-xs-12">
                                             <div class="form-group">
@@ -97,8 +88,7 @@ and open the template in the editor.
                                                     </div>
                                                 </label>
                                             </div>
-                                        </div>
-                                        <!-- Estado Civil -->
+                                        </div><!-- Estado Civil -->
 
                                         <div class="col-lg-3 col-xs-12">
                                             <div class="form-group">
@@ -111,8 +101,7 @@ and open the template in the editor.
                                                     </div>
                                                 </label>
                                             </div>
-                                        </div>
-                                        <!-- Departamento -->
+                                        </div><!-- Departamento -->
 
                                         <div class="col-lg-3 col-xs-12">
                                             <div class="form-group">
@@ -125,10 +114,9 @@ and open the template in the editor.
                                                     </div>
                                                 </label>
                                             </div>
-                                        </div>
-                                        <!-- Tipo de acesso --> 
-                                    </div>
-                                    <!-- .row -->
+                                        </div><!-- Tipo de acesso --> 
+
+                                    </div><!-- .row -->
 
                                     <div class="row">
 
@@ -138,8 +126,7 @@ and open the template in the editor.
                                                     <input type="text" id="fcargo"  name="fcargo" class="form-control" oninput="val_cargo()" placeholder="" th:field="*{Cargo}" >
                                                 </label>
                                             </div>
-                                        </div>
-                                        <!-- Cargo --> 
+                                        </div><!-- Cargo --> 
 
                                         <div class="col-lg-3 col-xs-12">
                                             <div class="form-group" id="input_carteiraDeTrabalho">
@@ -147,8 +134,7 @@ and open the template in the editor.
                                                     <input type="number" id="fct"  name="fct" class="form-control" oninput="val_carteira_trabalho()" placeholder=""  th:field="*{carteiraDeTrabalho}"  maxlength="10">
                                                 </label>
                                             </div>
-                                        </div>
-                                        <!-- Carteira de Trabalho -->
+                                        </div><!-- Carteira de Trabalho -->
 
                                     </div>
                                     <!-- .row-->
@@ -159,6 +145,7 @@ and open the template in the editor.
                                         <legend>
                                             <h5>Contatos</h5>
                                         </legend>
+
                                         <div class="row">
                                             <div class="col-lg-4 col-xs-12">
                                                 <div class="form-group"  id="input_email" >
@@ -166,8 +153,7 @@ and open the template in the editor.
                                                         <input type="text"  id="femail"  attrname="telephone1" name="femail" class="form-control" oninput="val_email()" th:field="*{email}" placeholder="email@email.com"  maxlength="50">
                                                     </label>
                                                 </div>
-                                            </div>
-                                            <!-- E-mail -->
+                                            </div><!-- E-mail -->
 
                                             <div class="col-lg-4 col-xs-12">
                                                 <div class="form-group"  id="input_celular" >
@@ -175,8 +161,7 @@ and open the template in the editor.
                                                         <input type="text"  id="fcelular" name="fcelular" class="form-control input-mask-phone" oninput="val_celular()" th:field="*{celular}" onkeypress="return mask(event, this, '(##) #####-####')" placeholder="(DD) 00000-0000"  maxlength="15">
                                                     </label>
                                                 </div>
-                                            </div>
-                                            <!-- Celular -->
+                                            </div><!-- Celular -->
 
                                             <div class="col-lg-4 col-xs-12">
                                                 <div class="form-group" id="input_fixo" >
@@ -184,10 +169,10 @@ and open the template in the editor.
                                                         <input type="text" id="ffixo"  name="ffixo" class="form-control" oninput="val_fixo()" th:field="*{fixo}" onkeypress="return mask(event, this, '(##) ####-####')" placeholder="(DD) 0000-0000"  maxlength="14">
                                                     </label>
                                                 </div>
-                                            </div>
-                                            <!-- Fixo --> 
-                                        </div>
-                                        <!-- .row-->
+                                            </div><!-- Fixo -->
+
+                                        </div><!-- .row-->
+
                                     </fieldset>
                                     <!-- Telefones -->
                                     <hr>
@@ -276,20 +261,17 @@ and open the template in the editor.
                                                 <!-- .row --> 
                                                 <br/>
                                             </form>
-                                            </div>
-                                            </div>
-                                            <!-- .panel panel-default --> 
 
-                                            </div>
-                                            <!-- Coluna do formulário --> 
-                                            </div>
-                                            <!-- DIV Registro .row--> 
+                                            </div><!-- .panel-body --> 
+                                            </div><!-- .panel panel-default --> 
+                                            </div><!-- Coluna do formulário --> 
+                                            </div><!-- DIV Registro .row--> 
 
                                             </div>
                                             <!-- Container -->
 
-                                            <div th:replace="/fragments/footer"></div> 
-                                            <div th:replace="/fragments/js"></div> 
+                                            <div th:include="/fragments/footer"></div> 
+                                            <div th:include="/fragments/js"></div> 
                                             </body>
                                             </html>
                                             <!-- >>>>>>> Stashed changes -->
