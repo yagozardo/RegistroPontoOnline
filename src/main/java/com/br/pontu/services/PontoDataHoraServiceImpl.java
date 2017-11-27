@@ -2,9 +2,7 @@ package com.br.pontu.services;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.pontu.config.DAO;
 import com.br.pontu.entity.DiaComHoras;
 import com.br.pontu.entity.PontoData;
 import com.br.pontu.entity.PontoHora;
@@ -35,6 +34,8 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 	private PontoDataRepository pontoDataRepository;
 	@Autowired
 	private UserServiceImpl userService;
+	@Autowired
+	private DAO dao;
 
 	// Função resposável por bater ponto, garantir unicidade e conscistência do
 	// banco.
@@ -52,8 +53,6 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		User user = users.get(0);
 
 		if (verificarUserESenha(matricula, password, user)) {
-			
-			System.out.println("Entrou");
 
 			// Pega a data e formata
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -215,7 +214,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			List<DiaComHoras> listaDiasComHoras = new ArrayList<>();
 			
 			//Cria conexão com o SBGD e realiza a consulta
-			Connection conn = PontoDataHoraServiceImpl.getConnection();
+			Connection conn = dao.getConnection();
 			java.sql.PreparedStatement p = conn.prepareStatement(sql);
 			ResultSet rs = p.executeQuery();
 
@@ -239,22 +238,6 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		
 		//Por defult caso encotre algum erro 
 		return null;
-	}
-
-
-	// Resposável por criar conexão com o SGBD
-	public static Connection getConnection() {
-
-		Connection con = null;
-
-		try {
-			
-			con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/usuariodb", "root", "123456");
-			
-		} catch (SQLException ex) {
-		}
-		
-		return con;
 	}
 
 	// =======================================================================================
