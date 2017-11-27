@@ -112,6 +112,7 @@ public class User implements Serializable {
 	}
 
 	@NotNull
+	@NotEmpty
 	@Column(name = "data_nascimento", nullable = false)
 	public String getDataNascimento() {
 		return dataNascimento;

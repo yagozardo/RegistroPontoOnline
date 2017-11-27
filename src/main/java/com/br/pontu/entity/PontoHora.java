@@ -2,12 +2,14 @@
 package com.br.pontu.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -24,6 +26,7 @@ public class PontoHora implements Serializable{
 	private Long id;
 	private Long dataId;
 	private String hora;
+	private List<PontoData> datas;
 	
 	//Getters and Setters -------------------------------------------------------------
 	@Id
@@ -54,6 +57,14 @@ public class PontoHora implements Serializable{
 	}
 	public void setDataId(Long dataId) {
 		this.dataId = dataId;
+	}
+	
+	@ManyToMany(mappedBy = "horas")
+	public List<PontoData> getDatas() {
+		return datas;
+	}
+	public void setDatas(List<PontoData> datas) {
+		this.datas = datas;
 	}
 	
 	// Equals and Hashcode ==========================================================

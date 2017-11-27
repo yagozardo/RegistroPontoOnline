@@ -30,14 +30,6 @@ public class PontoData implements Serializable {
 	private String dia;
 	private Long userId;
 	private List<User> usuario;
-	
-	@ManyToMany(mappedBy = "ponto")
-	public List<User> getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(List<User> usuario) {
-		this.usuario = usuario;
-	}
 	private List<PontoHora> horas;
 	
 	
@@ -80,6 +72,14 @@ public class PontoData implements Serializable {
 	}
 	public void setHoras(List<PontoHora> horas) {
 		this.horas = horas;
+	}
+	
+	@ManyToMany(mappedBy = "ponto")
+	public List<User> getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(List<User> usuario) {
+		this.usuario = usuario;
 	}
 	
 	// Equals and Hashcode --------------------------------------------------

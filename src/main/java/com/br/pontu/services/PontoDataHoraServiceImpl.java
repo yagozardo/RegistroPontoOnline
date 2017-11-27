@@ -19,6 +19,7 @@ import com.br.pontu.entity.PontoHora;
 import com.br.pontu.entity.User;
 import com.br.pontu.repositories.PontoDataRepository;
 import com.br.pontu.repositories.PontoHoraRepository;
+import com.br.pontu.repositories.UserRepository;
 
 /**
  *
@@ -36,6 +37,8 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 	private UserServiceImpl userService;
 	@Autowired
 	private DAO dao;
+	@Autowired
+	private UserRepository userRepository;
 
 	// Função resposável por bater ponto, garantir unicidade e conscistência do
 	// banco.
@@ -82,6 +85,10 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 					phora.setHora(horaFormatado);
 					phora.setDataId(dia_id);
 					pontoHoraRepository.save(phora);
+					
+					pdata = pontoDataRepository.findOne(dia_id);
+					pdata.getHoras().add(phora);
+					pdata = pontoDataRepository.save(pdata);
 
 				}
 
@@ -93,11 +100,21 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 				pdata.setDia(diaFormatado);
 				pdata.setUserId(user.getId());
 				pdata = pontoDataRepository.save(pdata);
-
+				
+				// Vincula a data ao usuário
+				user.getPonto().add(pdata);
+				userRepository.save(user);
+				
 				// Salva a hora, e o ID do dia correspondente
 				phora.setHora(horaFormatado);
 				phora.setDataId(pdata.getId());
-				pontoHoraRepository.save(phora);
+				phora = pontoHoraRepository.save(phora);
+
+				// Vincula a hora a data
+				List<PontoHora> hora = new ArrayList<>(); //Como será o primeiro horário desse dia, criar arraylist para não ocorrer null pointer.
+				hora.add(phora);
+				pdata.setHoras(hora);
+				pontoDataRepository.save(pdata);
 
 				return true;
 
