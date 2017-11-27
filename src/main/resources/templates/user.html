@@ -7,6 +7,7 @@ and open the template in the editor.
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 xmlns:th="http://www.thymeleaf.org">
 <head th:include="/fragments/header">
+    <title>Pontu - Usuário</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -60,6 +61,10 @@ xmlns:th="http://www.thymeleaf.org">
                         <tr>
                             <td class="atributoModal">Nível de Acesso:</td>
                             <td class="valorModal"><span th:text="${user.acesso}"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="atributoModal">e-mail:</td>
+                            <td class="valorModal"><span th:text="${user.email}"></span></td>
                         </tr>
                         <tr>
                             <td class="atributoModal">celular:</td>
