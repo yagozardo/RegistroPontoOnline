@@ -22,13 +22,21 @@ import com.br.pontu.services.PontoDataHoraServiceImpl;
  */
 
 @Controller
-@RequestMapping("/resumo")
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
 	private PontoDataHoraServiceImpl pontoDataHoraServiceImpl;
 	
-	@GetMapping()
+   
+        @GetMapping
+    public ModelAndView menu(){
+        ModelAndView model = new ModelAndView("/portal");
+        return model;
+    }
+	
+	
+	@GetMapping("/espelho")
     public ModelAndView espelho(){
         ModelAndView model = new ModelAndView("/espelho");
         
