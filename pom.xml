@@ -5,7 +5,7 @@
 	<groupId>com.br.pontu</groupId>
 	<artifactId>PontuSistemas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>Pontu - Registro de Ponto Online</name>
 	<description>Registro de Ponto via Java Web</description>
 	
@@ -87,13 +87,13 @@
 	
 	<build>
 		<plugins>
-			<plugin>
+			<!--<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<fork>true</fork>
 				</configuration>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 	
