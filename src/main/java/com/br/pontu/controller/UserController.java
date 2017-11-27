@@ -29,7 +29,7 @@ public class UserController {
 	private PontoDataHoraServiceImpl pontoDataHoraServiceImpl;
 	
    
-        @GetMapping
+        @GetMapping("/portal")
     public ModelAndView menu(){
         ModelAndView model = new ModelAndView("/portal");
         return model;
