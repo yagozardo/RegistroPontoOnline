@@ -10,17 +10,12 @@ and open the template in the editor.
     </head>
     <body onload="ano()">
         <!-- ano() função que obtem o ano e seta ele no rodapé --> 
-        <!--
-        <<<<<<< Updated upstream
-        -->
         <div class="container-fluid"> 
 
             <!-- INCLUDE NAVBAR -->
             <div th:include="/fragments/navbar"></div>
 
             <div class="row"> 
-                <!--
-            <<<<<<< Updated upstream -->
                 <div class="col-lg-10 col-lg-offset-1 col-xs-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -60,12 +55,12 @@ and open the template in the editor.
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>26</td><!-- Dia -->
+                                                <tr th:each="lista : ${list}">
+                                                    <td th:text="${lista.dia}"></td><!-- Dia -->
                                                     <td>8h - 12h - 14h - 18h</td><!-- Jornada -->
-                                                    <td>8h - 12h - 14h - 18h</td><!-- Batidas -->
+                                                    <td th:text="${lista.hora}"></td><!-- Batidas -->
                                                     <td>Horas Trabalhadas</td><!-- Apurado -->
-                                                    <td><i class="fa fa-comment" aria-hidden="true"></i></td><!-- Opções -->
+                                                    <td ><i class="fa fa-comment" aria-hidden="true"></i></td><!-- Opções -->
                                                 </tr>
                                             </tbody>
                                         </table>

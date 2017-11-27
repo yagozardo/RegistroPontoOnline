@@ -26,13 +26,8 @@ public class EspelhoController {
     
     @PostMapping
     public List<DiaComHoras> listaDiasComHoras(@RequestBody Long userId) {
-        
-        
-        
-    	return pontoDataHoraServiceImpl.buscar30Dias(userId);
-        
-        
-        
+ 
+    	return pontoDataHoraServiceImpl.buscar30Dias(userId);        
     }
 
 }

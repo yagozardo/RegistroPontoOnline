@@ -5,23 +5,37 @@
  */
 package com.br.pontu.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.br.pontu.entity.DiaComHoras;
+import com.br.pontu.services.PontoDataHoraServiceImpl;
 
 /**
  *
- * @author sltnote-6354
+ * @author sltnote-6354 Alves
  */
 
 @Controller
-@RequestMapping("/espelho")
+@RequestMapping("/resumo")
 public class UserController {
 
-    
-    @GetMapping("/resumo")
-    public String paginaUser(){
-        return "/espelho";
+	@Autowired
+	private PontoDataHoraServiceImpl pontoDataHoraServiceImpl;
+	
+	@GetMapping()
+    public ModelAndView espelho(){
+        ModelAndView model = new ModelAndView("/espelho");
+        
+        List<DiaComHoras> list = pontoDataHoraServiceImpl.buscar30Dias(1L);
+        model.addObject("list", list);
+        
+        return model;
     }
     
 }
