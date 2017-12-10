@@ -46,13 +46,13 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 	public boolean baterPonto(String matricula, String password) {
 
 		List<User> users = userService.findByMatricula(matricula);
-		
-		//Condição para caso não tenha encontrado nada no banco
+
+		// Condição para caso não tenha encontrado nada no banco
 		if (users.size() == 0 || matricula.isEmpty() || password.isEmpty()) {
-			
+
 			return false;
 		}
-		
+
 		User user = users.get(0);
 
 		if (verificarUserESenha(matricula, password, user)) {
@@ -85,7 +85,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 					phora.setHora(horaFormatado);
 					phora.setDataId(dia_id);
 					pontoHoraRepository.save(phora);
-					
+
 					pdata = pontoDataRepository.findOne(dia_id);
 					pdata.getHoras().add(phora);
 					pdata = pontoDataRepository.save(pdata);
@@ -100,18 +100,19 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 				pdata.setDia(diaFormatado);
 				pdata.setUserId(user.getId());
 				pdata = pontoDataRepository.save(pdata);
-				
+
 				// Vincula a data ao usuário
 				user.getPonto().add(pdata);
 				userRepository.save(user);
-				
+
 				// Salva a hora, e o ID do dia correspondente
 				phora.setHora(horaFormatado);
 				phora.setDataId(pdata.getId());
 				phora = pontoHoraRepository.save(phora);
 
 				// Vincula a hora a data
-				List<PontoHora> hora = new ArrayList<>(); //Como será o primeiro horário desse dia, criar arraylist para não ocorrer null pointer.
+				List<PontoHora> hora = new ArrayList<>(); // Como será o primeiro horário desse dia, criar arraylist
+															// para não ocorrer null pointer.
 				hora.add(phora);
 				pdata.setHoras(hora);
 				pontoDataRepository.save(pdata);
@@ -151,7 +152,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			// Encripta se a senha recebida para comparar com a do banco
 			String passwordEncode = userService.encodePassword(password);
 
-			// Checa se ambos tanto a matricula, quanto o password é o mesmo do banco	
+			// Checa se ambos tanto a matricula, quanto o password é o mesmo do banco
 			if (matricula.equals(user.getMatricula()) && passwordEncode.equals(user.getPassword())) {
 
 				return true;
@@ -217,43 +218,110 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 		// Pega a data e subtrai 30 dias
 		dia = Calendar.getInstance();
-		dia.add(Calendar.DATE, - qDias);
+		dia.add(Calendar.DATE, -qDias);
 		dataAnterior = dateFormat.format(dia.getTime());
 
-		//Query para select ao banco
+		// Query para select ao banco
 		String sql = "SELECT dia, hora FROM ponto_data INNER JOIN ponto_hora ON ponto_data.id = ponto_hora.data_id "
 				+ "WHERE ponto_data.user_id = '" + userId + "' AND (ponto_data.dia BETWEEN '" + dataAnterior + "' AND '"
 				+ dataAtual + "');";
 
 		try {
-			
-			//Instacia lista da Classe utilitária DiaComHoras
+
+			// Instacia lista da Classe utilitária DiaComHoras
 			List<DiaComHoras> listaDiasComHoras = new ArrayList<>();
-			
-			//Cria conexão com o SBGD e realiza a consulta
+
+			// Cria conexão com o SBGD e realiza a consulta
 			Connection conn = dao.getConnection();
 			java.sql.PreparedStatement p = conn.prepareStatement(sql);
 			ResultSet rs = p.executeQuery();
 
-			//Loop para extrair todas as tuplas
+			// Loop para extrair todas as tuplas
 			while (rs.next()) {
 
 				DiaComHoras aux = new DiaComHoras();
-				
+
 				aux.setDia(rs.getString("dia"));
 				aux.setHora(rs.getString("hora"));
 
-				listaDiasComHoras.add(aux);	
+				listaDiasComHoras.add(aux);
 			}
 
 			return listaDiasComHoras;
-			
+
 		} catch (Exception ex) {
-			
+
 			ex.printStackTrace();
 		}
+
+		// Por defult caso encotre algum erro
+		return null;
+	}
+
+	@Override
+	public List<DiaComHoras> mesSelecionado(Long userId, int mes, int ano) {
+
+		String dataInicio= null, dataFim = null;
 		
-		//Por defult caso encotre algum erro 
+		
+		if(false){ //Validação para anos inválidos.
+			
+			
+			// Validações para os meses 
+		}else if(mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) { // Para meses que tem até o dia 31
+			
+			dataInicio = ano + "/01/01";
+			dataFim      = ano + "/01/31";
+			
+		} else if(mes == 2) { // Verificação para fevereiro - mês 02
+			
+			dataInicio = ano + "/01/01";
+			dataFim      = ano + "/01/28"; // TODO fazer verificação para ano bissexto
+			
+		} else if(mes == 4 || mes == 6 || mes == 9 || mes == 11) { // Verificação para meses com 30 dias.
+			
+			dataInicio = ano + "/01/01";
+			dataFim      = ano + "/01/30";
+			
+		} else {
+			
+			return null; // TODO fazer validação de mês inválido.
+		}
+		
+		
+		// Query para select ao banco
+		String sql = "SELECT dia, horas_trabalhadas, hora FROM ponto_data INNER JOIN ponto_hora ON ponto_data.id = ponto_hora.data_id "
+				+ "WHERE ponto_data.user_id = '" + userId + "' AND (ponto_data.dia BETWEEN '" + dataInicio + "' AND '"
+				+ dataFim + "');";
+		
+		try {
+
+			// Instacia lista da Classe utilitária DiaComHoras
+			List<DiaComHoras> listaDiasComHoras = new ArrayList<>();
+
+			// Cria conexão com o SBGD e realiza a consulta
+			Connection conn = dao.getConnection();
+			java.sql.PreparedStatement p = conn.prepareStatement(sql);
+			ResultSet rs = p.executeQuery();
+
+			// Loop para extrair todas as tuplas
+			while (rs.next()) {
+
+				DiaComHoras aux = new DiaComHoras();
+
+				aux.setDia(rs.getString("dia"));
+				aux.setHora(rs.getString("hora"));
+
+				listaDiasComHoras.add(aux);
+			}
+
+			return listaDiasComHoras;
+
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+		}
+
 		return null;
 	}
 
@@ -267,18 +335,6 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 	@Override
 	public void deletarPonto(User user) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void buscar60Dias() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void buscar90Dias() {
 		// TODO Auto-generated method stub
 
 	}

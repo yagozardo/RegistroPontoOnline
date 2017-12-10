@@ -29,6 +29,7 @@ public class PontoData implements Serializable {
 	private Long id;
 	private String dia;
 	private Long userId;
+	private Long minTrabalhados;
 	private List<User> usuario;
 	private List<PontoHora> horas;
 	
@@ -63,6 +64,14 @@ public class PontoData implements Serializable {
 	}
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+	
+	@Column(name = "min_trabalhados", columnDefinition = "int default 0")
+	public Long getMinTrabalhados() {
+		return minTrabalhados;
+	}
+	public void setMinTrabalhados(Long minTrabalhados) {
+		this.minTrabalhados = minTrabalhados;
 	}
 	
 	@ManyToMany(fetch = FetchType.LAZY)
