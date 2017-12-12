@@ -53,7 +53,8 @@ public class User implements Serializable {
 	private EstadoCivil estadoCivil;
 	private String email;
 	private String cargo;
-
+	private int cargaHoraria; 
+	
 	private String matricula;
 	private String password;
 
@@ -254,6 +255,16 @@ public class User implements Serializable {
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
 	}
+	
+	@NotNull
+	@Column(nullable = false)
+	public int getCargaHoraria() {
+		return cargaHoraria;
+	}
+	public void setCargaHoraria(int cargaHoraria) {
+		this.cargaHoraria = cargaHoraria;
+	}
+
 
 	/**
 	 * FIM

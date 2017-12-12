@@ -23,7 +23,7 @@ public interface PontoDataHoraService {
 
 	public List<DiaComHoras> buscar30Dias(Long userId);
 	
-	public List<DiaComHoras> mesSelecionado(Long userId, int mes, int ano);
+	public List<DiaComHoras> mesSelecionado(Long userId, String mes, int ano);
 	
 }
 

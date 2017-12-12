@@ -42,7 +42,7 @@ public class UserController {
         ModelAndView model = new ModelAndView("/espelho");
 
         //List<DiaComHoras> list = pontoDataHoraServiceImpl.buscar30Dias(id);
-        List<DiaComHoras> list = pontoDataHoraServiceImpl.mesSelecionado(id, 11, 2017);
+        List<DiaComHoras> list = pontoDataHoraServiceImpl.mesSelecionado(id, "11", 2017);
 
         
         user = userService.findById(id);

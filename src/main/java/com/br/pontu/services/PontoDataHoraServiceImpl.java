@@ -259,46 +259,78 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 	}
 
 	@Override
-	public List<DiaComHoras> mesSelecionado(Long userId, int mes, int ano) {
+	public List<DiaComHoras> mesSelecionado(Long userId, String mes, int ano) {
 
-		String dataInicio= null, dataFim = null;
-		
-		
-		if(false){ // TODO Validação para anos inválidos.
-			
-			
-			// Validações para os meses 
-		}else if(mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) { // Para meses que tem até o dia 31
-			
-			dataInicio = ano + "/"+ mes + "/01";
-			dataFim    = ano + "/"+ mes + "/31";
-			
-		} else if(mes == 2) { // Verificação para fevereiro - mês 02
-			
-			dataInicio = ano + "/"+ mes + "/01";
-			dataFim    = ano + "/"+ mes + "/28"; // TODO fazer verificação para ano bissexto
-			
-		} else if(mes == 4 || mes == 6 || mes == 9 || mes == 11) { // Verificação para meses com 30 dias.
-			
-			dataInicio = ano + "/"+ mes + "/01";
-			dataFim    = ano + "/"+ mes + "/30";
-			
+		// Variáveis
+		String dataInicio = null, dataFim = null;
+		int lenght = 0, i = 0;
+		// Instacia lista da Classe utilitária DiaComHoras
+		List<DiaComHoras> listaDiasComHoras = new ArrayList<>();
+
+		if (false) { // TODO Validação para anos inválidos.
+
+			// Validações para os meses
+		} else if ("01".equals(mes) || "03".equals(mes) || "05".equals(mes) || "07".equals(mes) || "08".equals(mes)
+				|| "10".equals(mes) || "12".equals(mes)) { // Para meses que tem até o dia 31
+
+			dataInicio = ano + "/" + mes + "/01";
+			dataFim = ano + "/" + mes + "/31";
+			lenght = 31;
+
+		} else if ("02".equals(mes)) { // Verificação para fevereiro - mês 02
+
+			if (ano == 2020 || ano == 2024) { // TODO aplicar regra divisivel por 4 nas dezenas
+
+				dataInicio = ano + "/" + mes + "/01";
+				dataFim = ano + "/" + mes + "/29";
+				lenght = 29;
+
+			} else {
+
+				dataInicio = ano + "/" + mes + "/01";
+				dataFim = ano + "/" + mes + "/28";
+				lenght = 28;
+
+			}
+
+		} else if ("04".equals(mes) || "06".equals(mes) || "09".equals(mes) || "11".equals(mes)) { // Verificação para meses com 30 dias.
+
+			dataInicio = ano + "/" + mes + "/01";
+			dataFim = ano + "/" + mes + "/30";
+			lenght = 30;
+
 		} else {
-			
+
 			return null; // TODO fazer validação de mês inválido.
 		}
-		
-		System.out.println(dataFim + " - " +dataInicio);
-		
+
+		// Preencher a lista com os dados
+		for (i = 1; i <= lenght; i++) {
+
+			DiaComHoras dia = new DiaComHoras();
+			String data;
+			
+			if(i < 10) {
+				
+				data = ano + "/" + mes + "/0" + i;
+			
+			} else {
+				
+				data = ano + "/" + mes + "/" + i;
+			}
+			
+			dia.setDia(data);
+
+			listaDiasComHoras.add(dia);
+
+		}
+
 		// Query para select ao banco
 		String sql = "SELECT dia, min_trabalhados, hora FROM ponto_data INNER JOIN ponto_hora ON ponto_data.id = ponto_hora.data_id "
 				+ "WHERE ponto_data.user_id = '" + userId + "' AND (ponto_data.dia BETWEEN '" + dataInicio + "' AND '"
 				+ dataFim + "');";
-		
-		try {
 
-			// Instacia lista da Classe utilitária DiaComHoras
-			List<DiaComHoras> listaDiasComHoras = new ArrayList<>();
+		try {
 
 			// Cria conexão com o SBGD e realiza a consulta
 			Connection conn = dao.getConnection();
@@ -308,15 +340,23 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			// Loop para extrair todas as tuplas
 			while (rs.next()) {
 
-				DiaComHoras aux = new DiaComHoras();
-
-				aux.setDia(rs.getString("dia"));
-				aux.setHora(rs.getString("hora"));
-				aux.setMinTrabalhados(rs.getInt("min_trabalhados"));
-
-				listaDiasComHoras.add(aux);
+				for(i = 0; i < lenght; i++) {
+					
+					if(listaDiasComHoras.get(i).getDia().equals(rs.getString("dia"))) {
+					
+						if(listaDiasComHoras.get(i).getHora() != null) {
+						
+							listaDiasComHoras.get(i).setHora(listaDiasComHoras.get(i).getHora() + " - " + rs.getString("hora"));
+						
+						} else {
+							
+							listaDiasComHoras.get(i).setHora(rs.getString("hora"));
+							listaDiasComHoras.get(i).setMinTrabalhados(rs.getInt("min_trabalhados"));
+						}
+					}
+				}
 			}
-
+		
 			return listaDiasComHoras;
 
 		} catch (Exception ex) {
