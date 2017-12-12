@@ -10,30 +10,30 @@ and open the template in the editor.
         <title>Pontu - Espelho</title>
     </head>
     <body onload="ano()">
-        <!-- ano() função que obtem o ano e seta ele no rodapé --> 
-        <div class="container-fluid"> 
+        <!-- ano() função que obtem o ano e seta ele no rodapé -->
+        <div class="container-fluid">
 
             <!-- INCLUDE NAVBAR -->
             <div th:include="/fragments/navbar"></div>
 
-            <div class="row"> 
+            <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 col-xs-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="panel-title">
                                 <!-- Título da seção da página, mês e ano -->
-                                <h4>Espelho de Ponto - Novembro/2017</h4>   
+                                <h4>Espelho de Ponto - Novembro/2017</h4>
                             </div>
                             <div class="panel-options"> </div>
                         </div>
-                        <div class="panel-body"> 
+                        <div class="panel-body">
 
                             <div class="row">
                                 <!-- Título e funções -->
                                 <div class="col-lg-9 col-xs-8">
                                     <span th:text="${user.nome}"></span>
                                     <span th:text="${user.sobrenome}"></span>
-                                </div>   
+                                </div>
                                 <div class="col-lg-3 col-xs-4">
                                     <button class="btn btn-info btn-sm"><i class="fa fa-calendar" aria-hidden="true"></i><b> Alterar Mês</b></button>
                                     <button class="btn btn-inverse btn-sm"><i class="fa fa-print" aria-hidden="true"></i><b> Imprimir</b></button>
@@ -61,7 +61,7 @@ and open the template in the editor.
                                                     <td th:text="${lista.dia}"></td><!-- Dia -->
                                                     <td>8h - 12h - 14h - 18h</td><!-- Jornada -->
                                                     <td th:text="${lista.hora}"></td><!-- Batidas -->
-                                                    <td>Horas Trabalhadas</td><!-- Apurado -->
+                                                    <td th:text="${lista.minTrabalhados}"></td><!-- Apurado -->
                                                     <td ><i class="fa fa-comment" aria-hidden="true"></i></td><!-- Opções -->
                                                 </tr>
                                             </tbody>
@@ -72,19 +72,19 @@ and open the template in the editor.
 
                         </div>
                     </div>
-                    <!-- .panel panel-default --> 
+                    <!-- .panel panel-default -->
 
                 </div>
-                <!-- Coluna do formulário --> 
+                <!-- Coluna do formulário -->
             </div>
-            <!-- DIV Registro .row--> 
+            <!-- DIV Registro .row-->
 
         </div>
         <!-- Container -->
 
-        <div th:replace="/fragments/footer"></div> 
-        <div th:replace="/fragments/js"></div> 
-        
+        <div th:replace="/fragments/footer"></div>
+        <div th:replace="/fragments/js"></div>
+
     </body>
 </html>
 <!-- >>>>>>> Stashed changes -->

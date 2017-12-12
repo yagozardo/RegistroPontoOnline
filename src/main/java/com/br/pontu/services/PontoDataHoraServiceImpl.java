@@ -264,33 +264,34 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		String dataInicio= null, dataFim = null;
 		
 		
-		if(false){ //Validação para anos inválidos.
+		if(false){ // TODO Validação para anos inválidos.
 			
 			
 			// Validações para os meses 
 		}else if(mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) { // Para meses que tem até o dia 31
 			
-			dataInicio = ano + "/01/01";
-			dataFim      = ano + "/01/31";
+			dataInicio = ano + "/"+ mes + "/01";
+			dataFim    = ano + "/"+ mes + "/31";
 			
 		} else if(mes == 2) { // Verificação para fevereiro - mês 02
 			
-			dataInicio = ano + "/01/01";
-			dataFim      = ano + "/01/28"; // TODO fazer verificação para ano bissexto
+			dataInicio = ano + "/"+ mes + "/01";
+			dataFim    = ano + "/"+ mes + "/28"; // TODO fazer verificação para ano bissexto
 			
 		} else if(mes == 4 || mes == 6 || mes == 9 || mes == 11) { // Verificação para meses com 30 dias.
 			
-			dataInicio = ano + "/01/01";
-			dataFim      = ano + "/01/30";
+			dataInicio = ano + "/"+ mes + "/01";
+			dataFim    = ano + "/"+ mes + "/30";
 			
 		} else {
 			
 			return null; // TODO fazer validação de mês inválido.
 		}
 		
+		System.out.println(dataFim + " - " +dataInicio);
 		
 		// Query para select ao banco
-		String sql = "SELECT dia, horas_trabalhadas, hora FROM ponto_data INNER JOIN ponto_hora ON ponto_data.id = ponto_hora.data_id "
+		String sql = "SELECT dia, min_trabalhados, hora FROM ponto_data INNER JOIN ponto_hora ON ponto_data.id = ponto_hora.data_id "
 				+ "WHERE ponto_data.user_id = '" + userId + "' AND (ponto_data.dia BETWEEN '" + dataInicio + "' AND '"
 				+ dataFim + "');";
 		
@@ -311,6 +312,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 				aux.setDia(rs.getString("dia"));
 				aux.setHora(rs.getString("hora"));
+				aux.setMinTrabalhados(rs.getInt("min_trabalhados"));
 
 				listaDiasComHoras.add(aux);
 			}

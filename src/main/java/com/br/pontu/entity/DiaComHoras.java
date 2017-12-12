@@ -13,15 +13,18 @@ public class DiaComHoras {
 	// Atributos  -----------------------
 	private String dia;
 	private String hora;
+	private int minTrabalhados;
 	
+
 	//Construtores --------------------------
 	public DiaComHoras() {
 
 	}
-	public DiaComHoras(String dia, String hora) {
+	public DiaComHoras(String dia, String hora, int minTrabalhados) {
 		super();
 		this.dia = dia;
 		this.hora = hora;
+		this.minTrabalhados = minTrabalhados; 
 	}
 	
 	// Getters and setters ---------------
@@ -36,6 +39,12 @@ public class DiaComHoras {
 	}
 	public void setHora(String hora) {
 		this.hora = hora;
+	}
+	public int getMinTrabalhados() {
+		return minTrabalhados;
+	}
+	public void setMinTrabalhados(int minTrabalhados) {
+		this.minTrabalhados = minTrabalhados;
 	}
 
 	// To String ------------------------------
