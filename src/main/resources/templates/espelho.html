@@ -59,7 +59,7 @@ and open the template in the editor.
                                             <tbody>
                                                 <tr th:each="lista : ${list}">
                                                     <td th:text="${lista.dia}"></td><!-- Dia -->
-                                                    <td>8h - 12h - 14h - 18h</td><!-- Jornada -->
+                                                    <td th:text="${user.cargaHoraria} + ' ' + hs"></td><!-- Jornada -->
                                                     <td th:text="${lista.hora}"></td><!-- Batidas -->
                                                     <td th:text="${lista.minTrabalhados}"></td><!-- Apurado -->
                                                     <td ><i class="fa fa-comment" aria-hidden="true"></i></td><!-- Opções -->

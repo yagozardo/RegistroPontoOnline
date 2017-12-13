@@ -267,10 +267,7 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		// Instacia lista da Classe utilitária DiaComHoras
 		List<DiaComHoras> listaDiasComHoras = new ArrayList<>();
 
-		if (false) { // TODO Validação para anos inválidos.
-
-			// Validações para os meses
-		} else if ("01".equals(mes) || "03".equals(mes) || "05".equals(mes) || "07".equals(mes) || "08".equals(mes)
+		if ("01".equals(mes) || "03".equals(mes) || "05".equals(mes) || "07".equals(mes) || "08".equals(mes)
 				|| "10".equals(mes) || "12".equals(mes)) { // Para meses que tem até o dia 31
 
 			dataInicio = ano + "/" + mes + "/01";
@@ -293,7 +290,9 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 			}
 
-		} else if ("04".equals(mes) || "06".equals(mes) || "09".equals(mes) || "11".equals(mes)) { // Verificação para meses com 30 dias.
+		} else if ("04".equals(mes) || "06".equals(mes) || "09".equals(mes) || "11".equals(mes)) { // Verificação para
+																									// meses com 30
+																									// dias.
 
 			dataInicio = ano + "/" + mes + "/01";
 			dataFim = ano + "/" + mes + "/30";
@@ -309,16 +308,16 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
 			DiaComHoras dia = new DiaComHoras();
 			String data;
-			
-			if(i < 10) {
-				
+
+			if (i < 10) {
+
 				data = ano + "/" + mes + "/0" + i;
-			
+
 			} else {
-				
+
 				data = ano + "/" + mes + "/" + i;
 			}
-			
+
 			dia.setDia(data);
 
 			listaDiasComHoras.add(dia);
@@ -340,23 +339,26 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 			// Loop para extrair todas as tuplas
 			while (rs.next()) {
 
-				for(i = 0; i < lenght; i++) {
-					
-					if(listaDiasComHoras.get(i).getDia().equals(rs.getString("dia"))) {
-					
-						if(listaDiasComHoras.get(i).getHora() != null) {
-						
-							listaDiasComHoras.get(i).setHora(listaDiasComHoras.get(i).getHora() + " - " + rs.getString("hora"));
-						
+				for (i = 0; i < lenght; i++) {
+
+					if (listaDiasComHoras.get(i).getDia().equals(rs.getString("dia"))) {
+
+						if (listaDiasComHoras.get(i).getHora() != null) {
+
+							listaDiasComHoras.get(i)
+									.setHora(listaDiasComHoras.get(i).getHora() + " - " + rs.getString("hora"));
+
 						} else {
-							
+
 							listaDiasComHoras.get(i).setHora(rs.getString("hora"));
-							listaDiasComHoras.get(i).setMinTrabalhados(rs.getInt("min_trabalhados"));
+
+							String hsContabilizadas = hsContabilizadas(rs.getInt("min_trabalhados"), userId);
+							listaDiasComHoras.get(i).setMinTrabalhados(hsContabilizadas);
 						}
 					}
 				}
 			}
-		
+
 			return listaDiasComHoras;
 
 		} catch (Exception ex) {
@@ -365,6 +367,77 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 		}
 
 		return null;
+	}
+
+	
+	//Função que recebe a quantidade de minutos trabalhados e retorna o saldo do dia
+	//Seja ele positivo, negativo ou nulo.
+	private String hsContabilizadas(int minTrabalhados, Long userId) {
+
+		int horas = 0, minRestantes = 0;
+		User user = userRepository.findOne(userId);
+		String contabilizados;
+		
+		minRestantes = (minTrabalhados - user.getCargaHoraria() * 60);
+
+		if (minRestantes == 0) {
+
+			contabilizados = "+ 00:00";
+
+		} else if (minRestantes > 0) {
+
+			while(minRestantes >= 60) {
+
+				horas = horas + 1;
+				minRestantes = minRestantes - 60;
+			}
+
+			if (horas < 10 && minRestantes < 10) {
+
+				contabilizados = "+ 0" + horas + ":0" + minRestantes;
+
+			} else if (horas < 10 && minRestantes >= 10) {
+
+				contabilizados = "+ 0" + horas + ":" + minRestantes;
+
+			} else if (horas >= 10 && minRestantes < 10) {
+
+				contabilizados = "+ " + horas + ":0" + minRestantes;
+
+			} else {
+
+				contabilizados = "+ " + horas + ":" + minRestantes;
+			}
+
+		} else { // Validações p/ tempo negativo.
+
+			minRestantes = minRestantes * (-1);
+			
+			while (minRestantes >= 60) {
+
+				horas = horas + 1;
+				minRestantes = minRestantes - 60;
+			}
+
+			if (horas < 10 && minRestantes < 10) {
+
+				contabilizados = "- 0" + horas + ":0" + minRestantes;
+
+			} else if (horas < 10 && minRestantes >= 10) {
+
+				contabilizados = "- 0" + horas + ":" + minRestantes;
+
+			} else if (horas >= 10 && minRestantes < 10) {
+
+				contabilizados = "- " + horas + ":0" + minRestantes;
+
+			} else {
+
+				contabilizados = "- " + horas + ":" + minRestantes;
+			}
+		}
+
+		return contabilizados;
 	}
 
 	// =======================================================================================
