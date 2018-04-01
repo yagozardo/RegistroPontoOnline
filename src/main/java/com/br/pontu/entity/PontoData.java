@@ -106,7 +106,4 @@ public class PontoData implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-
 }

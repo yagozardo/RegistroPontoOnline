@@ -28,7 +28,7 @@ import com.br.pontu.repositories.UserRepository;
 @Service("pontoDataHoraService")
 public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 
-	// Injeções
+	// Injeções --------------------------------------------------------
 	@Autowired
 	private PontoHoraRepository pontoHoraRepository;
 	@Autowired
@@ -45,15 +45,15 @@ public class PontoDataHoraServiceImpl implements PontoDataHoraService {
 	@Override
 	public boolean baterPonto(String matricula, String password) {
 
-		List<User> users = userService.findByMatricula(matricula);
+		User user = userRepository.findByMatricula(matricula);
 		
 		//Condição para caso não tenha encontrado nada no banco
-		if (users.size() == 0 || matricula.isEmpty() || password.isEmpty()) {
+		if (user == null || matricula.isEmpty() || password.isEmpty()) {
 			
 			return false;
 		}
 		
-		User user = users.get(0);
+		
 
 		if (verificarUserESenha(matricula, password, user)) {
 

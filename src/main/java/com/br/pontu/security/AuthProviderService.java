@@ -20,6 +20,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+
 /**
  *
  * @author Robson
@@ -27,54 +28,44 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthProviderService implements AuthenticationProvider {
 
-    @Autowired
-    private UserServiceImpl userService;
+	@Autowired
+	private UserServiceImpl userService;
 
-    @Override
-    public Authentication authenticate(Authentication auth) throws AuthenticationException {
-        String login = auth.getName();
-        String senha = auth.getCredentials().toString();
+	@Override
+	public Authentication authenticate(Authentication auth) throws AuthenticationException {
+		String login = auth.getName();
+		String senha = auth.getCredentials().toString();
 
-        
+		try {
+			senha = userService.encodePassword(senha);
+		} catch (NoSuchAlgorithmException ex) {
+			Logger.getLogger(AuthProviderService.class.getName()).log(Level.SEVERE, null, ex);
+		}
 
-        try {
-            senha = userService.encodePassword(senha);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(AuthProviderService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+		List<User> users = this.userService.findByMatriculaAndPassword(login, senha);
 
-        
-        
+		if (users.isEmpty()) {
 
-        
+			throw new UsernameNotFoundException("Login e/ou Senha inválidos.");
 
-        List<User> users = this.userService.findByMatriculaAndPassword(login, senha);
-        
+		} else {
+			final User user = users.get(0);
+			GrantedAuthority autorizacao = new GrantedAuthority() {
+				@Override
+				public String getAuthority() {
+					return user.getAcesso().toString();
+				}
+			};
+			ArrayList<GrantedAuthority> autorizacoes = new ArrayList<>();
+			autorizacoes.add(autorizacao);
+			// System.out.println(user.getRole().toString());
+			return new UsernamePasswordAuthenticationToken(user.getMatricula(), user.getPassword(), autorizacoes);
+		}
+	}
 
-
-        if (users.isEmpty()) {
-      
-            throw new UsernameNotFoundException("Login e/ou Senha inválidos.");
-            
-        } else {
-            final User user = users.get(0);
-            GrantedAuthority autorizacao = new GrantedAuthority() {
-                @Override
-                public String getAuthority() {
-                    return user.getAcesso().toString();
-                }
-            };
-            ArrayList<GrantedAuthority> autorizacoes = new ArrayList<>();
-            autorizacoes.add(autorizacao);
-//            System.out.println(user.getRole().toString());
-            return new UsernamePasswordAuthenticationToken(user.getMatricula(), user.getPassword(), autorizacoes);
-        }
-    }
-
-    @Override
-    public boolean supports(Class<?> type) {
-        return type.equals(UsernamePasswordAuthenticationToken.class);
-    }
+	@Override
+	public boolean supports(Class<?> type) {
+		return type.equals(UsernamePasswordAuthenticationToken.class);
+	}
 
 }
