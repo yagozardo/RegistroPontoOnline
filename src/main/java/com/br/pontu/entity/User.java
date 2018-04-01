@@ -21,6 +21,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.br.pontu.enums.Departamento;
 import com.br.pontu.enums.EstadoCivil;
@@ -83,6 +84,7 @@ public class User implements Serializable {
 
 	@NotNull
 	@NotEmpty
+	@Size(min = 1, max = 5)
 	@Column(nullable = false, length = 5)
 	public String getMatricula() {
 		return matricula;
@@ -93,6 +95,7 @@ public class User implements Serializable {
 
 	@NotNull
 	@NotEmpty
+	@Size(min = 2, max = 15)
 	@Column(nullable = false, length = 15)
 	public String getNome() {
 		return nome;
@@ -114,7 +117,8 @@ public class User implements Serializable {
 
 	@NotNull
 	@NotEmpty
-	@Column(name = "data_nascimento", nullable = false)
+	@Size(min = 6, max = 10)
+	@Column(name = "data_nascimento", nullable = false, length = 10)
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
@@ -123,7 +127,8 @@ public class User implements Serializable {
 	}
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty @CPF
+	@Size(min = 13, max = 13)
 	@Column(nullable = false, length = 13, unique = true)
 	public String getCpf() {
 		return cpf;
@@ -189,8 +194,8 @@ public class User implements Serializable {
 	@NotNull
 	@NotEmpty
 	@Email
-	@Size(min = 7, max = 90)
-	@Column(nullable = false, length = 90, unique = true)
+	@Size(min = 7, max = 60)
+	@Column(nullable = false, length = 60, unique = true)
 	public String getEmail() {
 		return email;
 	}
@@ -200,7 +205,8 @@ public class User implements Serializable {
 
 	@NotNull
 	@NotEmpty
-	@Column(name = "password")
+	@Size(min = 8)
+	@Column(name = "password", length = 100)
 	public String getPassword() {
 		return password;
 	}
@@ -284,7 +290,6 @@ public class User implements Serializable {
 		result = prime * result + ((rg == null) ? 0 : rg.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -348,5 +353,4 @@ public class User implements Serializable {
 	public String toString() {
 		return "User [id=" + id + ", nome=" + nome + ", ponto=" + ponto + "]";
 	}
-
 }
