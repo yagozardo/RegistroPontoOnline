@@ -4,15 +4,20 @@ One Paragraph of project description goes here
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+This document describes how to configure the system deploy and how to open it in any IDE for any modifications that involve configuring the project.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+To deploy the system, you must install:
 
-```
-Give examples
-```
+* Tomcat 7+ (to deploy in production).
+* JDK8+.
+* MySQL
+* Any IDE (The IDE used in this project was Netbeans).
+
+#### Running in DEV mode
+
+* Open the file DataSouce.java
 
 ### Installing
 
