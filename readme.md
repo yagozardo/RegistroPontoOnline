@@ -15,10 +15,13 @@ To deploy the system, you must install:
 * MySQL
 * Any IDE (The IDE used in this project was Netbeans).
 
-#### Running in DEV mode
+### Running in DEV mode
+
+#### Configuring the Database
+* All the DB configuration can be found and configured in a file called **datasource.properties**, if you don't have this file, you can create by your own.
 
 * By default, a properties file in a specific directory on your computer:
-
+	* If you choosed to keep the default configuration, you must create a directory named **pontu** with **datasource file** in it.
 ```
 WINDOWS: C:\\Pontu\\datasource.properties
 LINUX DIST.: /usr/local/pontu/datasource.properties
@@ -40,7 +43,7 @@ LINUX DIST.: /usr/local/pontu/datasource.properties
 	   arquivo = new FileInputStream("/usr/local/pontu/datasource.properties");
 }
 ```
-
+* You also can change the datasouce file to any name you want here!
 
 
 
