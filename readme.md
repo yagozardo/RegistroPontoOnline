@@ -17,7 +17,32 @@ To deploy the system, you must install:
 
 #### Running in DEV mode
 
-* Open the file DataSouce.java
+* By default, a properties file in a specific directory on your computer:
+
+```
+WINDOWS: C:\\Pontu\\datasource.properties
+LINUX DIST.: /usr/local/pontu/datasource.properties
+```
+  * To change the default directory open the file data **dataSource.java** in *src/main/java/com/br/pontu/config*. Change the directory path on the operating system you want, follow the example below:
+ 
+**WINDOWS**
+```java
+      
+ if(so.equalsIgnoreCase("windows 10") || so.equalsIgnoreCase("windows 7")) {
+					
+	  arquivo = new FileInputStream("C:\\Pontu\\datasource.properties");
+}
+```
+**LINUX**
+```java
+ if (so.equalsIgnoreCase("linux")) {
+
+	   arquivo = new FileInputStream("/usr/local/pontu/datasource.properties");
+}
+```
+
+
+
 
 ### Installing
 
