@@ -1,4 +1,5 @@
-# Pontu
+![Logo](https://github.com/mgoalves/RegistroPontoOnline/blob/master/src/main/resources/static/img/logo/logo_pontu_145x48.png)
+# Developer's Guide
 
 One Paragraph of project description goes here
 
