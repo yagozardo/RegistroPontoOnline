@@ -3,10 +3,6 @@
 
 One Paragraph of project description goes here
 
-## Project Documentation
-
-All the documents related to this project can be found [here](https://github.com/yagozardo/RegistroPontoOnline/wiki#documentation-index)
-
 ## Getting Started
 
 This document describes how to configure the system deploy and how to open it in any IDE for any modifications that involve configuring the project.
@@ -108,12 +104,11 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
-<!-- ## Authors
+## Authors
 
- * **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
--->
 
 ## License
 
