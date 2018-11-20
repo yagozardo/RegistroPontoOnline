@@ -1,16 +1,14 @@
 ![Logo](https://github.com/mgoalves/RegistroPontoOnline/blob/master/src/main/resources/static/img/logo/logo_pontu_145x48.png)
 # Developer's Guide
+Nowadays, there are many solutions for digital time card management in the market, but there is a lack of a better solution for micro and medium-sized companies located in the region of Goiânia area.
 
-One Paragraph of project description goes here
+Pontu exists to solve this issue, improving the relationship between HR and employees of different companies, which faces difficulties with the control of working hours using extremely complex systems.
 
+As far as the market is concerned, Pontu aims to ensure small and medium-sized companies, offering a reliable and accessible time card management system.
 ## Getting Started
-
 This document describes how to configure the system deploy and how to open it in any IDE for any modifications that involve configuring the project.
-
 ### Prerequisites
-
 To deploy the system, you must install:
-
 * Tomcat 7+ (to deploy in production).
 * JDK8+.
 * MySQL
