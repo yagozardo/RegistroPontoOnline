@@ -9,10 +9,10 @@ As far as the market is concerned, Pontu aims to ensure small and medium-sized c
 This document describes how to configure the system deploy and how to open it in any IDE for any modifications that involve configuring the project.
 ### Prerequisites
 To deploy the system, you must install:
-* Tomcat 7+ (to deploy in production).
-* JDK8+.
-* MySQL
-* Any IDE (The IDE used in this project was Netbeans).
+* [Tomcat 7+](http://tomcat.apache.org/) (to deploy in production).
+* [JDK8+.](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* [MySQL](https://www.mysql.com/)
+* Any IDE (The IDE used in this project was [Netbeans](https://netbeans.org)).
 
 ### Running in DEV mode
 
@@ -83,7 +83,7 @@ Explain what these tests test and why
 ```
 Give an example
 ```
--->
+
 
 ## Deployment
 
@@ -102,12 +102,12 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+-->
+## Members
 
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* [**Robson Cardoso**](https://github.com/cardozorobson) - *Developer*
+* [**José Eduardo**](https://github.com/zehurzeda) - *Documentation, Maintenance*
+* [**Yago Zardo**](https://github.com/yagozardo) - *Documentation, Maintenance* 
 
 ## License
 
