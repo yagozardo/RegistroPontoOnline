@@ -46,7 +46,7 @@ LINUX DIST.: /usr/local/pontu/datasource.properties
 
 
 
-### Installing
+<!-- ### Installing
 
 A step by step series of examples that tell you how to get a development env running
 
@@ -83,6 +83,7 @@ Explain what these tests test and why
 ```
 Give an example
 ```
+-->
 
 ## Deployment
 
