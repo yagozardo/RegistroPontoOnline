@@ -106,7 +106,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Members
 
 * [**Robson Cardoso**](https://github.com/cardozorobson) - *Developer*
-* [**José Eduardo**](https://github.com/zehurzeda) - *Documentation, Maintenance*
+* [**José Eduardo**](https://github.com/zehurzeda) - *Developer*
 * [**Yago Zardo**](https://github.com/yagozardo) - *Documentation, Maintenance* 
 
 ## License
