@@ -109,7 +109,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 * [**José Eduardo**](https://github.com/zehurzeda) - *Developer*
 * [**Matheus Franca**](https://github.com/mathfrance) - *Documentation, Maintenance* 
 * [**Robson Cardoso**](https://github.com/cardozorobson) - *Developer*
-* [**Rogerio Amorim](https://github.com/RogerioAmorim) - *Developer*
+* [**Rogerio Amorim**](https://github.com/RogerioAmorim) - *Developer*
 * [**Yago Zardo**](https://github.com/yagozardo) - *Documentation, Maintenance* 
 
 ## License
