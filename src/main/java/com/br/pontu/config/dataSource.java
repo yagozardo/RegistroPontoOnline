@@ -52,10 +52,10 @@ public class dataSource {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/usuariodb");
-		dataSource.setUsername("root");
-		dataSource.setPassword("root");
+		dataSource.setDriverClassName(props.getProperty("spring.datasource.driver-class-name"));
+		dataSource.setUrl(props.getProperty("spring.datasource.url"));
+		dataSource.setUsername(props.getProperty("spring.datasource.username"));
+		dataSource.setPassword(props.getProperty("spring.datasource.password"));
 
 		return dataSource;
 

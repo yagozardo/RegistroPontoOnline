@@ -21,6 +21,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.br.pontu.enums.Departamento;
 import com.br.pontu.enums.EstadoCivil;
@@ -39,81 +40,40 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	// Atributos Inicio
+	// =========================================================================
 	private Long id;
-	
-	@NotNull
 	private String nome;
-	
-	@NotNull
 	private String sobrenome;
-	
-	@Column(nullable = false, length = 10)
 	private String dataNascimento;
-	
-	@NotNull
-	@Column(unique = true)
 	private String cpf;
-	
-	@NotNull
-	@Column(unique = true)
 	private String carteiraDeTrabalho;
-	
-	@NotNull
-	@Size(min = 1, max = 20)
-	@Column(unique = true)
 	private String rg;
-	
-	@NotNull
 	private String celular;
-	
-	@Size(max = 16)
 	private String fixo;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	@Column(length = 60)
 	private EstadoCivil estadoCivil;
-	
-	@Email
-	@Size(max = 60)
-	@Column(nullable = false, length = 60, unique = true)
 	private String email;
-	
-	@NotNull
-	@Column(name = "cargo", nullable = false, length = 60)
 	private String cargo;
-	
-	@NotNull
-	@Column(nullable = false, length = 5)
+
 	private String matricula;
-	
-	@NotNull
-	@Column(name = "password", length = 100)
 	private String password;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
 	private Role acesso;
-	
-	@Embedded
 	private Adress endereco;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	@Column(length = 60)
 	private Departamento departamento;
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_datas", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_data"))
+
 	private List<PontoData> ponto;
 	
+	// FIM
+	// ========================================================================================
+
 	/**
 	 * Getters And Setters Contendo as anotações de verificação
 	 * =======================================================
 	 */
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique = true)
 	public Long getId() {
 		return id;
 	}
@@ -121,7 +81,10 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	
+	@NotNull
+	@NotEmpty
+	@Size(min = 1, max = 5)
+	@Column(nullable = false, length = 5)
 	public String getMatricula() {
 		return matricula;
 	}
@@ -129,6 +92,10 @@ public class User implements Serializable {
 		this.matricula = matricula;
 	}
 
+	@NotNull
+	@NotEmpty
+	@Size(min = 2, max = 15)
+	@Column(nullable = false, length = 15)
 	public String getNome() {
 		return nome;
 	}
@@ -136,7 +103,10 @@ public class User implements Serializable {
 		this.nome = nome;
 	}
 
-	
+	@NotNull
+	@NotEmpty
+	@Size(min = 3, max = 60)
+	@Column(nullable = false, length = 60)
 	public String getSobrenome() {
 		return sobrenome;
 	}
@@ -144,7 +114,10 @@ public class User implements Serializable {
 		this.sobrenome = sobrenome;
 	}
 
-	
+	@NotNull
+	@NotEmpty
+	@Size(min = 6, max = 10)
+	@Column(name = "data_nascimento", nullable = false, length = 10)
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
@@ -152,7 +125,10 @@ public class User implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	
+	@NotNull
+	@NotEmpty @CPF
+	@Size(min = 13, max = 13)
+	@Column(nullable = false, length = 13, unique = true)
 	public String getCpf() {
 		return cpf;
 	}
@@ -160,7 +136,10 @@ public class User implements Serializable {
 		this.cpf = cpf;
 	}
 
-	
+	@NotNull
+	@NotEmpty
+	@Size(min = 1, max = 20)
+	@Column(nullable = false, length = 20, unique = true)
 	public String getCarteiraDeTrabalho() {
 		return carteiraDeTrabalho;
 	}
@@ -168,7 +147,10 @@ public class User implements Serializable {
 		this.carteiraDeTrabalho = carteiraDeTrabalho;
 	}
 
-	
+	@NotNull
+	@NotEmpty
+	@Size(min = 1, max = 20)
+	@Column(nullable = false, length = 20, unique = true)
 	public String getRg() {
 		return rg;
 	}
@@ -176,7 +158,10 @@ public class User implements Serializable {
 		this.rg = rg;
 	}
 
-	
+	@NotNull
+	@NotEmpty
+	@Size(min = 8, max = 16)
+	@Column(nullable = false, length = 16)
 	public String getCelular() {
 		return celular;
 	}
@@ -184,6 +169,10 @@ public class User implements Serializable {
 		this.celular = celular;
 	}
 
+	// Este Atributo pode ser opcional, sendo não é necessário
+	// Validação
+	@Size(max = 16)
+	@Column(length = 16)
 	public String getFixo() {
 		return fixo;
 	}
@@ -191,6 +180,9 @@ public class User implements Serializable {
 		this.fixo = fixo;
 	}
 
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 60)
 	public EstadoCivil getEstadoCivil() {
 		return estadoCivil;
 	}
@@ -198,6 +190,11 @@ public class User implements Serializable {
 		this.estadoCivil = estadoCivil;
 	}
 
+	@NotNull
+	@NotEmpty
+	@Email
+	@Size(min = 7, max = 60)
+	@Column(nullable = false, length = 60, unique = true)
 	public String getEmail() {
 		return email;
 	}
@@ -205,7 +202,10 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	
+	@NotNull
+	@NotEmpty
+	@Size(min = 8)
+	@Column(name = "password", length = 100)
 	public String getPassword() {
 		return password;
 	}
@@ -214,7 +214,8 @@ public class User implements Serializable {
 	}
 
 	
-	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_datas", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_data"))
 	public List<PontoData> getPonto() {
 		return ponto;
 	}
@@ -222,7 +223,7 @@ public class User implements Serializable {
 		this.ponto = ponto;
 	}
 
-	
+	@Embedded
 	public Adress getEndereco() {
 		return endereco;
 	}
@@ -230,7 +231,8 @@ public class User implements Serializable {
 		this.endereco = endereco;
 	}
 
-	
+	@NotNull
+	@Enumerated(EnumType.STRING)
 	public Role getAcesso() {
 		return acesso;
 	}
@@ -238,7 +240,10 @@ public class User implements Serializable {
 		this.acesso = acesso;
 	}
 
-	
+	@NotNull
+	@NotEmpty
+	@Size(min = 2, max = 60)
+	@Column(name = "cargo", nullable = false, length = 60)
 	public String getCargo() {
 		return cargo;
 	}
@@ -246,7 +251,9 @@ public class User implements Serializable {
 		this.cargo = cargo;
 	}
 
-	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 60)
 	public Departamento getDepartamento() {
 		return departamento;
 	}
@@ -258,7 +265,8 @@ public class User implements Serializable {
 	 * FIM
 	 * ====================================================================================
 	 */
-	
+	// Equals and Hash Code
+	// -------------------------------------------------------------------
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -271,7 +279,6 @@ public class User implements Serializable {
 		result = prime * result + ((rg == null) ? 0 : rg.hashCode());
 		return result;
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -328,7 +335,9 @@ public class User implements Serializable {
 		}
 		return true;
 	}
+	// ------------------------------------------------------------------------------------------
 	
+	//ToString ---------------------------------------------------------------------------------
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", nome=" + nome + ", ponto=" + ponto + "]";

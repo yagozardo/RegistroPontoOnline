@@ -14,7 +14,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DAO {
+public class dao {
 
 	@Autowired
 	private dataSource dataSource;

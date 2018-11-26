@@ -17,7 +17,7 @@ public class StandardError implements Serializable {
 
 	// Atributos ------------------------------------
 	@JsonFormat(pattern = "dd/MM/yy hh:mm")
-	private Date timestamp;
+	private Date timesTamp;
 	private Integer status;
 	private String error;
 	private String message;
@@ -26,9 +26,9 @@ public class StandardError implements Serializable {
 	// Contructor ------------------------------------
 	public StandardError() {
 	}
-	public StandardError(Long timestamp, Integer status, String error, String message, String path) {
+	public StandardError(Long timesTamp, Integer status, String error, String message, String path) {
 		super();
-		this.timestamp = new Date(timestamp);
+		this.timesTamp = new Date(timesTamp);
 		this.status = status;
 		this.error = error;
 		this.message = message;
@@ -37,11 +37,11 @@ public class StandardError implements Serializable {
 
 
 	// Getters and Setters -------------------------------
-	public Date getTimestamp() {
-		return timestamp;
+	public Date getTimesTamp() {
+		return timesTamp;
 	}
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
+	public void setTimesTamp(Date timesTamp) {
+		this.timesTamp = timesTamp;
 	}
 	public Integer getStatus() {
 		return status;
