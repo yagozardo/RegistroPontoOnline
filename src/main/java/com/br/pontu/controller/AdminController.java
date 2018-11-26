@@ -25,38 +25,37 @@ import com.br.pontu.services.UserServiceImpl;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    
+
     @Autowired
     UserServiceImpl userService;
-    
+
     @GetMapping("/registro")
-    public ModelAndView paginaCadastro(User user){
+    public ModelAndView paginaCadastro(User user) {
         ModelAndView model = new ModelAndView("/registro");
-        model.addObject("user",user);
-        
-        
+        model.addObject("user", user);
+
         return model;
     }
-    
+
     @PostMapping("/registro")
-    public String cadastraFuncionario(User user){
-        
-        userService.cadastrarUsuario(user);
-        
+    public String cadastraFuncionario(User user) {
+
+        userService.cadastrarUsuario(user, true);
+
         return ("redirect:/admin/registro");
     }
-    
+
     @GetMapping("/lista")
-    public ModelAndView listaUsers(User user){
+    public ModelAndView listaUsers(User user) {
         ModelAndView model = new ModelAndView("/listaUsers");
-        List<User> list =  userService.getAllUsers();
-        
-        model.addObject("list",list);
-        
+        List<User> list = userService.getAllUsers();
+
+        model.addObject("list", list);
+
         return model;
-        
+
     }
-    
+
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable int id) {
         userService.deletarUsuario(id);
@@ -65,7 +64,7 @@ public class AdminController {
 
     @GetMapping("/edit/{id}")
     public ModelAndView editarUser(@PathVariable int id, User user) {
-        ModelAndView model = new ModelAndView("/registro");
+        ModelAndView model = new ModelAndView("/editar");
 
         user = userService.findById(id);
 
@@ -73,22 +72,29 @@ public class AdminController {
 
         return model;
     }
-    
+
+    @PostMapping("/edit")
+    public String editaFuncionario(User user) {
+
+        userService.cadastrarUsuario(user, false);
+
+        return ("redirect:/admin/registro");
+    }
+
     @GetMapping("/user/{id}")
-    public ModelAndView getUser(@PathVariable int id ,User user){
+    public ModelAndView getUser(@PathVariable int id, User user) {
         ModelAndView model = new ModelAndView("/user");
-        
+
         user = userService.findById(id);
-        
+
         model.addObject("user", user);
-        
+
         return model;
     }
-    
+
     @GetMapping("/menu")
-    public String menu(){
+    public String menu() {
         return "/menu";
     }
-    
-    
+
 }

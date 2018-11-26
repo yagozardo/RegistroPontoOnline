@@ -29,7 +29,8 @@ public class UserServiceImpl implements UserService {
 	private EntityManager manager;
 
 	@Override
-	public User cadastrarUsuario(User user) {
+	public User cadastrarUsuario(User user, boolean isNewUser) {
+            if(isNewUser){
 		long mat = (long) (Math.random() * 2000);
 		System.out.println("MATRICULA GERADA ---------> " + mat);
 		user.setMatricula(String.valueOf(mat));
@@ -44,6 +45,7 @@ public class UserServiceImpl implements UserService {
 		System.out.println("SENHA APÓS ENCRIPTAR ----------> " + encrypt);
 
 		user.setPassword(encrypt);
+            }
 		return this.userRepository.save(user);
 	}
 
