@@ -127,8 +127,8 @@ public class User implements Serializable {
 
 	@NotNull
 	@NotEmpty @CPF
-	@Size(min = 13, max = 13)
-	@Column(nullable = false, length = 13, unique = true)
+	@Size(min = 1, max = 60)
+	@Column(nullable = false, length = 60, unique = true)
 	public String getCpf() {
 		return cpf;
 	}

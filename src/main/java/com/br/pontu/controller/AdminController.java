@@ -28,6 +28,8 @@ public class AdminController {
 
     @Autowired
     UserServiceImpl userService;
+    
+    public Long userIdTemp;
 
     @GetMapping("/registro")
     public ModelAndView paginaCadastro(User user) {
@@ -40,7 +42,7 @@ public class AdminController {
     @PostMapping("/registro")
     public String cadastraFuncionario(User user) {
 
-        userService.cadastrarUsuario(user, true);
+        userService.cadastrarUsuario(user, true, 0L);
 
         return ("redirect:/admin/registro");
     }
@@ -63,11 +65,11 @@ public class AdminController {
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView editarUser(@PathVariable int id, User user) {
+    public ModelAndView editarUser(@PathVariable Long id, User user) {
         ModelAndView model = new ModelAndView("/editar");
-
+        
         user = userService.findById(id);
-
+        userIdTemp = id;
         model.addObject("user", user);
 
         return model;
@@ -76,7 +78,7 @@ public class AdminController {
     @PostMapping("/edit")
     public String editaFuncionario(User user) {
 
-        userService.cadastrarUsuario(user, false);
+        userService.cadastrarUsuario(user, false, userIdTemp);
 
         return ("redirect:/admin/registro");
     }

@@ -18,7 +18,7 @@ public interface UserService {
 
     public List<User> findByMatriculaAndPassword(String matricula, String password);
 
-    public User cadastrarUsuario(User user,boolean isNewUser);
+    public User cadastrarUsuario(User user,boolean isNewUser, Long id);
 
     public List<User> getAllUsers();
 
