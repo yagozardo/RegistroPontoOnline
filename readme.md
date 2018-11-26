@@ -5,6 +5,8 @@ Nowadays, there are many solutions for digital time card management in the marke
 Pontu exists to solve this issue, improving the relationship between HR and employees of different companies, which faces difficulties with the control of working hours using extremely complex systems.
 
 As far as the market is concerned, Pontu aims to ensure small and medium-sized companies, offering a reliable and accessible time card management system.
+
+For more informations about the system, please take a look on the [Wiki](https://github.com/yagozardo/RegistroPontoOnline/wiki) available in this repository.
 ## Getting Started
 This document describes how to configure the system deploy and how to open it in any IDE for any modifications that involve configuring the project.
 ### Prerequisites
@@ -104,9 +106,10 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 -->
 ## Members
-
-* [**Robson Cardoso**](https://github.com/cardozorobson) - *Developer*
 * [**José Eduardo**](https://github.com/zehurzeda) - *Developer*
+* [**Matheus Franca**](https://github.com/mathfrance) - *Documentation, Maintenance* 
+* [**Robson Cardoso**](https://github.com/cardozorobson) - *Developer*
+* [**Rogerio Amorim](https://github.com/RogerioAmorim) - *Developer*
 * [**Yago Zardo**](https://github.com/yagozardo) - *Documentation, Maintenance* 
 
 ## License
