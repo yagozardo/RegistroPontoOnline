@@ -20,8 +20,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.br.CPF;
 
 import com.br.pontu.enums.Departamento;
 import com.br.pontu.enums.EstadoCivil;
@@ -42,231 +40,220 @@ public class User implements Serializable {
 
 	// Atributos Inicio
 	// =========================================================================
-	private Long id;
-	private String nome;
-	private String sobrenome;
-	private String dataNascimento;
-	private String cpf;
-	private String carteiraDeTrabalho;
-	private String rg;
-	private String celular;
-	private String fixo;
-	private EstadoCivil estadoCivil;
-	private String email;
-	private String cargo;
-
-	private String matricula;
-	private String password;
-
-	private Role acesso;
-	private Adress endereco;
-	private Departamento departamento;
-
-	private List<PontoData> ponto;
-	
-	// FIM
-	// ========================================================================================
-
-	/**
-	 * Getters And Setters Contendo as anotações de verificação
-	 * =======================================================
-	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	@NotNull
+	private String nome;
+
+	@NotNull
+	private String sobrenome;
+
+	@Column(nullable = false, length = 10)
+	private String dataNascimento;
+
+	@NotNull
 	@Column(unique = true)
+	private String cpf;
+
+	@NotNull
+	@Column(unique = true)
+	private String carteiraDeTrabalho;
+
+	@NotNull
+	@Size(min = 1, max = 20)
+	@Column(unique = true)
+	private String rg;
+
+	@NotNull
+	private String celular;
+
+	@Size(max = 16)
+	private String fixo;
+
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(length = 60)
+	private EstadoCivil estadoCivil;
+
+	@Email
+	@Size(max = 60)
+	@Column(nullable = false, length = 60, unique = true)
+	private String email;
+
+	@NotNull
+	@Column(name = "cargo", nullable = false, length = 60)
+	private String cargo;
+
+	@NotNull
+	@Column(nullable = false, length = 5)
+	private String matricula;
+
+	@NotNull
+	@Column(name = "password", length = 100)
+	private String password;
+
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private Role acesso;
+
+	@Embedded
+	private Adress endereco;
+
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(length = 60)
+	private Departamento departamento;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_datas", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_data"))
+	private List<PontoData> ponto;
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@NotNull
-	@NotEmpty
-	@Size(min = 1, max = 5)
-	@Column(nullable = false, length = 5)
 	public String getMatricula() {
 		return matricula;
 	}
+
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 
-	@NotNull
-	@NotEmpty
-	@Size(min = 2, max = 15)
-	@Column(nullable = false, length = 15)
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	@NotNull
-	@NotEmpty
-	@Size(min = 3, max = 60)
-	@Column(nullable = false, length = 60)
 	public String getSobrenome() {
 		return sobrenome;
 	}
+
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
 
-	@NotNull
-	@NotEmpty
-	@Size(min = 6, max = 10)
-	@Column(name = "data_nascimento", nullable = false, length = 10)
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
+
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
-	@NotNull
-	@NotEmpty @CPF
-	@Size(min = 1, max = 60)
-	@Column(nullable = false, length = 60, unique = true)
 	public String getCpf() {
 		return cpf;
 	}
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-	@NotNull
-	@NotEmpty
-	@Size(min = 1, max = 20)
-	@Column(nullable = false, length = 20, unique = true)
 	public String getCarteiraDeTrabalho() {
 		return carteiraDeTrabalho;
 	}
+
 	public void setCarteiraDeTrabalho(String carteiraDeTrabalho) {
 		this.carteiraDeTrabalho = carteiraDeTrabalho;
 	}
 
-	@NotNull
-	@NotEmpty
-	@Size(min = 1, max = 20)
-	@Column(nullable = false, length = 20, unique = true)
 	public String getRg() {
 		return rg;
 	}
+
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
 
-	@NotNull
-	@NotEmpty
-	@Size(min = 8, max = 16)
-	@Column(nullable = false, length = 16)
 	public String getCelular() {
 		return celular;
 	}
+
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 
-	// Este Atributo pode ser opcional, sendo não é necessário
-	// Validação
-	@Size(max = 16)
-	@Column(length = 16)
 	public String getFixo() {
 		return fixo;
 	}
+
 	public void setFixo(String fixo) {
 		this.fixo = fixo;
 	}
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false, length = 60)
 	public EstadoCivil getEstadoCivil() {
 		return estadoCivil;
 	}
+
 	public void setEstadoCivil(EstadoCivil estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
 
-	@NotNull
-	@NotEmpty
-	@Email
-	@Size(min = 7, max = 60)
-	@Column(nullable = false, length = 60, unique = true)
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	@NotNull
-	@NotEmpty
-	@Size(min = 8)
-	@Column(name = "password", length = 100)
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_datas", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_data"))
 	public List<PontoData> getPonto() {
 		return ponto;
 	}
+
 	public void setPonto(List<PontoData> ponto) {
 		this.ponto = ponto;
 	}
 
-	@Embedded
 	public Adress getEndereco() {
 		return endereco;
 	}
+
 	public void setEndereco(Adress endereco) {
 		this.endereco = endereco;
 	}
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
 	public Role getAcesso() {
 		return acesso;
 	}
+
 	public void setAcesso(Role acesso) {
 		this.acesso = acesso;
 	}
 
-	@NotNull
-	@NotEmpty
-	@Size(min = 2, max = 60)
-	@Column(name = "cargo", nullable = false, length = 60)
 	public String getCargo() {
 		return cargo;
 	}
+
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false, length = 60)
 	public Departamento getDepartamento() {
 		return departamento;
 	}
+
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
 	}
 
-	/**
-	 * FIM
-	 * ====================================================================================
-	 */
-	// Equals and Hash Code
-	// -------------------------------------------------------------------
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -279,6 +266,7 @@ public class User implements Serializable {
 		result = prime * result + ((rg == null) ? 0 : rg.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -335,9 +323,7 @@ public class User implements Serializable {
 		}
 		return true;
 	}
-	// ------------------------------------------------------------------------------------------
-	
-	//ToString ---------------------------------------------------------------------------------
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", nome=" + nome + ", ponto=" + ponto + "]";
